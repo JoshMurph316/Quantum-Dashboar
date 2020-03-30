@@ -1,0 +1,7 @@
+.signInForm {
+    display: flex;
+    flex-direction: column;
+}
+.signInForm mat-form-field {
+    color: lightgrey;
+}

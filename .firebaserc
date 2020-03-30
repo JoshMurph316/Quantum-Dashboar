@@ -1,5 +1,11 @@
 {
-  "projects": {
-    "default": "quantum-dashboard-3afb3"
+  "targets": {
+    "quantum-dashboard-3afb3": {
+      "hosting": {
+        "quantum-dashboard": [
+          "quantum-dashboard-3afb3"
+        ]
+      }
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 import {FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,10 +8,9 @@ import {FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private usrSvc: UserService) { }
 
   ngOnInit(): void {
     
@@ -20,9 +20,10 @@ export class UserFormComponent implements OnInit {
       'email': '',
       'phone': ''
     });
+  }
 
-    this.myForm.valueChanges.subscribe(console.log);
-
+  onSubmit() {
+    this.usrSvc.addUser(this.myForm.value);
   }
 
 }

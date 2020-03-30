@@ -1,5 +1,5 @@
 
-<form [formGroup]="myForm" class="pre-assesment-form">
+<form [formGroup]="myForm" class="pre-assesment-form" (ngSubmit)="onSubmit()">
 
   <mat-form-field appearance="fill" color="accent">
     <mat-label>First Name</mat-label>
@@ -20,6 +20,8 @@
     <mat-label>Phone</mat-label>
     <input matInput type="tel" formControlName="phone">
   </mat-form-field>
+
+  <button type='submit' mat-raised-button>Add User</button>
   
 </form>
 
