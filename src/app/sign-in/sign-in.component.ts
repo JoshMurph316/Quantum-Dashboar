@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,7 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignInComponent implements OnInit {
   signInForm: FormGroup
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.signInForm = this.fb.group({
@@ -21,9 +22,9 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     // if(this.signInForm.value)
     if(this.signInForm.value.password == '123') {
-      console.log('change-page')
+      this.router.navigate(['/dashboard']);
     } else {
-      console.log('auth fail')
+      alert("incorrect password");
     }
   }
 
