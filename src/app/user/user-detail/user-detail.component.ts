@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -12,10 +12,11 @@ import { UserService } from '../user.service';
 export class UserDetailComponent implements OnInit {
   $id: string;
   user: User;
+  question_list: string[];
+  lifestyle_list: string[];
 
   constructor(
     private usrSvc: UserService,
-    private router: Router,
     private route: ActivatedRoute
     ) { }
 
@@ -24,7 +25,15 @@ export class UserDetailComponent implements OnInit {
 
     this.usrSvc.getUserDetails(this.$id).subscribe(user => {
       this.user = user;
-      console.log(user);
+
+      this.question_list = [];
+      for (const question in user.questions) {
+        if(user.questions[question]) {
+          this.question_list.push(question);
+        }
+      }
+
+      this.lifestyle_list = Object.keys(user.lifestyle);
     });
 
   }

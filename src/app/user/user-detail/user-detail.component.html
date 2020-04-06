@@ -1,3 +1,94 @@
-<div *ngIf="user">
-    <p>{{ user.f_name }}</p>
+<div *ngIf="user; else loading" class="user-details">
+
+    <mat-card>
+        <div class="name-display">
+            <div class="card-header">
+                <h2>{{ user.f_name }} {{ user.l_name }}</h2>
+                <mat-chip-list>
+                    <mat-chip *ngIf="user.active; else inactive" class="active-chip">Active</mat-chip>
+                    <ng-template #inactive >
+                        <mat-chip class="inactive-chip">Inactive</mat-chip>
+                    </ng-template>
+                </mat-chip-list>
+            </div>
+            <!-- TODO: fix date display (might be an interface issue) -->
+            <div class="subtext-container">
+                <p>Session # {{ user.sessions }}</p>
+                <p>Age: {{ user.timeStamp }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Phone: {{ user.phone }}</p>
+                <p>Date created: {{ user.timeStamp }}</p>
+            </div>
+        </div>
+        <hr>
+        <button mat-raised-button>Reassess</button>
+    </mat-card>
+
+
+    <mat-card>
+        <h3>History</h3>
+        <mat-chip-list>
+            <mat-chip *ngFor="let item of user.history">{{ item }}</mat-chip>
+        </mat-chip-list>
+        <hr>
+        <mat-chip-list>
+            <mat-chip *ngFor="let question of question_list">{{ question }}</mat-chip>
+        </mat-chip-list>
+    </mat-card>
+
+
+    <mat-card>
+        <h3>Lifestyle</h3>
+        <ul class="list-table">
+            <li *ngFor="let item of lifestyle_list">
+                <div class="list-head">{{ item }}</div>
+                <!-- <span class="list-content">test</span> -->
+                <mat-chip-list>
+                    <mat-chip *ngFor="let item of user[item]" class="list-content">{{ item }}</mat-chip>
+                </mat-chip-list>
+            </li>
+        </ul>
+    </mat-card>
+
+
+    <mat-card>
+        <h3>Symptoms</h3>
+        <mat-chip-list>
+            <mat-chip *ngFor="let symptom of user.symptoms">{{ symptom }}</mat-chip>
+        </mat-chip-list>
+    </mat-card>
+
+
+    <mat-card>
+        <h3>Medications</h3>
+        <mat-chip-list>
+            <mat-chip *ngFor="let med of user.medications">{{ med }}</mat-chip>
+        </mat-chip-list>
+    </mat-card>
+
+
+    <mat-card>
+        <h3>Supplements</h3>
+        <mat-chip-list>
+            <mat-chip *ngFor="let supp of user.supplements">{{ supp }}</mat-chip>
+        </mat-chip-list>
+    </mat-card>
+
 </div>
+
+<!-- 
+    conductivity: number;
+    left_spin: boolean;
+    biotoxicosis: string;
+    findings: string[];
+    diet: string[];
+    detox: string[];
+    food_restrictions: string[];
+    remedy_suggestions: Array<string[]>;
+    notes: string[];
+ -->
+
+<ng-template #loading>
+    Loading user data...
+  </ng-template>
+

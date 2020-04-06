@@ -5,12 +5,17 @@
     <mat-label>First Name</mat-label>
     <input matInput type="text" formControlName="f_name">
   </mat-form-field>
-
+  
   <mat-form-field appearance="fill" color="accent">
-    <mat-label>Last    Name</mat-label>
+    <mat-label>Last Name</mat-label>
     <input matInput type="text" formControlName="l_name">
   </mat-form-field>
 
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Birthday</mat-label>
+    <input matInput type="date" formControlName="b_day">
+  </mat-form-field>
+  
   <mat-form-field appearance="fill" color="accent">
     <mat-label>Email</mat-label>
     <input matInput type="email" formControlName="email">
@@ -20,6 +25,223 @@
     <mat-label>Phone</mat-label>
     <input matInput type="tel" formControlName="phone">
   </mat-form-field>
+
+  <mat-form-field color="accent" class="small-field">
+    <mat-label>Session #</mat-label>
+    <input matInput type="number" formControlName="sessions">
+  </mat-form-field>
+
+  <div formGroupName="questions" class="question-section">
+    <div class="q_column">
+      <mat-checkbox formControlName="root_canal">Root Canal</mat-checkbox>
+      <mat-checkbox formControlName="mold">Mold</mat-checkbox>
+      <mat-checkbox formControlName="missing_organs">Missing Organs</mat-checkbox>
+      <mat-checkbox formControlName="tap_water">Tap Water</mat-checkbox>
+      <mat-checkbox formControlName="alcohol">Alcohol</mat-checkbox>
+      <mat-checkbox formControlName="c_section">C Section</mat-checkbox>
+      <mat-checkbox formControlName="birth_control">Birth Control</mat-checkbox>
+    </div>
+
+    <div class="q_column">
+      <mat-checkbox formControlName="implants">Implants</mat-checkbox>
+      <mat-checkbox formControlName="uti">UTI</mat-checkbox>
+      <mat-checkbox formControlName="mercury_fillings">Mercury Fillings</mat-checkbox>
+      <mat-checkbox formControlName="surgeries">Surgeries</mat-checkbox>
+      <mat-checkbox formControlName="botox">Botox</mat-checkbox>
+      <mat-checkbox formControlName="emf">EMF</mat-checkbox>
+    </div>
+  </div>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-chip-list #historyChips aria-label="history selection">
+      <mat-chip *ngFor="let item of user_chips.history" [selectable]="selectable" [removable]="removable" (removed)="remove(item, 'history')">
+        {{ item }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+      </mat-chip>
+      <input placeholder="Add History..."
+             [matChipInputFor]="historyChips"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event, 'history')"
+             formControlName="history">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-chip-list #symptomChips aria-label="sypmtom selection">
+      <mat-chip *ngFor="let symptom of user_chips.symptoms" [selectable]="selectable" [removable]="removable" (removed)="remove(symptom, 'symptoms')">
+        {{ symptom }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+      </mat-chip>
+      <input placeholder="Add Symptoms..."
+             [matChipInputFor]="symptomChips"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event, 'symptoms')"
+             formControlName="symptoms">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-chip-list #medicationChips aria-label="medication selection">
+      <mat-chip *ngFor="let medication of user_chips.medications" [selectable]="selectable" [removable]="removable" (removed)="remove(medication, 'medications')">
+        {{ medication }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+      </mat-chip>
+      <input placeholder="Add Medications..."
+             [matChipInputFor]="medicationChips"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event, 'medications')"
+             formControlName="medications">
+    </mat-chip-list>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill" color="accent">
+    <mat-chip-list #supplementChips aria-label="supplement selection">
+      <mat-chip *ngFor="let supplement of user_chips.supplements" [selectable]="selectable" [removable]="removable" (removed)="remove(supplement, 'supplements')">
+        {{ supplement }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+      </mat-chip>
+      <input placeholder="Add Supplements..."
+             [matChipInputFor]="supplementChips"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event, 'supplements')"
+             formControlName="supplements">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div formGroupName="lifestyle" class="lifestyle-section">
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-chip-list #waterChips aria-label="water selection">
+        <mat-chip *ngFor="let item of user_chips.water" [selectable]="selectable" [removable]="removable" (removed)="remove(item, 'water')">
+          {{ item }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+        </mat-chip>
+        <input placeholder="Water..."
+               [matChipInputFor]="waterChips"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event, 'water')"
+               formControlName="water">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-chip-list #exerciseChips aria-label="exercise selection">
+        <mat-chip *ngFor="let item of user_chips.exercise" [selectable]="selectable" [removable]="removable" (removed)="remove(item, 'exercise')">
+          {{ item }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+        </mat-chip>
+        <input placeholder="Exercise..."
+               [matChipInputFor]="exerciseChips"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event, 'exercise')"
+               formControlName="exercise">
+      </mat-chip-list>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" color="accent">
+      <mat-chip-list #workChips aria-label="work selection">
+        <mat-chip *ngFor="let item of user_chips.work" [selectable]="selectable" [removable]="removable" (removed)="remove(item, 'work')">
+          {{ item }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+        </mat-chip>
+        <input placeholder="Work..."
+               [matChipInputFor]="workChips"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event, 'work')"
+               formControlName="work">
+      </mat-chip-list>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" color="accent">
+      <mat-chip-list #stressChips aria-label="stress selection">
+        <mat-chip *ngFor="let item of user_chips.stress" [selectable]="selectable" [removable]="removable" (removed)="remove(item, 'stress')">
+          {{ item }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+        </mat-chip>
+        <input placeholder="Stress..."
+               [matChipInputFor]="stressChips"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event, 'stress')"
+               formControlName="stress">
+      </mat-chip-list>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" color="accent">
+      <mat-chip-list #sleepChips aria-label="sleep selection">
+        <mat-chip *ngFor="let item of user_chips.sleep" [selectable]="selectable" [removable]="removable" (removed)="remove(item, 'sleep')">
+          {{ item }}<span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+        </mat-chip>
+        <input placeholder="Sleep..."
+               [matChipInputFor]="sleepChips"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event, 'sleep')"
+               formControlName="sleep">
+      </mat-chip-list>
+    </mat-form-field>
+
+  </div>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-chip-list #noteChips aria-label="note selection">
+      <mat-chip *ngFor="let note of user_chips.notes" [selectable]="selectable" [removable]="removable" (removed)="remove(note, 'notes')">
+        {{ note }}
+        <span matChipRemove *ngIf="removable"><fa-icon [icon]="faTimesCircle"></fa-icon></span>
+      </mat-chip>
+      <input placeholder="Add Notes..."
+             [matChipInputFor]="noteChips"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event, 'notes')"
+             formControlName="notes">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div class="post-assesment-form">
+
+    <mat-form-field color="accent" class="small-field">
+      <mat-label>Conductivity</mat-label>
+      <input matInput type="number" formControlName="conductivity">
+    </mat-form-field>
+    
+    <mat-checkbox id="left-spin-checkbox" formControlName="left_spin">Left Spin</mat-checkbox>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Findings</mat-label>
+      <mat-select formControlName="findings" multiple>
+        <mat-option *ngFor="let found of common_options.findings" [value]="found">{{ found }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Biotoxicosis</mat-label>
+      <mat-select formControlName="biotoxicosis">
+        <mat-option *ngFor="let found of common_options.biotoxicosis" [value]="found">{{ found }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Diet</mat-label>
+      <mat-select formControlName="diet" multiple>
+        <mat-option *ngFor="let found of common_options.diet" [value]="found">{{ found }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Detox</mat-label>
+      <mat-select formControlName="detox" multiple>
+        <mat-option *ngFor="let found of common_options.detox" [value]="found">{{ found }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Food Restrictions</mat-label>
+      <mat-select formControlName="food_restrictions" multiple>
+        <mat-option *ngFor="let found of common_options.food_restrictions" [value]="found">{{ found }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </div>
 
   <button type='submit' mat-raised-button>Add User</button>
   

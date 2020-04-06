@@ -1,5 +1,67 @@
+#left-spin-checkbox {
+    margin: 15px 0px;
+    color: lightgrey;
+}
+.small-field {
+    max-width: fit-content;
+    padding: 10px;
+}
+
+.small-field mat-label {
+    font-size: 1.3em;
+}
+
 .pre-assesment-form {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-width: 150px;
-    max-width: 500px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.mat-chip-remove {
+    padding-top: 3px;
+}
+
+.mat-standard-chip {
+    height: fit-content;
+}
+
+.mat-form-field {
+    color: lightgrey;
+    width: 100%;
+}
+
+.question-section {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    color: lightgrey;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #424242;
+}
+.q_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-checkbox {
+    padding-right: 5px;
+}
+
+.lifestyle-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: #424242;
+}
+
+.post-assesment-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
 }

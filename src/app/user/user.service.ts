@@ -31,7 +31,14 @@ export class UserService {
     this.usersCollection.add(user);
   }
 
-  getUserDetails(id){
+  getUsers():Observable<User[]>{
+    // this.users.forEach(user => {
+    //   console.log(user);
+    // });
+    return this.users;
+  }
+
+  getUserDetails(id):Observable<User>{
     this.userDoc = this.afs.doc(`users/${id}`);
     this.user = this.userDoc.valueChanges();
     return this.user;
