@@ -24,7 +24,6 @@
         <button mat-raised-button>Reassess</button>
     </mat-card>
 
-
     <mat-card>
         <h3>History</h3>
         <mat-chip-list>
@@ -35,7 +34,6 @@
             <mat-chip *ngFor="let question of question_list">{{ question }}</mat-chip>
         </mat-chip-list>
     </mat-card>
-
 
     <mat-card>
         <h3>Lifestyle</h3>
@@ -50,7 +48,6 @@
         </ul>
     </mat-card>
 
-
     <mat-card>
         <h3>Symptoms</h3>
         <mat-chip-list>
@@ -58,14 +55,12 @@
         </mat-chip-list>
     </mat-card>
 
-
     <mat-card>
         <h3>Medications</h3>
         <mat-chip-list>
             <mat-chip *ngFor="let med of user.medications">{{ med }}</mat-chip>
         </mat-chip-list>
     </mat-card>
-
 
     <mat-card>
         <h3>Supplements</h3>
@@ -80,6 +75,7 @@
     conductivity: number;
     left_spin: boolean;
     biotoxicosis: string;
+    
     findings: string[];
     diet: string[];
     detox: string[];

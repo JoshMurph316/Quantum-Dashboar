@@ -1,8 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 html {
-	background-color: darkSlateGrey;
+	background-color: #1f1f1f;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+	height: 100%; 
+}
+body { 
+	margin: 0; 
+	font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+li {
+	list-style-type: none;
+}
+a {
+	color: #d3d3d3;
+	text-decoration: none;
+}

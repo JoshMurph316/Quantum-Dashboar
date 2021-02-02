@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 export const firebaseConfig = environment.firebaseConfig;
 
@@ -21,10 +22,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 
-import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UsersComponent } from './user/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserFormComponent,
     SignInComponent,
     UserDetailComponent,
-    UsersComponent
+    UsersComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
