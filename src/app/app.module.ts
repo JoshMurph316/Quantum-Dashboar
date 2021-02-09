@@ -27,6 +27,7 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UsersComponent } from './user/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LogoutComponent } from './auth/logout/logout.component';
     SignInComponent,
     UserDetailComponent,
     UsersComponent,
-    LogoutComponent
+    LogoutComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
