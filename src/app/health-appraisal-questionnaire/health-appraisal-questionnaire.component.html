@@ -1,0 +1,140 @@
+<mat-card>
+  <h1>Health Appraisal Questionnaire</h1>
+  <hr>
+
+  <h3>Directions:</h3>
+  <p>This questionnaire asks you to assess how you have been feeling during the last four months. This information will help you keep track of
+    how your physical, mental and emotional states respond to changes you make in your eating habits, priorities, supplement program, social and
+    family life, level of physical activity and time spent on personal growth. All information is held in strict confidence. Take all the time you need to
+  </p>
+
+  <h3>For each question, choose the option that best describes your symptoms:</h3>
+  <ul>
+    <li><p><strong>0 = No or Rarely</strong>—You have never experienced the symptom or the symptom is familiar to you but you perceive it as insignificant (monthly or less)</p></li>
+    <li><p><strong>1 = Occasionally</strong>—Symptom comes and goes and is linked in your mind to stress, diet, fatigue or some identifiable trigger</p></li>
+    <li><p><strong>4 = Often</strong>—Symptom occurs 2-3 times per week and/or with a frequency that bothers you enough that you would like to do something about it</p></li>
+    <li><p><strong>8 = Frequently</strong>—Symptom occurs 4 or more times per week and/or you are aware of the symptom every day, or it occurs with regularity on a monthly or cyclical basis</p></li>
+  </ul>
+
+  <p><strong>Some questions require a YES or NO response: 0 = NO 8 = YES</strong></p>
+
+</mat-card>
+
+<mat-card>
+
+  <h3>Health History</h3>
+
+  <form [formGroup]="healthHistoryForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Full Name</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="First Last">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Birthday</mat-label>
+      <input matInput type="date" formControlName="b_day">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Occupation</mat-label>
+      <input matInput type="text" formControlName="occupation">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="age">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Height</mat-label>
+      <input matInput type="text" formControlName="height">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Sex</mat-label>
+      <input matInput type="text" formControlName="sex">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Number of Children</mat-label>
+      <input matInput type="number" formControlName="numberOfChildren">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Marital Status</mat-label>
+      <mat-select formControlName="maritalStatus">
+        <mat-option *ngFor="let option of maritalStatusOptions" [value]="option">{{ option }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="radio-form-field">
+      <mat-label>Are you recovering from a cold or flu?</mat-label>
+      <mat-radio-group formControlName="fluStatus" required aria-label="Select an option">
+        <mat-radio-button [value]=false>No</mat-radio-button>
+        <mat-radio-button [value]=true>Yes</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+  </form>
+
+</mat-card>
+
+<mat-card>
+
+  <mat-tab-group [selectedIndex]="selectedIndex" >
+    <mat-tab *ngFor="let part of formQuestions; let i = index" [label]="'Part ' + (i + 1)">
+
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+
+        <mat-step *ngFor="let section of part.sections" [stepControl]="firstFormGroup">
+
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Section {{ section.section }}</ng-template>
+              <div *ngFor="let question of section.questions">
+
+                <p>{{ question.prompt }}</p>
+
+                <mat-radio-group *ngIf="question.type == 'freq'; else yn" formControlName="firstCtrl"  required aria-label="Select an option">
+                  <mat-radio-button value="0">No or Rarely</mat-radio-button>
+                  <mat-radio-button value="1">Occasionally</mat-radio-button>
+                  <mat-radio-button value="4">Often</mat-radio-button>
+                  <mat-radio-button value="8">Frequently</mat-radio-button>
+                </mat-radio-group>
+
+
+                <ng-template #yn>
+                  <mat-radio-group aria-label="Select an option" formControlName="firstCtrl" required>
+                    <mat-radio-button value="8">Yes</mat-radio-button>
+                    <mat-radio-button value="0">No</mat-radio-button>
+                  </mat-radio-group>
+                </ng-template>
+
+              </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+
+
+
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="selectTab(1)">Next</button>
+          </div>
+        </mat-step>
+
+      </mat-vertical-stepper>
+
+    </mat-tab>
+
+    <!-- <button mat-button (click)="selectTab(0)">Back</button> -->
+
+  </mat-tab-group>
+</mat-card>

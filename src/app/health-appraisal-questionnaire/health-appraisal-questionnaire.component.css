@@ -1,0 +1,15 @@
+mat-radio-button {
+  margin: 0px 10px 24px 10px;
+}
+mat-card {
+  margin-bottom: 10px;
+}
+
+mat-form-field {
+  margin-right: 10px;
+}
+
+.radio-form-field {
+  display: flex;
+  flex-direction: column;
+}

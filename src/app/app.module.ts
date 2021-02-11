@@ -21,6 +21,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -28,6 +33,7 @@ import { UsersComponent } from './user/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { LandingComponent } from './landing/landing.component';
+import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questionnaire/health-appraisal-questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,8 @@ import { LandingComponent } from './landing/landing.component';
     UserDetailComponent,
     UsersComponent,
     LogoutComponent,
-    LandingComponent
+    LandingComponent,
+    HealthAppraisalQuestionnaireComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,11 @@ import { LandingComponent } from './landing/landing.component';
     MatCheckboxModule,
     MatChipsModule,
     MatCardModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatToolbarModule,
     FontAwesomeModule
   ],
   providers: [],

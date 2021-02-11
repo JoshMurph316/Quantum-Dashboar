@@ -6,11 +6,13 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UsersComponent } from './user/users/users.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { LandingComponent } from './landing/landing.component';
+import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questionnaire/health-appraisal-questionnaire.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: LandingComponent},
+  // {path: 'home', component: LandingComponent},
+  {path: 'home', component: HealthAppraisalQuestionnaireComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'users', component: UsersComponent},
   {path: 'user-form', component: UserFormComponent},

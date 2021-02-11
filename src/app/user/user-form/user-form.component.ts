@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import {FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -45,7 +45,7 @@ export class UserFormComponent implements OnInit {
     'food_restrictions': string[],
     'biotoxicosis': string[]
   }
-  
+
   // icons
   faTimesCircle = faTimesCircle;
 
@@ -57,7 +57,7 @@ export class UserFormComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private usrSvc: UserService,
     private router: Router
     ) { }
@@ -91,7 +91,7 @@ export class UserFormComponent implements OnInit {
       'food_restrictions': ['Gluten', 'Sugar', 'Lactose(Dairy)', 'Stimulants', 'Lectins', 'Alcohol'],
       'biotoxicosis': ['Lymph 1', 'Lymph 2', 'Lymph 3']
     }
-    
+
     this.myForm = this.fb.group({
       'active': true,
       'timeStamp': new Date(),
