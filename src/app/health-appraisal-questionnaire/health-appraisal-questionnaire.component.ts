@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { Observable } from 'rxjs';
+import { QuestionBase } from './question/question-base';
+import { QuestionService } from './question/question.service';
 
 @Component({
   selector: 'app-health-appraisal-questionnaire',
@@ -97,7 +100,10 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
   maritalStatusOptions = ['Single', 'Partner', 'Married', 'Separated', 'Divorced', 'Widow(er)'];
   therapyOptions = ['Diet Modification', 'Fasting', 'Vitamins/Minerals', 'Herbs', 'Homeopathy', 'Chiropractic', 'Acupuncture', 'Conventional Drugs'];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  questions$: Observable<QuestionBase<any>[]>;
+  constructor(private _formBuilder: FormBuilder, questionService: QuestionService) {
+    this.questions$ = questionService.getQuestions();
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

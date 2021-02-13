@@ -34,6 +34,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { LandingComponent } from './landing/landing.component';
 import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questionnaire/health-appraisal-questionnaire.component';
+import { QuestionComponent } from './health-appraisal-questionnaire/question/question.component';
+import { HealthHistoryFormComponent } from './health-appraisal-questionnaire/health-history-form/health-history-form.component';
+import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/nutrition-immune-form/nutrition-immune-form.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questi
     UsersComponent,
     LogoutComponent,
     LandingComponent,
-    HealthAppraisalQuestionnaireComponent
+    HealthAppraisalQuestionnaireComponent,
+    QuestionComponent,
+    HealthHistoryFormComponent,
+    NutritionImmuneFormComponent
   ],
   imports: [
     BrowserModule,
