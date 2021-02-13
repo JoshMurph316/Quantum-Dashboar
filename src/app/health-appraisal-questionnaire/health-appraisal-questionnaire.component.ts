@@ -93,7 +93,7 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
     }
   ]
   isLinear = true;
-  firstFormGroup: FormGroup;
+  haqForm: FormGroup;
   healthHistoryForm: FormGroup;
   selectedIndex = 0;
 
@@ -106,9 +106,9 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
+    this.haqForm = this._formBuilder.group({
+      firstCtrl: ''
+    })
     this.healthHistoryForm = this._formBuilder.group({
       name: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
@@ -126,10 +126,20 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
       practitioner: this._formBuilder.group({
         name: [null, Validators.required],
         number: [null, Validators.required]
-      }), // Form Group - name number
+      }),
       labs: ['', Validators.required],
       outcome: ['', Validators.required],
-      therapy: [null, Validators.required],
+      therapy: this._formBuilder.group({
+        diet_modification: [null, Validators.required],
+        fasting: [null, Validators.required],
+        vitamins_minerals: [null, Validators.required],
+        herbs: [null, Validators.required],
+        homeopathy: [null, Validators.required],
+        chiropractic: [null, Validators.required],
+        acupuncture: [null, Validators.required],
+        conventional_drugs: [null, Validators.required],
+        other: [null, Validators.required]
+      }),
       healthProblems: [[], Validators.required],
       medications: [[], Validators.required],
       major: this._formBuilder.group({
@@ -143,14 +153,46 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
       weight: [0, Validators.required],
       weightLoss: [null, Validators.required],
       chemicalHandling: ['', Validators.required],
-      medicalDevices: [null, Validators.required],
-      abilityChanges: [null, Validators.required],
-      flavorLikes: [null, Validators.required],
-      flavorDislikes: [null, Validators.required],
-      tempPreference: ['', Validators.required],
+      medicalDevices: this._formBuilder.group({
+        corrective_lenses: [null, Validators.required],
+        dentures: [null, Validators.required],
+        heaing_aid: [null, Validators.required],
+        other: [null, Validators.required]
+      }),
+      abilityChanges: this._formBuilder.group({
+        see: [null, Validators.required],
+        hear: [null, Validators.required],
+        taste: [null, Validators.required],
+        smell: [null, Validators.required],
+        feel: [null, Validators.required],
+        move: [null, Validators.required]
+      }),
+      flavorLikes: this._formBuilder.group({
+        sour: [null, Validators.required],
+        bitter: [null, Validators.required],
+        sweet: [null, Validators.required],
+        rich_fatty: [null, Validators.required],
+        spicy_pungent: [null, Validators.required],
+        salty: [null, Validators.required]
+      }),
+      flavorDislikes: this._formBuilder.group({
+        sour: [null, Validators.required],
+        bitter: [null, Validators.required],
+        sweet: [null, Validators.required],
+        rich_fatty: [null, Validators.required],
+        spicy_pungent: [null, Validators.required],
+        salty: [null, Validators.required]
+      }),
+      tempPreference: [null, Validators.required],
       disturbedSleep: [null, Validators.required],
-      leastSymptomTime: ['', Validators.required],
-      mostSymptomTime: ['', Validators.required],
+      leastSymptomTime: this._formBuilder.group({
+        start: [null, Validators.required],
+        end: [null, Validators.required]
+      }),
+      mostSymptomTime: this._formBuilder.group({
+        start: [null, Validators.required],
+        end: [null, Validators.required]
+      }),
       dailySymptoms: [null, Validators.required],
       medicalHistory: [null, Validators.required],
       familyHistroy: [null, Validators.required],
@@ -166,6 +208,7 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
 
   onSubmit() {
     console.log('health history form submit')
+    console.log(this.healthHistoryForm.value);
   }
 
   // programatic tab switch example

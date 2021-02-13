@@ -126,22 +126,22 @@
       </mat-form-field>
     </div>
 
-    <div class="checkbox-container">
+    <div class="checkbox-container" formGroupName="therapy">
       <p class="outside-label">What types of therapy have you tried for this problem(s)?</p>
-      <mat-checkbox formControlName="therapy">Diet Modification</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Fasting</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Vitamins/Minerals</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Herbs</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Homeopathy</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Chiropractic</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Acupuncture</mat-checkbox>
-      <mat-checkbox formControlName="therapy">Conventional Drugs</mat-checkbox>
-    </div>
+      <mat-checkbox formControlName="diet_modification">Diet Modification</mat-checkbox>
+      <mat-checkbox formControlName="fasting">Fasting</mat-checkbox>
+      <mat-checkbox formControlName="vitamins_minerals">Vitamins/Minerals</mat-checkbox>
+      <mat-checkbox formControlName="herbs">Herbs</mat-checkbox>
+      <mat-checkbox formControlName="homeopathy">Homeopathy</mat-checkbox>
+      <mat-checkbox formControlName="chiropractic">Chiropractic</mat-checkbox>
+      <mat-checkbox formControlName="acupuncture">Acupuncture</mat-checkbox>
+      <mat-checkbox formControlName="conventional_drugs">Conventional Drugs</mat-checkbox>
 
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Other</mat-label>
-      <input matInput type="text" formControlName="therapy">
-    </mat-form-field>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Other</mat-label>
+        <input matInput type="text" formControlName="other">
+      </mat-form-field>
+    </div>
 
     <div class="textarea-form-field">
       <mat-form-field appearance="outline" color="accent">
@@ -162,7 +162,7 @@
       <p class="outside-label">Major Hospitalizations, Surgeries, Injuries: Please list all procedures, complications (if any) and dates</p>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Year</mat-label>
-        <input matInput type="text" formControlName="year">
+        <input matInput type="number" formControlName="year" placeholder="1990">
       </mat-form-field>
 
       <mat-form-field appearance="fill" color="accent">
@@ -175,7 +175,7 @@
         <textarea matInput type="text" formControlName="outcome"></textarea>
       </mat-form-field>
 
-    </div> <!-- End of Major FormGroup -->
+    </div>
 
     <div class="radio-form-field">
       <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
@@ -230,47 +230,47 @@
       </mat-form-field>
     </div>
 
-    <div class="checkbox-container">
-      <mat-checkbox formControlName="medicalDevices" value="corrective lenses">Corrective lenses</mat-checkbox>
-      <mat-checkbox formControlName="medicalDevices" value="dentures">Dentures</mat-checkbox>
-      <mat-checkbox formControlName="medicalDevices" value="heaing aid">Hearing aid</mat-checkbox>
+    <div class="checkbox-container" formGroupName="medicalDevices">
+      <mat-checkbox formControlName="corrective_lenses" value="corrective lenses">Corrective lenses</mat-checkbox>
+      <mat-checkbox formControlName="dentures" value="dentures">Dentures</mat-checkbox>
+      <mat-checkbox formControlName="heaing_aid" value="heaing aid">Hearing aid</mat-checkbox>
     </div>
 
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Other medical devices/prosthetics/implants, describe:</mat-label>
-        <textarea matInput type="text" formControlName="medicalDevices" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
-      </mat-form-field>
-    </div>
+      <div class="textarea-form-field" formGroupName="medicalDevices">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Other medical devices/prosthetics/implants, describe:</mat-label>
+          <textarea matInput type="text" formControlName="other" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
+        </mat-form-field>
+      </div>
 
-    <div class="checkbox-container">
+    <div class="checkbox-container" formGroupName="abilityChanges">
       <p class="outside-label">Recent changes to your ablility to:</p>
-      <mat-checkbox formControlName="abilityChanges" value="see">See</mat-checkbox>
-      <mat-checkbox formControlName="abilityChanges" value="hear">Hear</mat-checkbox>
-      <mat-checkbox formControlName="abilityChanges" value="taste">Taste</mat-checkbox>
-      <mat-checkbox formControlName="abilityChanges" value="smell">Smell</mat-checkbox>
-      <mat-checkbox formControlName="abilityChanges" value="feel">Feel hot/cold sensation</mat-checkbox>
-      <mat-checkbox formControlName="abilityChanges" value="move">Move around(sit upright, stand, walk, run, swing your arms freely, turn your head, wiggle fingers)</mat-checkbox>
+      <mat-checkbox formControlName="see" value="see">See</mat-checkbox>
+      <mat-checkbox formControlName="hear" value="hear">Hear</mat-checkbox>
+      <mat-checkbox formControlName="taste" value="taste">Taste</mat-checkbox>
+      <mat-checkbox formControlName="smell" value="smell">Smell</mat-checkbox>
+      <mat-checkbox formControlName="feel" value="feel">Feel hot/cold sensation</mat-checkbox>
+      <mat-checkbox formControlName="move" value="move">Move around(sit upright, stand, walk, run, swing your arms freely, turn your head, wiggle fingers)</mat-checkbox>
     </div>
 
-    <div class="checkbox-container flex-row">
+    <div class="checkbox-container flex-row" formGroupName="flavorLikes">
       <p class="outside-label">Strong like for any of the following flavors:</p>
-      <mat-checkbox formControlName="flavorLikes" value="sour">Sour</mat-checkbox>
-      <mat-checkbox formControlName="flavorLikes" value="bitter">Bitter</mat-checkbox>
-      <mat-checkbox formControlName="flavorLikes" value="sweet">Sweet</mat-checkbox>
-      <mat-checkbox formControlName="flavorLikes" value="rich/fatty">Rich/Fatty</mat-checkbox>
-      <mat-checkbox formControlName="flavorLikes" value="spicy/pungent">Spicy/Pungent</mat-checkbox>
-      <mat-checkbox formControlName="flavorLikes" value="salty">Salty</mat-checkbox>
+      <mat-checkbox formControlName="sour" value="sour">Sour</mat-checkbox>
+      <mat-checkbox formControlName="bitter" value="bitter">Bitter</mat-checkbox>
+      <mat-checkbox formControlName="sweet" value="sweet">Sweet</mat-checkbox>
+      <mat-checkbox formControlName="rich_fatty" value="rich_fatty">Rich/Fatty</mat-checkbox>
+      <mat-checkbox formControlName="spicy_pungent" value="spicy_pungent">Spicy/Pungent</mat-checkbox>
+      <mat-checkbox formControlName="salty" value="salty">Salty</mat-checkbox>
     </div>
 
-    <div class="checkbox-container flex-row">
+    <div class="checkbox-container flex-row" formGroupName="flavorDislikes">
       <p class="outside-label">Strong dislike for any of the following flavors:</p>
-      <mat-checkbox formControlName="flavorDislikes" value="sour">Sour</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="bitter">Bitter</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="sweet">Sweet</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="rich/fatty">Rich/Fatty</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="spicy/pungent">Spicy/Pungent</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="salty">Salty</mat-checkbox>
+      <mat-checkbox formControlName="sour" value="sour">Sour</mat-checkbox>
+      <mat-checkbox formControlName="bitter" value="bitter">Bitter</mat-checkbox>
+      <mat-checkbox formControlName="sweet" value="sweet">Sweet</mat-checkbox>
+      <mat-checkbox formControlName="rich_fatty" value="rich_fatty">Rich/Fatty</mat-checkbox>
+      <mat-checkbox formControlName="spicy_pungent" value="spicy_pungent">Spicy/Pungent</mat-checkbox>
+      <mat-checkbox formControlName="salty" value="salty">Salty</mat-checkbox>
     </div>
 
     <div class="radio-form-field">
@@ -295,39 +295,31 @@
       <input matInput type="time" formControlName="disturbedSleep">
     </mat-form-field>
 
-    <div class="input-container">
+    <div class="input-container" formGroupName="leastSymptomTime">
       <p>Time of day you feel the most energy or least symptoms:</p>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Between</mat-label>
-        <input matInput type="time" formControlName="leastSymptomTime">
+        <input matInput type="time" formControlName="start">
       </mat-form-field>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>And</mat-label>
-        <input matInput type="time" formControlName="leastSymptomTime">
+        <input matInput type="time" formControlName="end">
       </mat-form-field>
     </div>
 
-    <div class="input-container">
+    <div class="input-container" formGroupName="mostSymptomTime">
       <p>Time of day you feel the most energy or least symptoms:</p>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>Between</mat-label>
-        <input matInput type="time" formControlName="mostSymptomTime">
+        <input matInput type="time" formControlName="start">
       </mat-form-field>
       <mat-form-field appearance="fill" color="accent">
         <mat-label>And</mat-label>
-        <input matInput type="time" formControlName="mostSymptomTime">
+        <input matInput type="time" formControlName="end">
       </mat-form-field>
     </div>
 
-    <div class="checkbox-container flex-row">
-      <p class="outside-label"><strong>Do you experience any of these general symptoms EVERY DAY?</strong></p>
-      <mat-checkbox formControlName="flavorDislikes" value="sour">Sour</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="bitter">Bitter</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="sweet">Sweet</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="rich/fatty">Rich/Fatty</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="spicy/pungent">Spicy/Pungent</mat-checkbox>
-      <mat-checkbox formControlName="flavorDislikes" value="salty">Salty</mat-checkbox>
-    </div>
+    <button type='submit' mat-raised-button>Submit</button>
 
   </form>
 
@@ -340,9 +332,9 @@
 
       <mat-vertical-stepper [linear]="isLinear" #stepper>
 
-        <mat-step *ngFor="let section of part.sections" [stepControl]="firstFormGroup">
+        <mat-step *ngFor="let section of part.sections" [stepControl]="haqForm">
 
-          <form [formGroup]="firstFormGroup">
+          <form [formGroup]="haqForm">
             <ng-template matStepLabel>Section {{ section.section }}</ng-template>
               <div *ngFor="let question of section.questions">
 
