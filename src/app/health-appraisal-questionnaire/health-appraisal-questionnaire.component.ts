@@ -95,6 +95,7 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
   selectedIndex = 0;
 
   maritalStatusOptions = ['Single', 'Partner', 'Married', 'Separated', 'Divorced', 'Widow(er)'];
+  therapyOptions = ['Diet Modification', 'Fasting', 'Vitamins/Minerals', 'Herbs', 'Homeopathy', 'Chiropractic', 'Acupuncture', 'Conventional Drugs'];
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -104,50 +105,56 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
     });
     this.healthHistoryForm = this._formBuilder.group({
       name: ['', Validators.required],
-      b_day: ['', Validators.required],
-      dateOfBirth: '',
+      dateOfBirth: ['', Validators.required],
       dateOfForm: new Date(),
-      occupation: '',
-      age: null, // could be calculated from dateOfBirth
-      height: '',
-      sex: '',
-      numberOfChildren: 0,
-      maritalStatus: '',
-      fluStatus: null,
-      pregnant: false,
-      reasonForVisit: {reason: '', startDate: ''},
-      dateLastExam: '',
-      practitioner: {name: '', phone: ''},
-      labs: '',
-      outcome: '',
-      therapy: [],
-      healthProblems: [],
-      medications: [],
-      major: {year: 1970, event: '', outcome: ''},
-      stressLevel: 0,
-      stressCause: '',
-      weightClass: '',
-      weight: '',
-      weightLoss: false,
-      chemicalHandling: '',
-      medicalDevices: [],
-      abilityChanges: [],
-      flavorLikes: [],
-      flavorDislikes: [],
-      tempPreference: '',
-      disturbedSleep: {value: false, time: ''},
-      leastSymptomTime: '',
-      mostSymptomTime: '',
-      dailySymptoms: [],
-      medicalHistory: [],
-      familyHistroy: [],
-      healthHabits: [],
-      exercise: [],
-      nutrition: [],
-      foodFrequency: [],
-      eatingHabits: [],
-      supplements: [],
-      goals: []
+      occupation: ['', Validators.required],
+      age: [null, Validators.required], // could be calculated from dateOfBirth
+      height: ['', Validators.required],
+      sex: ['', Validators.required],
+      numberOfChildren: [0, Validators.required],
+      maritalStatus: ['', Validators.required],
+      fluStatus: [null, Validators.required],
+      pregnant: [null, Validators.required],
+      reasonForVisit: [null, Validators.required], // Form Group - text date
+      dateLastExam: ['', Validators.required],
+      practitioner: this._formBuilder.group({
+        name: [null, Validators.required],
+        number: [null, Validators.required]
+      }), // Form Group - name number
+      labs: ['', Validators.required],
+      outcome: ['', Validators.required],
+      therapy: [null, Validators.required],
+      healthProblems: [[], Validators.required],
+      medications: [[], Validators.required],
+      major: this._formBuilder.group({
+        year: [null, Validators.required],
+        operation: [null, Validators.required],
+        outcome: [null, Validators.required]
+      }),
+      stressLevel: [0, Validators.required],
+      stressCause: ['', Validators.required],
+      weightClass: ['', Validators.required],
+      weight: [0, Validators.required],
+      weightLoss: [null, Validators.required],
+      chemicalHandling: ['', Validators.required],
+      medicalDevices: [null, Validators.required],
+      abilityChanges: [null, Validators.required],
+      flavorLikes: [null, Validators.required],
+      flavorDislikes: [null, Validators.required],
+      tempPreference: ['', Validators.required],
+      disturbedSleep: [null, Validators.required],
+      leastSymptomTime: ['', Validators.required],
+      mostSymptomTime: ['', Validators.required],
+      dailySymptoms: [null, Validators.required],
+      medicalHistory: [null, Validators.required],
+      familyHistroy: [null, Validators.required],
+      healthHabits: [null, Validators.required],
+      exercise: [null, Validators.required],
+      nutrition: [null, Validators.required],
+      foodFrequency: [null, Validators.required],
+      eatingHabits: [null, Validators.required],
+      supplements: [null, Validators.required],
+      goals: [null, Validators.required]
     })
   }
 

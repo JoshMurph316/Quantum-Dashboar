@@ -21,8 +21,9 @@
 </mat-card>
 
 <mat-card>
-
-  <h3>Health History</h3>
+  <mat-toolbar color="primary" >
+    <h3>Health History</h3>
+  </mat-toolbar>
 
   <form [formGroup]="healthHistoryForm" (ngSubmit)="onSubmit()">
 
@@ -33,7 +34,7 @@
 
     <mat-form-field appearance="fill" color="accent">
       <mat-label>Birthday</mat-label>
-      <input matInput type="date" formControlName="b_day">
+      <input matInput type="date" formControlName="dateOfBirth">
     </mat-form-field>
 
     <mat-form-field appearance="fill" color="accent">
@@ -69,11 +70,263 @@
     </mat-form-field>
 
     <div class="radio-form-field">
-      <mat-label>Are you recovering from a cold or flu?</mat-label>
+      <p class="outside-label">Are you recovering from a cold or flu?</p>
       <mat-radio-group formControlName="fluStatus" required aria-label="Select an option">
-        <mat-radio-button [value]=false>No</mat-radio-button>
-        <mat-radio-button [value]=true>Yes</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
       </mat-radio-group>
+    </div>
+
+    <div class="radio-form-field">
+      <p class="outside-label">Are you pregnant?</p>
+      <mat-radio-group formControlName="pregnant" required aria-label="Select an option">
+        <mat-radio-button [value]="false">No</mat-radio-button>
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Reason for visit</mat-label>
+      <textarea matInput type="text" formControlName="reasonForVisit"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Date began</mat-label>
+      <input matInput type="date" formControlName="dateLastExam">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Date of your last exam</mat-label>
+      <input matInput type="date" formControlName="dateLastExam">
+    </mat-form-field>
+
+    <div formGroupName="practitioner" class="question-section">
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Practitioner Name</mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Practitioner Telephone</mat-label>
+        <input matInput type="tel" formControlName="number" placeholder="555-555-1234">
+      </mat-form-field>
+    </div>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Laboratory procedures performed</mat-label>
+        <textarea matInput type="text" formControlName="reasonForVisit" placeholder="e.g., stool analysis, blood and urine chemistries, hair analysis"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Outcome</mat-label>
+        <textarea matInput type="text" formControlName="outcome"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="checkbox-container">
+      <p class="outside-label">What types of therapy have you tried for this problem(s)?</p>
+      <mat-checkbox formControlName="therapy">Diet Modification</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Fasting</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Vitamins/Minerals</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Herbs</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Homeopathy</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Chiropractic</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Acupuncture</mat-checkbox>
+      <mat-checkbox formControlName="therapy">Conventional Drugs</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="therapy">
+    </mat-form-field>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>List current health problems for which you are being treated</mat-label>
+        <textarea matInput type="text" formControlName="healthProblems"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Current medications</mat-label>
+        <textarea matInput type="text" formControlName="medications"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div formGroupName="major">
+
+      <p class="outside-label">Major Hospitalizations, Surgeries, Injuries: Please list all procedures, complications (if any) and dates</p>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Year</mat-label>
+        <input matInput type="text" formControlName="year">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Operation</mat-label>
+        <input matInput type="text" formControlName="operation">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Outcome</mat-label>
+        <textarea matInput type="text" formControlName="outcome"></textarea>
+      </mat-form-field>
+
+    </div> <!-- End of Major FormGroup -->
+
+    <div class="radio-form-field">
+      <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
+      <mat-radio-group formControlName="stressLevel" required aria-label="Select an option">
+        <mat-radio-button [value]="1">1</mat-radio-button>
+        <mat-radio-button [value]="2">2</mat-radio-button>
+        <mat-radio-button [value]="3">3</mat-radio-button>
+        <mat-radio-button [value]="4">4</mat-radio-button>
+        <mat-radio-button [value]="5">5</mat-radio-button>
+        <mat-radio-button [value]="6">6</mat-radio-button>
+        <mat-radio-button [value]="7">7</mat-radio-button>
+        <mat-radio-button [value]="8">8</mat-radio-button>
+        <mat-radio-button [value]="9">9</mat-radio-button>
+        <mat-radio-button [value]="10">10</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Identify the major cause of stress</mat-label>
+        <textarea matInput type="text" formControlName="reasonForVisit" placeholder="e.g., changes in job, work, residence or finances, legal problems"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="radio-form-field">
+      <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
+      <mat-radio-group formControlName="stressLevel" required aria-label="Select an option">
+        <mat-radio-button value="underweight">underweight</mat-radio-button>
+        <mat-radio-button value="overweight">overweight</mat-radio-button>
+        <mat-radio-button value="just right">just right</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Current weight</mat-label>
+      <input matInput type="number" formControlName="weight">
+      <span matSuffix>.lbs</span>
+    </mat-form-field>
+
+    <div class="radio-form-field">
+      <p class="outside-label">Have you had unintentional weight loss or gain of 10 pounds or more in the last three months?</p>
+      <mat-radio-group formControlName="weightLoss" required aria-label="Select an option">
+        <mat-radio-button [value]="false">No</mat-radio-button>
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Is your job associated with potentially harmful chemicals?</mat-label>
+        <textarea matInput type="text" formControlName="reasonForVisit" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="checkbox-container">
+      <mat-checkbox formControlName="medicalDevices" value="corrective lenses">Corrective lenses</mat-checkbox>
+      <mat-checkbox formControlName="medicalDevices" value="dentures">Dentures</mat-checkbox>
+      <mat-checkbox formControlName="medicalDevices" value="heaing aid">Hearing aid</mat-checkbox>
+    </div>
+
+    <div class="textarea-form-field">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Other medical devices/prosthetics/implants, describe:</mat-label>
+        <textarea matInput type="text" formControlName="medicalDevices" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="checkbox-container">
+      <p class="outside-label">Recent changes to your ablility to:</p>
+      <mat-checkbox formControlName="abilityChanges" value="see">See</mat-checkbox>
+      <mat-checkbox formControlName="abilityChanges" value="hear">Hear</mat-checkbox>
+      <mat-checkbox formControlName="abilityChanges" value="taste">Taste</mat-checkbox>
+      <mat-checkbox formControlName="abilityChanges" value="smell">Smell</mat-checkbox>
+      <mat-checkbox formControlName="abilityChanges" value="feel">Feel hot/cold sensation</mat-checkbox>
+      <mat-checkbox formControlName="abilityChanges" value="move">Move around(sit upright, stand, walk, run, swing your arms freely, turn your head, wiggle fingers)</mat-checkbox>
+    </div>
+
+    <div class="checkbox-container flex-row">
+      <p class="outside-label">Strong like for any of the following flavors:</p>
+      <mat-checkbox formControlName="flavorLikes" value="sour">Sour</mat-checkbox>
+      <mat-checkbox formControlName="flavorLikes" value="bitter">Bitter</mat-checkbox>
+      <mat-checkbox formControlName="flavorLikes" value="sweet">Sweet</mat-checkbox>
+      <mat-checkbox formControlName="flavorLikes" value="rich/fatty">Rich/Fatty</mat-checkbox>
+      <mat-checkbox formControlName="flavorLikes" value="spicy/pungent">Spicy/Pungent</mat-checkbox>
+      <mat-checkbox formControlName="flavorLikes" value="salty">Salty</mat-checkbox>
+    </div>
+
+    <div class="checkbox-container flex-row">
+      <p class="outside-label">Strong dislike for any of the following flavors:</p>
+      <mat-checkbox formControlName="flavorDislikes" value="sour">Sour</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="bitter">Bitter</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="sweet">Sweet</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="rich/fatty">Rich/Fatty</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="spicy/pungent">Spicy/Pungent</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="salty">Salty</mat-checkbox>
+    </div>
+
+    <div class="radio-form-field">
+      <p class="outside-label">Do you:</p>
+      <mat-radio-group formControlName="tempPreference" required aria-label="Select an option">
+        <mat-radio-button value="warm">Prefer warmth(i.e., food, drinks, weather, etc.)</mat-radio-button>
+        <mat-radio-button value="cold">Prefer cold(i.e., food, drinks, weather, etc.)</mat-radio-button>
+        <mat-radio-button value="none">No preference</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="radio-form-field">
+      <p class="outside-label">Is your sleep disturbed at the same time each night?</p>
+      <mat-radio-group formControlName="disturbedSleep" required aria-label="Select an option">
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>If yes, what time?</mat-label>
+      <input matInput type="time" formControlName="disturbedSleep">
+    </mat-form-field>
+
+    <div class="input-container">
+      <p>Time of day you feel the most energy or least symptoms:</p>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Between</mat-label>
+        <input matInput type="time" formControlName="leastSymptomTime">
+      </mat-form-field>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>And</mat-label>
+        <input matInput type="time" formControlName="leastSymptomTime">
+      </mat-form-field>
+    </div>
+
+    <div class="input-container">
+      <p>Time of day you feel the most energy or least symptoms:</p>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Between</mat-label>
+        <input matInput type="time" formControlName="mostSymptomTime">
+      </mat-form-field>
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>And</mat-label>
+        <input matInput type="time" formControlName="mostSymptomTime">
+      </mat-form-field>
+    </div>
+
+    <div class="checkbox-container flex-row">
+      <p class="outside-label"><strong>Do you experience any of these general symptoms EVERY DAY?</strong></p>
+      <mat-checkbox formControlName="flavorDislikes" value="sour">Sour</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="bitter">Bitter</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="sweet">Sweet</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="rich/fatty">Rich/Fatty</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="spicy/pungent">Spicy/Pungent</mat-checkbox>
+      <mat-checkbox formControlName="flavorDislikes" value="salty">Salty</mat-checkbox>
     </div>
 
   </form>

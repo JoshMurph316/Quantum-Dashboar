@@ -8,8 +8,28 @@ mat-card {
 mat-form-field {
   margin-right: 10px;
 }
+mat-checkbox {
+  margin-left: 12px;
+}
 
-.radio-form-field {
+mat-card mat-toolbar {
+  margin-bottom: 12px;
+}
+
+.radio-form-field, .textarea-form-field, .checkbox-container {
   display: flex;
   flex-direction: column;
+}
+
+.outside-label {
+  margin-bottom: 6px;
+}
+
+.flex-row {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.checkbox-container {
+  margin-bottom: 6px;
 }
