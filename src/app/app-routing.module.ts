@@ -11,10 +11,9 @@ import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questi
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  // {path: 'home', component: LandingComponent},
-  {path: 'home', component: HealthAppraisalQuestionnaireComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'users', component: UsersComponent},
+  {path: 'home', component: LandingComponent},
+  {path: 'haq-form', component: HealthAppraisalQuestionnaireComponent},
+  {path: 'dashboard', component: UsersComponent},
   {path: 'user-form', component: UserFormComponent},
   {path: 'user-detail/:id', component: UserDetailComponent}
 ];

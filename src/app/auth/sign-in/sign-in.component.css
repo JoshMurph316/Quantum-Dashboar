@@ -7,3 +7,9 @@
 .signInForm mat-form-field {
     color: lightgrey;
 }
+.signInForm p {
+  text-align: center;
+}
+.signInForm h1 {
+  margin-bottom: 24px;
+}

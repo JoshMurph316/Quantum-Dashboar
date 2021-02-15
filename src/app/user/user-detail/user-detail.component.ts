@@ -21,20 +21,21 @@ export class UserDetailComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    // this.$id = this.route.snapshot.params['id'];
+    this.$id = this.route.snapshot.params['id'];
 
-    // this.usrSvc.getUserDetails(this.$id).subscribe(user => {
-    //   this.user = user;
+    this.usrSvc.getUserDetails(this.$id).subscribe(user => {
+      this.user = user;
+      console.log(user)
 
-    //   this.question_list = [];
-    //   for (const question in user.questions) {
-    //     if(user.questions[question]) {
-    //       this.question_list.push(question);
-    //     }
-    //   }
+      // this.question_list = [];
+      // for (const question in user.questions) {
+      //   if(user.questions[question]) {
+      //     this.question_list.push(question);
+      //   }
+      // }
 
-    //   this.lifestyle_list = Object.keys(user.lifestyle);
-    // });
+      // this.lifestyle_list = Object.keys(user.lifestyle);
+    });
 
   }
 

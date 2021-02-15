@@ -26,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -73,6 +74,7 @@ import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/n
     MatRadioModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     FontAwesomeModule
   ],
   providers: [],

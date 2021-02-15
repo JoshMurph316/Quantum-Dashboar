@@ -1,8 +1,8 @@
-<!-- <button routerLink="/user-form" mat-raised-button>Create New User</button> -->
-
-<ul>
-  <li *ngFor="let user of users | async" [routerLink]="['/user-detail', user.$id]">
-    <span class="list-title">{{ user.name}}</span>
-    <!-- <span class="sub-text">{{ user.email }}</span> -->
-  </li>
-</ul>
+<mat-card class="list-object" *ngFor="let user of users | async" [routerLink]="['/user-detail', user.$id]">
+  <mat-label class="list-title">{{ user.name}}</mat-label>
+  <hr>
+  <div>
+    <span class="sub-text">Test@test.com</span>
+    <span class="sub-text">Age: {{ user.age }}</span>
+  </div>
+</mat-card>

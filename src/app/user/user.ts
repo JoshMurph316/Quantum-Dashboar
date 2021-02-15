@@ -1,10 +1,11 @@
 export interface User {
   $id?: string;
   name?: string;
+  email: string;
   dateOfBirth?: string;
   dateOfForm?: string;
   occupation?: string;
-  age?: string;
+  age?: number;
   height?:string;
   sex?:string;
   numberOfChildren?: string;

@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     if(this.signInForm.valid) {
       this.auth.registerNewUser(this.signInForm.value);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/haq-form']);
     } else {
       alert("incorrect password");
     }

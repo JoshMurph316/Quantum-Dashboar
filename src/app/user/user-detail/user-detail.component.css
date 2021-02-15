@@ -1,6 +1,11 @@
 mat-card {
     margin-bottom: 10px;
 }
+mat-spinner {
+  position: relative;
+  top: 15em;
+  margin: auto;
+}
 .mat-raised-button {
     background-color: slategray;
 }

@@ -9,4 +9,18 @@ mat-toolbar a {
 .container {
     padding: 15px;
     background-color: rgb(189 189 189 / 25%);
+    min-height: 85%;
+}
+.footer {
+  align-items: flex-end;
+  justify-content: center;
+}
+.icon-ul {
+  display: flex;
+}
+.icon-ul fa-icon {
+  margin-right: 6px;
+}
+.icon-ul fa-icon:hover {
+  cursor: pointer;
 }

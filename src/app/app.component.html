@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
-    <a routerLink="/home">Home</a>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/dashboard">Users</a>
+  <a routerLink="/haq-form">Forms</a>
     <!-- <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/users">Users</a>
     <a routerLink="/user-form">User Form</a>
     <a (click)="logout()">Logout</a> -->
 </mat-toolbar>
@@ -9,3 +10,13 @@
 <div class="container">
     <router-outlet></router-outlet>
 </div>
+
+<mat-toolbar class="footer" color="primary">
+  <ul class="icon-ul">
+    <li><fa-icon [icon]="faInstagram"></fa-icon></li>
+    <li><fa-icon [icon]="faTwitter"></fa-icon></li>
+    <li><fa-icon [icon]="faFacebookSquare"></fa-icon></li>
+  </ul>
+
+
+</mat-toolbar>

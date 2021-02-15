@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { QuestionService } from './health-appraisal-questionnaire/question/question.service';
+import { faTwitter, faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,9 @@ import { QuestionService } from './health-appraisal-questionnaire/question/quest
 })
 export class AppComponent {
   title = 'quantum-dashboard';
+  faTwitter = faTwitter;
+  faFacebookSquare = faFacebookSquare;
+  faInstagram = faInstagram;
 
   constructor(private auth: AuthService) {}
 

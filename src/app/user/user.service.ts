@@ -33,7 +33,6 @@ export class UserService {
 
   getUsers():Observable<User[]>{
     this.users.forEach(user => {
-      console.log(user);
     });
     return this.users;
   }
