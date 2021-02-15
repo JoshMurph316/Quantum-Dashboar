@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user';
 import { QuestionBase } from './question/question-base';
 import { QuestionService } from './question/question.service';
 
@@ -101,7 +103,11 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
   therapyOptions = ['Diet Modification', 'Fasting', 'Vitamins/Minerals', 'Herbs', 'Homeopathy', 'Chiropractic', 'Acupuncture', 'Conventional Drugs'];
 
   questions$: Observable<QuestionBase<any>[]>;
-  constructor(private _formBuilder: FormBuilder, questionService: QuestionService) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private questionService: QuestionService,
+    private userService: UserService
+    ) {
     this.questions$ = questionService.getQuestions();
   }
 
@@ -128,7 +134,7 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
         number: [null, Validators.required]
       }),
       labs: ['', Validators.required],
-      outcome: ['', Validators.required],
+      outcome: [''],
       therapy: this._formBuilder.group({
         diet_modification: [null, Validators.required],
         fasting: [null, Validators.required],
@@ -147,10 +153,10 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
         operation: [null, Validators.required],
         outcome: [null, Validators.required]
       }),
-      stressLevel: [0, Validators.required],
+      stressLevel: [null, Validators.required],
       stressCause: ['', Validators.required],
       weightClass: ['', Validators.required],
-      weight: [0, Validators.required],
+      weight: [null, Validators.required],
       weightLoss: [null, Validators.required],
       chemicalHandling: ['', Validators.required],
       medicalDevices: this._formBuilder.group({
@@ -207,8 +213,7 @@ export class HealthAppraisalQuestionnaireComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('health history form submit')
-    console.log(this.healthHistoryForm.value);
+    this.userService.addUser(this.healthHistoryForm.value);
   }
 
   // programatic tab switch example

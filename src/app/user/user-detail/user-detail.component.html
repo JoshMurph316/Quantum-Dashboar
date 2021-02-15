@@ -1,4 +1,4 @@
-<div *ngIf="user; else loading" class="user-details">
+<!-- <div *ngIf="user; else loading" class="user-details">
 
     <mat-card>
         <div class="name-display">
@@ -11,7 +11,6 @@
                     </ng-template>
                 </mat-chip-list>
             </div>
-            <!-- TODO: fix date display (might be an interface issue) -->
             <div class="subtext-container">
                 <p>Session # {{ user.sessions }}</p>
                 <p>Age: {{ user.timeStamp }}</p>
@@ -40,7 +39,7 @@
         <ul class="list-table">
             <li *ngFor="let item of lifestyle_list">
                 <div class="list-head">{{ item }}</div>
-                <!-- <span class="list-content">test</span> -->
+                <span class="list-content">test</span>
                 <mat-chip-list>
                     <mat-chip *ngFor="let item of user[item]" class="list-content">{{ item }}</mat-chip>
                 </mat-chip-list>
@@ -71,20 +70,7 @@
 
 </div>
 
-<!-- 
-    conductivity: number;
-    left_spin: boolean;
-    biotoxicosis: string;
-    
-    findings: string[];
-    diet: string[];
-    detox: string[];
-    food_restrictions: string[];
-    remedy_suggestions: Array<string[]>;
-    notes: string[];
- -->
-
 <ng-template #loading>
     Loading user data...
   </ng-template>
-
+ -->
