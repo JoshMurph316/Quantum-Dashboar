@@ -16,9 +16,15 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.signInForm = this.fb.group({
-      'email': ['', Validators.required],
-      'password': ['', Validators.required]
+      'email': ['', Validators.compose([Validators.required, Validators.email])],
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
+  }
+  get email() {
+    return this.signInForm.get('email');
+  }
+  get password() {
+    return this.signInForm.get('password');
   }
 
   onSubmit() {
@@ -26,7 +32,7 @@ export class SignInComponent implements OnInit {
       this.auth.registerNewUser(this.signInForm.value);
       this.router.navigate(['/haq-form']);
     } else {
-      alert("incorrect password");
+      alert("Invalid credentials");
     }
   }
 

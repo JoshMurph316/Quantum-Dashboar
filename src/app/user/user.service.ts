@@ -27,8 +27,11 @@ export class UserService {
     }));
   }
 
-  addUser(user: User): void {
+  createNewUser(user: User): void {
     this.usersCollection.add(user);
+  }
+  updateUser(user: User): void {
+    this.userDoc.update(user);
   }
 
   getUsers():Observable<User[]>{

@@ -170,7 +170,7 @@ export class UserFormComponent implements OnInit {
       this.myForm.value[item] = this.user_chips[item]
     }
 
-    this.usrSvc.addUser(this.myForm.value);
+    this.usrSvc.createNewUser(this.myForm.value);
     this.router.navigate(['users']);
   }
 

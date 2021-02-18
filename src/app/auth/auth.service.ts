@@ -10,8 +10,8 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth, private router: Router) { }
 
-  registerNewUser(userData: {username: string, password: string}) {
-    this.auth.createUserWithEmailAndPassword(userData.username, userData.password)
+  registerNewUser(userData: {email: string, password: string}) {
+    this.auth.createUserWithEmailAndPassword(userData.email, userData.password)
     .then(result => {
       console.log(result);
       this.isAuthenticated = true;
@@ -21,8 +21,8 @@ export class AuthService {
     })
   }
 
-  loginReturningUser(userData: {username: string, password: string}){
-    this.auth.signInWithEmailAndPassword(userData.username, userData.password)
+  loginReturningUser(userData: {email: string, password: string}){
+    this.auth.signInWithEmailAndPassword(userData.email, userData.password)
     .then(result => {
       console.log(result);
       this.isAuthenticated = true;

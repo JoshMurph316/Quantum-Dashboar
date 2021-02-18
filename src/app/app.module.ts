@@ -27,6 +27,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -38,6 +40,7 @@ import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questi
 import { QuestionComponent } from './health-appraisal-questionnaire/question/question.component';
 import { HealthHistoryFormComponent } from './health-appraisal-questionnaire/health-history-form/health-history-form.component';
 import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/nutrition-immune-form/nutrition-immune-form.component';
+import { HaqFormComponent } from './health-appraisal-questionnaire/haq-form/haq-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/n
     HealthAppraisalQuestionnaireComponent,
     QuestionComponent,
     HealthHistoryFormComponent,
-    NutritionImmuneFormComponent
+    NutritionImmuneFormComponent,
+    HaqFormComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,8 @@ import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/n
     MatFormFieldModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatSidenavModule,
     FontAwesomeModule
   ],
   providers: [],

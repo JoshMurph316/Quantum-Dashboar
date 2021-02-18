@@ -325,64 +325,7 @@
 
 </mat-card>
 
-<mat-card>
-
-  <mat-tab-group [selectedIndex]="selectedIndex" >
-    <mat-tab *ngFor="let part of formQuestions; let i = index" [label]="'Part ' + (i + 1)">
-
-      <mat-vertical-stepper [linear]="isLinear" #stepper>
-
-        <mat-step *ngFor="let section of part.sections" [stepControl]="haqForm">
-
-          <form [formGroup]="haqForm">
-            <ng-template matStepLabel>Section {{ section.section }}</ng-template>
-              <div *ngFor="let question of section.questions">
-
-                <p>{{ question.prompt }}</p>
-
-                <mat-radio-group *ngIf="question.type == 'freq'; else yn" formControlName="firstCtrl"  required aria-label="Select an option">
-                  <mat-radio-button value="0">No or Rarely</mat-radio-button>
-                  <mat-radio-button value="1">Occasionally</mat-radio-button>
-                  <mat-radio-button value="4">Often</mat-radio-button>
-                  <mat-radio-button value="8">Frequently</mat-radio-button>
-                </mat-radio-group>
-
-
-                <ng-template #yn>
-                  <mat-radio-group aria-label="Select an option" formControlName="firstCtrl" required>
-                    <mat-radio-button value="8">Yes</mat-radio-button>
-                    <mat-radio-button value="0">No</mat-radio-button>
-                  </mat-radio-group>
-                </ng-template>
-
-              </div>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-
-
-
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button (click)="selectTab(1)">Next</button>
-          </div>
-        </mat-step>
-
-      </mat-vertical-stepper>
-
-    </mat-tab>
-
-    <!-- <button mat-button (click)="selectTab(0)">Back</button> -->
-
-  </mat-tab-group>
-</mat-card>
+<app-haq-form></app-haq-form>
 
 <mat-card>
   <app-health-history-form [questions]="questions$ | async"></app-health-history-form>

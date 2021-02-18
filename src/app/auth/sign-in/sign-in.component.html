@@ -5,18 +5,27 @@
 
     <mat-form-field appearance="fill" color="accent">
       <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email">
+      <input matInput type="email" formControlName="email" email>
     </mat-form-field>
+
+    <div *ngIf="email.errors?.email">
+      Please enter valid email address
+    </div>
 
     <mat-form-field appearance="fill" color="accent">
       <mat-label>Create Password</mat-label>
       <input matInput type="password" formControlName="password">
     </mat-form-field>
 
+    <div *ngIf="password.errors?.password">
+      Password must be at least 6 characters
+    </div>
+
     <p>Returning user? <a href="#">Sign-in</a></p>
 
-
     <button mat-raised-button type="submit"
-    [disabled]="!signInForm.valid">Begin Questionnaire</button>
+      [disabled]="!signInForm.valid">
+      Begin Questionnaire
+    </button>
   </form>
 </mat-card>
