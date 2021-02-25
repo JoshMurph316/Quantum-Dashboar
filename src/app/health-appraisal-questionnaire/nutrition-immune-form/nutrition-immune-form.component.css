@@ -1,0 +1,11 @@
+#niForm {
+  /* display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start; */
+}
+.form-section {
+  padding: 6px;
+  max-height: fit-content;
+  min-width: 45%;
+}

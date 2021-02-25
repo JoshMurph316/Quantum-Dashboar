@@ -1,1 +1,20 @@
-<p>nutrition-immune-form works!</p>
+<form id="niForm" [formGroup]="niForm" (ngSubmit)="onSubmit()">
+  <h3>{{ niFormOptions.title }}</h3>
+  <p>{{ niFormOptions.instructions }}</p>
+
+
+  <div
+    *ngFor="let section of niFormOptions.sections; index as i"
+    [formArrayName]="'section'+(i)"
+    class="form-section">
+
+    <p class="outside-label"><strong>{{ section.title }}</strong></p>
+    <div class="checkbox-container" *ngFor="let option of section.options; index as j">
+      <mat-checkbox [formControlName]="j">{{ option }}</mat-checkbox>
+    </div>
+
+  </div>
+
+  <button mat-button color="primary" type="submit">Submit</button>
+
+</form>

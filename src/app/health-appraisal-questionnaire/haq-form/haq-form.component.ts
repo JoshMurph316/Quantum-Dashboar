@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatStepper } from '@angular/material/stepper';
 
@@ -1965,7 +1965,7 @@ export class HaqFormComponent implements OnInit {
       },
     ]
   },
-]
+  ]
 
   ngOnInit(): void {
     this.haqForm = this.fb.group({

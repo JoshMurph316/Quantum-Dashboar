@@ -29,7 +29,3 @@ mat-card mat-toolbar {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.checkbox-container {
-  margin-bottom: 6px;
-}
