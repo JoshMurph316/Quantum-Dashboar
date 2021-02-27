@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DropdownQuestion } from './question-dropdown';
 import { QuestionBase } from './question-base';
-import { InputQuestion } from './question-input';
 import { of } from 'rxjs';
 import { CheckboxQuestion } from './question-checkbox';
 
@@ -15,33 +13,6 @@ export class QuestionService {
   getQuestions() {
 
     const questions: QuestionBase<string>[] = [
-
-      new DropdownQuestion({
-        key: 'brave',
-        label: 'Bravery Rating',
-        options: [
-          {key: 'solid',  value: 'Solid'},
-          {key: 'great',  value: 'Great'},
-          {key: 'good',   value: 'Good'},
-          {key: 'unproven', value: 'Unproven'}
-        ],
-        order: 3
-      }),
-
-      new InputQuestion({
-        key: 'firstName',
-        label: 'First name',
-        value: 'Bombasto',
-        required: true,
-        order: 1
-      }),
-
-      new InputQuestion({
-        key: 'emailAddress',
-        label: 'Email',
-        type: 'email',
-        order: 2
-      }),
 
       new CheckboxQuestion({
         key: 'dailySymptoms',
@@ -136,62 +107,3 @@ export class QuestionService {
     return of(questions.sort((a, b) => a.order - b.order));
   }
 }
-
-/**
- *
- *
- * this.healthHistoryForm = this._formBuilder.group({
-      name: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      dateOfForm: new Date(),
-      occupation: ['', Validators.required],
-      age: [null, Validators.required], // could be calculated from dateOfBirth
-      height: ['', Validators.required],
-      sex: ['', Validators.required],
-      numberOfChildren: [0, Validators.required],
-      maritalStatus: ['', Validators.required],
-      fluStatus: [null, Validators.required],
-      pregnant: [null, Validators.required],
-      reasonForVisit: [null, Validators.required], // Form Group - text date
-      dateLastExam: ['', Validators.required],
-      practitioner: this._formBuilder.group({
-        name: [null, Validators.required],
-        number: [null, Validators.required]
-      }), // Form Group - name number
-      labs: ['', Validators.required],
-      outcome: ['', Validators.required],
-      therapy: [null, Validators.required],
-      healthProblems: [[], Validators.required],
-      medications: [[], Validators.required],
-      major: this._formBuilder.group({
-        year: [null, Validators.required],
-        operation: [null, Validators.required],
-        outcome: [null, Validators.required]
-      }),
-      stressLevel: [0, Validators.required],
-      stressCause: ['', Validators.required],
-      weightClass: ['', Validators.required],
-      weight: [0, Validators.required],
-      weightLoss: [null, Validators.required],
-      chemicalHandling: ['', Validators.required],
-      medicalDevices: [null, Validators.required],
-      abilityChanges: [null, Validators.required],
-      flavorLikes: [null, Validators.required],
-      flavorDislikes: [null, Validators.required],
-      tempPreference: ['', Validators.required],
-      disturbedSleep: [null, Validators.required],
-      leastSymptomTime: ['', Validators.required],
-      mostSymptomTime: ['', Validators.required],
-      dailySymptoms: [null, Validators.required],
-      medicalHistory: [null, Validators.required],
-      familyHistroy: [null, Validators.required],
-      healthHabits: [null, Validators.required],
-      exercise: [null, Validators.required],
-      nutrition: [null, Validators.required],
-      foodFrequency: [null, Validators.required],
-      eatingHabits: [null, Validators.required],
-      supplements: [null, Validators.required],
-      goals: [null, Validators.required]
-    })
-  }
- */

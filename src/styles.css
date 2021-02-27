@@ -16,15 +16,38 @@ li {
 a {
 	text-decoration: none;
 }
-
+mat-radio-button {
+  margin: 0px 10px 24px 10px;
+}
+mat-card {
+  margin-bottom: 10px;
+}
+mat-form-field {
+  margin-right: 10px;
+}
+mat-checkbox {
+  margin-left: 12px;
+}
+mat-card mat-toolbar {
+  margin-bottom: 12px;
+}
 .checkbox-container {
   padding: 6px 0px;
 }
-
 .mat-checkbox-layout {
   white-space: normal !important;
 }
-
 .mat-radio-label {
   white-space: normal !important;
+}
+.radio-form-field, .textarea-form-field, .checkbox-container {
+  display: flex;
+  flex-direction: column;
+}
+.outside-label {
+  margin-bottom: 6px;
+}
+.flex-row {
+  flex-direction: row;
+  flex-wrap: wrap;
 }
