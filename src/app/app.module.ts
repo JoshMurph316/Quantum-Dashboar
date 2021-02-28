@@ -34,13 +34,13 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UsersComponent } from './user/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LogoutComponent } from './auth/logout/logout.component';
 import { LandingComponent } from './landing/landing.component';
 import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questionnaire/health-appraisal-questionnaire.component';
 import { QuestionComponent } from './health-appraisal-questionnaire/question/question.component';
 import { HealthHistoryFormComponent } from './health-appraisal-questionnaire/health-history-form/health-history-form.component';
 import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/nutrition-immune-form/nutrition-immune-form.component';
 import { HaqFormComponent } from './health-appraisal-questionnaire/haq-form/haq-form.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -50,13 +50,13 @@ import { HaqFormComponent } from './health-appraisal-questionnaire/haq-form/haq-
     SignInComponent,
     UserDetailComponent,
     UsersComponent,
-    LogoutComponent,
     LandingComponent,
     HealthAppraisalQuestionnaireComponent,
     QuestionComponent,
     HealthHistoryFormComponent,
     NutritionImmuneFormComponent,
-    HaqFormComponent
+    HaqFormComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

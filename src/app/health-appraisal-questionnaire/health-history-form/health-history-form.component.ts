@@ -53,8 +53,8 @@ export class HealthHistoryFormComponent implements OnInit {
       sex: [''],
       numberOfChildren: [0],
       maritalStatus: [''],
-      fluStatus: [false],
-      pregnant: [false],
+      fluStatus: [null],
+      pregnant: [null],
       reasonForVisit: [null],
       dateLastExam: [''],
       practitioner: this._formBuilder.group({

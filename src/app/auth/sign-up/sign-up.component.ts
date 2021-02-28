@@ -1,33 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.css']
 })
-export class SignInComponent implements OnInit {
-  signInForm: FormGroup
-  returningUser = false;
+export class SignUpComponent implements OnInit {
+  signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private auth: AuthService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.signInForm = this.fb.group({
+    this.signUpForm = this.fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
 
   onSubmit() {
-    if(this.signInForm.valid) {
-      this.auth.registerNewUser(this.signInForm.value);
+
+    if(this.signUpForm.valid) {
+      this.auth.registerNewUser(this.signUpForm.value);
     } else {
       alert("Invalid credentials");
     }
   }
-
 }

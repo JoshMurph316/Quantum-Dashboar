@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthenticated = false;
+  private isAuthenticated = false;
 
   constructor(private auth: AngularFireAuth, private router: Router) { }
 
@@ -15,10 +15,11 @@ export class AuthService {
     .then(result => {
       console.log(result);
       this.isAuthenticated = true;
+      this.router.navigate(['/forms']);
     })
     .catch(error => {
       console.log(error);
-    })
+    });
   }
 
   loginReturningUser(userData: {email: string, password: string}){
@@ -26,16 +27,21 @@ export class AuthService {
     .then(result => {
       console.log(result);
       this.isAuthenticated = true;
+      this.router.navigate(['/forms']);
     })
     .catch(error => {
       console.log(error);
-    })
+    });
   }
 
   logout() {
     this.auth.signOut();
     this.isAuthenticated = false;
     this.router.navigate(['/home']);
+  }
+
+  getAuthStatus(): boolean {
+    return this.isAuthenticated;
   }
 
 }

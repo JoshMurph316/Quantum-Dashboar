@@ -1,0 +1,22 @@
+.signUpnForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: auto;
+}
+.signUpForm mat-form-field {
+  color: lightgrey;
+}
+.signUpForm p {
+ text-align: center;
+}
+.signUpForm h1 {
+ margin-bottom: 24px;
+}
+.signUpForm a {
+  color: lightsalmon;
+}
+.signup-card {
+  max-width: 550px;
+  margin: auto;
+}
