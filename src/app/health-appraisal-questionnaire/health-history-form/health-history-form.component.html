@@ -1,805 +1,803 @@
-<mat-card>
-  <mat-toolbar color="primary" >
-    <h3>Health History</h3>
-  </mat-toolbar>
+<mat-toolbar color="basic" >
+  <h3>Health History</h3>
+</mat-toolbar>
 
-  <form [formGroup]="healthHistoryForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="healthHistoryForm" (ngSubmit)="onSubmit()">
 
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Full Name</mat-label>
+    <input matInput type="text" formControlName="name" placeholder="First Last">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Birthday</mat-label>
+    <input matInput type="date" formControlName="dateOfBirth">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Occupation</mat-label>
+    <input matInput type="text" formControlName="occupation">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Age</mat-label>
+    <input matInput type="number" formControlName="age">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Height</mat-label>
+    <input matInput type="text" formControlName="height">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Sex</mat-label>
+    <input matInput type="text" formControlName="sex">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Number of Children</mat-label>
+    <input matInput type="number" formControlName="numberOfChildren">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Marital Status</mat-label>
+    <mat-select formControlName="maritalStatus">
+      <mat-option *ngFor="let option of maritalStatusOptions" [value]="option">{{ option }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Are you recovering from a cold or flu?</p>
+    <mat-radio-group formControlName="fluStatus" required aria-label="Select an option">
+      <mat-radio-button [value]="false">No</mat-radio-button>
+      <mat-radio-button [value]="true">Yes</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Are you pregnant?</p>
+    <mat-radio-group formControlName="pregnant" required aria-label="Select an option">
+      <mat-radio-button [value]="false">No</mat-radio-button>
+      <mat-radio-button [value]="true">Yes</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Reason for visit</mat-label>
+    <textarea matInput type="text" formControlName="reasonForVisit"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Date began</mat-label>
+    <input matInput type="date" formControlName="dateLastExam">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Date of your last exam</mat-label>
+    <input matInput type="date" formControlName="dateLastExam">
+  </mat-form-field>
+
+  <div formGroupName="practitioner" class="question-section">
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Full Name</mat-label>
-      <input matInput type="text" formControlName="name" placeholder="First Last">
+      <mat-label>Practitioner Name</mat-label>
+      <input matInput type="text" formControlName="name">
     </mat-form-field>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Birthday</mat-label>
-      <input matInput type="date" formControlName="dateOfBirth">
+      <mat-label>Practitioner Telephone</mat-label>
+      <input matInput type="tel" formControlName="number" placeholder="555-555-1234">
+    </mat-form-field>
+  </div>
+
+  <div class="textarea-form-field">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Laboratory procedures performed</mat-label>
+      <textarea matInput type="text" formControlName="reasonForVisit" placeholder="e.g., stool analysis, blood and urine chemistries, hair analysis"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="textarea-form-field">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Outcome</mat-label>
+      <textarea matInput type="text" formControlName="outcome"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="checkbox-container" formGroupName="therapy">
+    <p class="outside-label">What types of therapy have you tried for this problem(s)?</p>
+    <mat-checkbox formControlName="diet_modification">Diet Modification</mat-checkbox>
+    <mat-checkbox formControlName="fasting">Fasting</mat-checkbox>
+    <mat-checkbox formControlName="vitamins_minerals">Vitamins/Minerals</mat-checkbox>
+    <mat-checkbox formControlName="herbs">Herbs</mat-checkbox>
+    <mat-checkbox formControlName="homeopathy">Homeopathy</mat-checkbox>
+    <mat-checkbox formControlName="chiropractic">Chiropractic</mat-checkbox>
+    <mat-checkbox formControlName="acupuncture">Acupuncture</mat-checkbox>
+    <mat-checkbox formControlName="conventional_drugs">Conventional Drugs</mat-checkbox>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="other">
+    </mat-form-field>
+  </div>
+
+  <div class="textarea-form-field">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>List current health problems for which you are being treated</mat-label>
+      <textarea matInput type="text" formControlName="healthProblems"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="textarea-form-field">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Current medications</mat-label>
+      <textarea matInput type="text" formControlName="medications"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div formGroupName="major">
+
+    <p class="outside-label">Major Hospitalizations, Surgeries, Injuries: Please list all procedures, complications (if any) and dates</p>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Year</mat-label>
+      <input matInput type="number" formControlName="year" placeholder="1990">
     </mat-form-field>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Occupation</mat-label>
-      <input matInput type="text" formControlName="occupation">
+      <mat-label>Operation</mat-label>
+      <input matInput type="text" formControlName="operation">
     </mat-form-field>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Age</mat-label>
-      <input matInput type="number" formControlName="age">
+      <mat-label>Outcome</mat-label>
+      <textarea matInput type="text" formControlName="outcome"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
+    <mat-radio-group formControlName="stressLevel" required aria-label="Select an option">
+      <mat-radio-button [value]="1">1</mat-radio-button>
+      <mat-radio-button [value]="2">2</mat-radio-button>
+      <mat-radio-button [value]="3">3</mat-radio-button>
+      <mat-radio-button [value]="4">4</mat-radio-button>
+      <mat-radio-button [value]="5">5</mat-radio-button>
+      <mat-radio-button [value]="6">6</mat-radio-button>
+      <mat-radio-button [value]="7">7</mat-radio-button>
+      <mat-radio-button [value]="8">8</mat-radio-button>
+      <mat-radio-button [value]="9">9</mat-radio-button>
+      <mat-radio-button [value]="10">10</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="textarea-form-field">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Identify the major cause of stress</mat-label>
+      <textarea matInput type="text" formControlName="stressCause" placeholder="e.g., changes in job, work, residence or finances, legal problems"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
+    <mat-radio-group formControlName="weightClass" required aria-label="Select an option">
+      <mat-radio-button value="underweight">underweight</mat-radio-button>
+      <mat-radio-button value="overweight">overweight</mat-radio-button>
+      <mat-radio-button value="just right">just right</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Current weight</mat-label>
+    <input matInput type="number" formControlName="weight">
+    <span matSuffix>.lbs</span>
+  </mat-form-field>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Have you had unintentional weight loss or gain of 10 pounds or more in the last three months?</p>
+    <mat-radio-group formControlName="weightLoss" required aria-label="Select an option">
+      <mat-radio-button [value]="false">No</mat-radio-button>
+      <mat-radio-button [value]="true">Yes</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="textarea-form-field">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Is your job associated with potentially harmful chemicals?</mat-label>
+      <textarea matInput type="text" formControlName="chemicalHandling" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="checkbox-container" formGroupName="medicalDevices">
+    <mat-checkbox formControlName="corrective_lenses">Corrective lenses</mat-checkbox>
+    <mat-checkbox formControlName="dentures">Dentures</mat-checkbox>
+    <mat-checkbox formControlName="heaing_aid">Hearing aid</mat-checkbox>
+  </div>
+
+  <div class="textarea-form-field" formGroupName="medicalDevices">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Other medical devices/prosthetics/implants, describe:</mat-label>
+      <textarea matInput type="text" formControlName="other" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="checkbox-container" formGroupName="abilityChanges">
+    <p class="outside-label">Recent changes to your ablility to:</p>
+    <mat-checkbox formControlName="see">See</mat-checkbox>
+    <mat-checkbox formControlName="hear">Hear</mat-checkbox>
+    <mat-checkbox formControlName="taste">Taste</mat-checkbox>
+    <mat-checkbox formControlName="smell">Smell</mat-checkbox>
+    <mat-checkbox formControlName="feel">Feel hot/cold sensation</mat-checkbox>
+    <mat-checkbox formControlName="move">Move around(sit upright, stand, walk, run, swing your arms freely, turn your head, wiggle fingers)</mat-checkbox>
+  </div>
+
+  <div class="checkbox-container flex-row" formGroupName="flavorLikes">
+    <p class="outside-label">Strong like for any of the following flavors:</p>
+    <mat-checkbox formControlName="sour">Sour</mat-checkbox>
+    <mat-checkbox formControlName="bitter">Bitter</mat-checkbox>
+    <mat-checkbox formControlName="sweet">Sweet</mat-checkbox>
+    <mat-checkbox formControlName="rich_fatty">Rich/Fatty</mat-checkbox>
+    <mat-checkbox formControlName="spicy_pungent">Spicy/Pungent</mat-checkbox>
+    <mat-checkbox formControlName="salty">Salty</mat-checkbox>
+  </div>
+
+  <div class="checkbox-container flex-row" formGroupName="flavorDislikes">
+    <p class="outside-label">Strong dislike for any of the following flavors:</p>
+    <mat-checkbox formControlName="sour">Sour</mat-checkbox>
+    <mat-checkbox formControlName="bitter">Bitter</mat-checkbox>
+    <mat-checkbox formControlName="sweet">Sweet</mat-checkbox>
+    <mat-checkbox formControlName="rich_fatty">Rich/Fatty</mat-checkbox>
+    <mat-checkbox formControlName="spicy_pungent">Spicy/Pungent</mat-checkbox>
+    <mat-checkbox formControlName="salty">Salty</mat-checkbox>
+  </div>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Do you:</p>
+    <mat-radio-group formControlName="tempPreference" required aria-label="Select an option">
+      <mat-radio-button value="warm">Prefer warmth(i.e., food, drinks, weather, etc.)</mat-radio-button>
+      <mat-radio-button value="cold">Prefer cold(i.e., food, drinks, weather, etc.)</mat-radio-button>
+      <mat-radio-button value="none">No preference</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="radio-form-field">
+    <p class="outside-label">Is your sleep disturbed at the same time each night?</p>
+    <mat-radio-group formControlName="disturbedSleep" required aria-label="Select an option">
+      <mat-radio-button [value]="true">Yes</mat-radio-button>
+      <mat-radio-button [value]="false">No</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>If yes, what time?</mat-label>
+    <input matInput type="time" formControlName="disturbedSleepTime">
+  </mat-form-field>
+
+  <div class="input-container" formGroupName="leastSymptomTime">
+    <p>Time of day you feel the most energy or least symptoms:</p>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Between</mat-label>
+      <input matInput type="time" formControlName="start">
     </mat-form-field>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Height</mat-label>
-      <input matInput type="text" formControlName="height">
+      <mat-label>And</mat-label>
+      <input matInput type="time" formControlName="end">
+    </mat-form-field>
+  </div>
+
+  <div class="input-container" formGroupName="mostSymptomTime">
+    <p>Time of day you feel the most energy or least symptoms:</p>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Between</mat-label>
+      <input matInput type="time" formControlName="start">
     </mat-form-field>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Sex</mat-label>
-      <input matInput type="text" formControlName="sex">
+      <mat-label>And</mat-label>
+      <input matInput type="time" formControlName="end">
     </mat-form-field>
+  </div>
+
+  <div class="checkbox-container flex-row" formGroupName="dailySymptoms">
+    <p class="outside-label">Do you experience any of these general symptoms EVERY DAY?</p>
+
+    <mat-checkbox formControlName="fatigue" >Debilitating Fatigue</mat-checkbox>
+    <mat-checkbox formControlName="depression" >Depression</mat-checkbox>
+    <mat-checkbox formControlName="sex_disinterest" >Disinterest in Sex</mat-checkbox>
+    <mat-checkbox formControlName="eating_disinterest" >Disinterest in Eating</mat-checkbox>
+    <mat-checkbox formControlName="short_breath" >Shortness of Breath</mat-checkbox>
+    <mat-checkbox formControlName="panic_attack" >Panic Attacks</mat-checkbox>
+    <mat-checkbox formControlName="headache" >Headache</mat-checkbox>
+    <mat-checkbox formControlName="dizziness" >Dizziness</mat-checkbox>
+    <mat-checkbox formControlName="insomnia" >Insomnia</mat-checkbox>
+    <mat-checkbox formControlName="nausea" >Nausea</mat-checkbox>
+    <mat-checkbox formControlName="vomiting" >Vomiting</mat-checkbox>
+    <mat-checkbox formControlName="diarrhea" >Diarrhea</mat-checkbox>
+    <mat-checkbox formControlName="constipation" >Constipation</mat-checkbox>
+    <mat-checkbox formControlName="fecal_incontinence" >Fecal Incontinence</mat-checkbox>
+    <mat-checkbox formControlName="urinary_incontinence" >Urinary Incontinence</mat-checkbox>
+    <mat-checkbox formControlName="low_fever" >Low Grade Fever</mat-checkbox>
+    <mat-checkbox formControlName="pain_inflammation" >Chronic Pain/Inflammation</mat-checkbox>
+    <mat-checkbox formControlName="bleeding" >Bleeding</mat-checkbox>
+    <mat-checkbox formControlName="discharge" >Discharge</mat-checkbox>
+    <mat-checkbox formControlName="itching_rash" >Itching/Rash</mat-checkbox>
+
+  </div>
+
+  <h3>Medical History</h3>
+  <div class="checkbox-container flex-row" formGroupName="medicalHistory">
+    <mat-checkbox formControlName="arthritis">Arthritis</mat-checkbox>
+    <mat-checkbox formControlName="allergies_hayfever">Allergies/Hayfever</mat-checkbox>
+    <mat-checkbox formControlName="asthma" >Asthma</mat-checkbox>
+    <mat-checkbox formControlName="alcoholism" >Alcoholism</mat-checkbox>
+    <mat-checkbox formControlName="alzheimers" >Alzheimer's Disease</mat-checkbox>
+    <mat-checkbox formControlName="autoimmune" >Autoimmune Disease</mat-checkbox>
+    <mat-checkbox formControlName="blood_pressure" >Blood Pressure Problems</mat-checkbox>
+    <mat-checkbox formControlName="bronchitis" >Bronchitis</mat-checkbox>
+    <mat-checkbox formControlName="cancer" >Cancer</mat-checkbox>
+    <mat-checkbox formControlName="cfs" >Chronic Fatigue Syndrome</mat-checkbox>
+    <mat-checkbox formControlName="cts" >Carpal Tunnel Syndrome</mat-checkbox>
+    <mat-checkbox formControlName="cholesterol" >Cholesterol, Elevated</mat-checkbox>
+    <mat-checkbox formControlName="circulatory" >Circulatory Problems</mat-checkbox>
+    <mat-checkbox formControlName="colitis" >Colitis</mat-checkbox>
+    <mat-checkbox formControlName="dental" >Dental Problems</mat-checkbox>
+    <mat-checkbox formControlName="depression" >Depression</mat-checkbox>
+    <mat-checkbox formControlName="diabetes" >Diabetes</mat-checkbox>
+    <mat-checkbox formControlName="diverticular" >Diverticular Disease</mat-checkbox>
+    <mat-checkbox formControlName="drug_addiction" >Drug Addiction</mat-checkbox>
+    <mat-checkbox formControlName="eating_disorder" >Eating Disorder</mat-checkbox>
+    <mat-checkbox formControlName="epilepsy" >Epilepsy</mat-checkbox>
+    <mat-checkbox formControlName="emphysema" >Emphysema</mat-checkbox>
+    <mat-checkbox formControlName="eent_problems" >Eyes, Ears, Nose, Throat Problems</mat-checkbox>
+    <mat-checkbox formControlName="enviro_sens" >Environmental Sensitivities</mat-checkbox>
+    <mat-checkbox formControlName="fibromyalgia" >Fibromyalgia</mat-checkbox>
+    <mat-checkbox formControlName="food_intolerance" >Food Intolerance</mat-checkbox>
+    <mat-checkbox formControlName="gastro_reflux" >Gastroesophageal Reflux Disease</mat-checkbox>
+    <mat-checkbox formControlName="genetic" >Genetic Disorder</mat-checkbox>
+    <mat-checkbox formControlName="glaucoma" >Glaucoma</mat-checkbox>
+    <mat-checkbox formControlName="gout" >Gout</mat-checkbox>
+    <mat-checkbox formControlName="heart_disease" >Heath Disease</mat-checkbox>
+    <mat-checkbox formControlName="chronic_infection" >Infection, Chronic</mat-checkbox>
+    <mat-checkbox formControlName="inflam_bowel" >Inflammatory Bowel Syndrome</mat-checkbox>
+    <mat-checkbox formControlName="irritable_bowel" >Irritable Bowel Syndrome</mat-checkbox>
+    <mat-checkbox formControlName="kidney_bladder" >Kidney or Bladder Disease</mat-checkbox>
+    <mat-checkbox formControlName="learning_disabilities" >Learning Disabilities</mat-checkbox>
+    <mat-checkbox formControlName="liver_gall" >Liver gor Gallbladder Disease (stones)</mat-checkbox>
+    <mat-checkbox formControlName="mental_illness" >Mental Illness</mat-checkbox>
+    <mat-checkbox formControlName="mental_retardation" >Mental Retardation</mat-checkbox>
+    <mat-checkbox formControlName="migraine" >Migraine Headaches</mat-checkbox>
+    <mat-checkbox formControlName="neuro" >Neurological Problems (Parkinson's, Paralysis)</mat-checkbox>
+    <mat-checkbox formControlName="sinus" >Sinus Problems</mat-checkbox>
+    <mat-checkbox formControlName="stroke" >Stroke</mat-checkbox>
+    <mat-checkbox formControlName="thyroid" >Thyroid Trouble</mat-checkbox>
+    <mat-checkbox formControlName="obesity" >Obesity</mat-checkbox>
+    <mat-checkbox formControlName="osteoporosis" >Osteoporosis</mat-checkbox>
+    <mat-checkbox formControlName="pneumonia" >Pneumonia</mat-checkbox>
+    <mat-checkbox formControlName="std" >Sexually Transmitted Disease</mat-checkbox>
+    <mat-checkbox formControlName="sad" >Seasonal Affective Disorder</mat-checkbox>
+    <mat-checkbox formControlName="skin_problems" >Skin Problems</mat-checkbox>
+    <mat-checkbox formControlName="tuberculosis" >Tuberculosis</mat-checkbox>
+    <mat-checkbox formControlName="ulcer" >Ulcer</mat-checkbox>
+    <mat-checkbox formControlName="uti" >Urinary Tract Infection</mat-checkbox>
+    <mat-checkbox formControlName="varicose" >Varicose Veins</mat-checkbox>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Number of Children</mat-label>
-      <input matInput type="number" formControlName="numberOfChildren">
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="other">
     </mat-form-field>
+
+  </div>
+
+  <h3>Medical (Men)</h3>
+  <div class="checkbox-container flex-row" formGroupName="medicalMen">
+    <mat-checkbox formControlName="bph">BPH</mat-checkbox>
+    <mat-checkbox formControlName="prostate_cancer">Prostate Cancer</mat-checkbox>
+    <mat-checkbox formControlName="sex_drive" >Decreased Sex Drive</mat-checkbox>
+    <mat-checkbox formControlName="infertility" >Infertility</mat-checkbox>
+    <mat-checkbox formControlName="std" >STD</mat-checkbox>
 
     <mat-form-field appearance="fill" color="accent">
-      <mat-label>Marital Status</mat-label>
-      <mat-select formControlName="maritalStatus">
-        <mat-option *ngFor="let option of maritalStatusOptions" [value]="option">{{ option }}</mat-option>
-      </mat-select>
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="other">
     </mat-form-field>
+  </div>
 
-    <div class="radio-form-field">
-      <p class="outside-label">Are you recovering from a cold or flu?</p>
-      <mat-radio-group formControlName="fluStatus" required aria-label="Select an option">
-        <mat-radio-button [value]="false">No</mat-radio-button>
-        <mat-radio-button [value]="true">Yes</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div class="radio-form-field">
-      <p class="outside-label">Are you pregnant?</p>
-      <mat-radio-group formControlName="pregnant" required aria-label="Select an option">
-        <mat-radio-button [value]="false">No</mat-radio-button>
-        <mat-radio-button [value]="true">Yes</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Reason for visit</mat-label>
-      <textarea matInput type="text" formControlName="reasonForVisit"></textarea>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Date began</mat-label>
-      <input matInput type="date" formControlName="dateLastExam">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Date of your last exam</mat-label>
-      <input matInput type="date" formControlName="dateLastExam">
-    </mat-form-field>
-
-    <div formGroupName="practitioner" class="question-section">
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Practitioner Name</mat-label>
-        <input matInput type="text" formControlName="name">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Practitioner Telephone</mat-label>
-        <input matInput type="tel" formControlName="number" placeholder="555-555-1234">
-      </mat-form-field>
-    </div>
-
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Laboratory procedures performed</mat-label>
-        <textarea matInput type="text" formControlName="reasonForVisit" placeholder="e.g., stool analysis, blood and urine chemistries, hair analysis"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Outcome</mat-label>
-        <textarea matInput type="text" formControlName="outcome"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="checkbox-container" formGroupName="therapy">
-      <p class="outside-label">What types of therapy have you tried for this problem(s)?</p>
-      <mat-checkbox formControlName="diet_modification">Diet Modification</mat-checkbox>
-      <mat-checkbox formControlName="fasting">Fasting</mat-checkbox>
-      <mat-checkbox formControlName="vitamins_minerals">Vitamins/Minerals</mat-checkbox>
-      <mat-checkbox formControlName="herbs">Herbs</mat-checkbox>
-      <mat-checkbox formControlName="homeopathy">Homeopathy</mat-checkbox>
-      <mat-checkbox formControlName="chiropractic">Chiropractic</mat-checkbox>
-      <mat-checkbox formControlName="acupuncture">Acupuncture</mat-checkbox>
-      <mat-checkbox formControlName="conventional_drugs">Conventional Drugs</mat-checkbox>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other</mat-label>
-        <input matInput type="text" formControlName="other">
-      </mat-form-field>
-    </div>
-
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>List current health problems for which you are being treated</mat-label>
-        <textarea matInput type="text" formControlName="healthProblems"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Current medications</mat-label>
-        <textarea matInput type="text" formControlName="medications"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div formGroupName="major">
-
-      <p class="outside-label">Major Hospitalizations, Surgeries, Injuries: Please list all procedures, complications (if any) and dates</p>
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Year</mat-label>
-        <input matInput type="number" formControlName="year" placeholder="1990">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Operation</mat-label>
-        <input matInput type="text" formControlName="operation">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Outcome</mat-label>
-        <textarea matInput type="text" formControlName="outcome"></textarea>
-      </mat-form-field>
-
-    </div>
-
-    <div class="radio-form-field">
-      <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
-      <mat-radio-group formControlName="stressLevel" required aria-label="Select an option">
-        <mat-radio-button [value]="1">1</mat-radio-button>
-        <mat-radio-button [value]="2">2</mat-radio-button>
-        <mat-radio-button [value]="3">3</mat-radio-button>
-        <mat-radio-button [value]="4">4</mat-radio-button>
-        <mat-radio-button [value]="5">5</mat-radio-button>
-        <mat-radio-button [value]="6">6</mat-radio-button>
-        <mat-radio-button [value]="7">7</mat-radio-button>
-        <mat-radio-button [value]="8">8</mat-radio-button>
-        <mat-radio-button [value]="9">9</mat-radio-button>
-        <mat-radio-button [value]="10">10</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Identify the major cause of stress</mat-label>
-        <textarea matInput type="text" formControlName="stressCause" placeholder="e.g., changes in job, work, residence or finances, legal problems"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="radio-form-field">
-      <p class="outside-label">Select the level of stress you are experiancing on a scale of 1 to 10(1 being the lowest)</p>
-      <mat-radio-group formControlName="weightClass" required aria-label="Select an option">
-        <mat-radio-button value="underweight">underweight</mat-radio-button>
-        <mat-radio-button value="overweight">overweight</mat-radio-button>
-        <mat-radio-button value="just right">just right</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>Current weight</mat-label>
-      <input matInput type="number" formControlName="weight">
-      <span matSuffix>.lbs</span>
-    </mat-form-field>
-
-    <div class="radio-form-field">
-      <p class="outside-label">Have you had unintentional weight loss or gain of 10 pounds or more in the last three months?</p>
-      <mat-radio-group formControlName="weightLoss" required aria-label="Select an option">
-        <mat-radio-button [value]="false">No</mat-radio-button>
-        <mat-radio-button [value]="true">Yes</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div class="textarea-form-field">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Is your job associated with potentially harmful chemicals?</mat-label>
-        <textarea matInput type="text" formControlName="chemicalHandling" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="checkbox-container" formGroupName="medicalDevices">
-      <mat-checkbox formControlName="corrective_lenses">Corrective lenses</mat-checkbox>
-      <mat-checkbox formControlName="dentures">Dentures</mat-checkbox>
-      <mat-checkbox formControlName="heaing_aid">Hearing aid</mat-checkbox>
-    </div>
-
-    <div class="textarea-form-field" formGroupName="medicalDevices">
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Other medical devices/prosthetics/implants, describe:</mat-label>
-        <textarea matInput type="text" formControlName="other" placeholder="e.g., pesticides, radioactivity, solvents or health and/or life threatening activities (e.g., fireman, farmer, miner)"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="checkbox-container" formGroupName="abilityChanges">
-      <p class="outside-label">Recent changes to your ablility to:</p>
-      <mat-checkbox formControlName="see">See</mat-checkbox>
-      <mat-checkbox formControlName="hear">Hear</mat-checkbox>
-      <mat-checkbox formControlName="taste">Taste</mat-checkbox>
-      <mat-checkbox formControlName="smell">Smell</mat-checkbox>
-      <mat-checkbox formControlName="feel">Feel hot/cold sensation</mat-checkbox>
-      <mat-checkbox formControlName="move">Move around(sit upright, stand, walk, run, swing your arms freely, turn your head, wiggle fingers)</mat-checkbox>
-    </div>
-
-    <div class="checkbox-container flex-row" formGroupName="flavorLikes">
-      <p class="outside-label">Strong like for any of the following flavors:</p>
-      <mat-checkbox formControlName="sour">Sour</mat-checkbox>
-      <mat-checkbox formControlName="bitter">Bitter</mat-checkbox>
-      <mat-checkbox formControlName="sweet">Sweet</mat-checkbox>
-      <mat-checkbox formControlName="rich_fatty">Rich/Fatty</mat-checkbox>
-      <mat-checkbox formControlName="spicy_pungent">Spicy/Pungent</mat-checkbox>
-      <mat-checkbox formControlName="salty">Salty</mat-checkbox>
-    </div>
-
-    <div class="checkbox-container flex-row" formGroupName="flavorDislikes">
-      <p class="outside-label">Strong dislike for any of the following flavors:</p>
-      <mat-checkbox formControlName="sour">Sour</mat-checkbox>
-      <mat-checkbox formControlName="bitter">Bitter</mat-checkbox>
-      <mat-checkbox formControlName="sweet">Sweet</mat-checkbox>
-      <mat-checkbox formControlName="rich_fatty">Rich/Fatty</mat-checkbox>
-      <mat-checkbox formControlName="spicy_pungent">Spicy/Pungent</mat-checkbox>
-      <mat-checkbox formControlName="salty">Salty</mat-checkbox>
-    </div>
-
-    <div class="radio-form-field">
-      <p class="outside-label">Do you:</p>
-      <mat-radio-group formControlName="tempPreference" required aria-label="Select an option">
-        <mat-radio-button value="warm">Prefer warmth(i.e., food, drinks, weather, etc.)</mat-radio-button>
-        <mat-radio-button value="cold">Prefer cold(i.e., food, drinks, weather, etc.)</mat-radio-button>
-        <mat-radio-button value="none">No preference</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div class="radio-form-field">
-      <p class="outside-label">Is your sleep disturbed at the same time each night?</p>
-      <mat-radio-group formControlName="disturbedSleep" required aria-label="Select an option">
-        <mat-radio-button [value]="true">Yes</mat-radio-button>
-        <mat-radio-button [value]="false">No</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <mat-form-field appearance="fill" color="accent">
-      <mat-label>If yes, what time?</mat-label>
-      <input matInput type="time" formControlName="disturbedSleepTime">
-    </mat-form-field>
-
-    <div class="input-container" formGroupName="leastSymptomTime">
-      <p>Time of day you feel the most energy or least symptoms:</p>
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Between</mat-label>
-        <input matInput type="time" formControlName="start">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>And</mat-label>
-        <input matInput type="time" formControlName="end">
-      </mat-form-field>
-    </div>
-
-    <div class="input-container" formGroupName="mostSymptomTime">
-      <p>Time of day you feel the most energy or least symptoms:</p>
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Between</mat-label>
-        <input matInput type="time" formControlName="start">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>And</mat-label>
-        <input matInput type="time" formControlName="end">
-      </mat-form-field>
-    </div>
-
-    <div class="checkbox-container flex-row" formGroupName="dailySymptoms">
-      <p class="outside-label">Do you experience any of these general symptoms EVERY DAY?</p>
-
-      <mat-checkbox formControlName="fatigue" >Debilitating Fatigue</mat-checkbox>
-      <mat-checkbox formControlName="depression" >Depression</mat-checkbox>
-      <mat-checkbox formControlName="sex_disinterest" >Disinterest in Sex</mat-checkbox>
-      <mat-checkbox formControlName="eating_disinterest" >Disinterest in Eating</mat-checkbox>
-      <mat-checkbox formControlName="short_breath" >Shortness of Breath</mat-checkbox>
-      <mat-checkbox formControlName="panic_attack" >Panic Attacks</mat-checkbox>
-      <mat-checkbox formControlName="headache" >Headache</mat-checkbox>
-      <mat-checkbox formControlName="dizziness" >Dizziness</mat-checkbox>
-      <mat-checkbox formControlName="insomnia" >Insomnia</mat-checkbox>
-      <mat-checkbox formControlName="nausea" >Nausea</mat-checkbox>
-      <mat-checkbox formControlName="vomiting" >Vomiting</mat-checkbox>
-      <mat-checkbox formControlName="diarrhea" >Diarrhea</mat-checkbox>
-      <mat-checkbox formControlName="constipation" >Constipation</mat-checkbox>
-      <mat-checkbox formControlName="fecal_incontinence" >Fecal Incontinence</mat-checkbox>
-      <mat-checkbox formControlName="urinary_incontinence" >Urinary Incontinence</mat-checkbox>
-      <mat-checkbox formControlName="low_fever" >Low Grade Fever</mat-checkbox>
-      <mat-checkbox formControlName="pain_inflammation" >Chronic Pain/Inflammation</mat-checkbox>
-      <mat-checkbox formControlName="bleeding" >Bleeding</mat-checkbox>
-      <mat-checkbox formControlName="discharge" >Discharge</mat-checkbox>
-      <mat-checkbox formControlName="itching_rash" >Itching/Rash</mat-checkbox>
-
-    </div>
-
-    <h3>Medical History</h3>
-    <div class="checkbox-container flex-row" formGroupName="medicalHistory">
-      <mat-checkbox formControlName="arthritis">Arthritis</mat-checkbox>
-      <mat-checkbox formControlName="allergies_hayfever">Allergies/Hayfever</mat-checkbox>
-      <mat-checkbox formControlName="asthma" >Asthma</mat-checkbox>
-      <mat-checkbox formControlName="alcoholism" >Alcoholism</mat-checkbox>
-      <mat-checkbox formControlName="alzheimers" >Alzheimer's Disease</mat-checkbox>
-      <mat-checkbox formControlName="autoimmune" >Autoimmune Disease</mat-checkbox>
-      <mat-checkbox formControlName="blood_pressure" >Blood Pressure Problems</mat-checkbox>
-      <mat-checkbox formControlName="bronchitis" >Bronchitis</mat-checkbox>
-      <mat-checkbox formControlName="cancer" >Cancer</mat-checkbox>
-      <mat-checkbox formControlName="cfs" >Chronic Fatigue Syndrome</mat-checkbox>
-      <mat-checkbox formControlName="cts" >Carpal Tunnel Syndrome</mat-checkbox>
-      <mat-checkbox formControlName="cholesterol" >Cholesterol, Elevated</mat-checkbox>
-      <mat-checkbox formControlName="circulatory" >Circulatory Problems</mat-checkbox>
-      <mat-checkbox formControlName="colitis" >Colitis</mat-checkbox>
-      <mat-checkbox formControlName="dental" >Dental Problems</mat-checkbox>
-      <mat-checkbox formControlName="depression" >Depression</mat-checkbox>
-      <mat-checkbox formControlName="diabetes" >Diabetes</mat-checkbox>
-      <mat-checkbox formControlName="diverticular" >Diverticular Disease</mat-checkbox>
-      <mat-checkbox formControlName="drug_addiction" >Drug Addiction</mat-checkbox>
-      <mat-checkbox formControlName="eating_disorder" >Eating Disorder</mat-checkbox>
-      <mat-checkbox formControlName="epilepsy" >Epilepsy</mat-checkbox>
-      <mat-checkbox formControlName="emphysema" >Emphysema</mat-checkbox>
-      <mat-checkbox formControlName="eent_problems" >Eyes, Ears, Nose, Throat Problems</mat-checkbox>
-      <mat-checkbox formControlName="enviro_sens" >Environmental Sensitivities</mat-checkbox>
-      <mat-checkbox formControlName="fibromyalgia" >Fibromyalgia</mat-checkbox>
-      <mat-checkbox formControlName="food_intolerance" >Food Intolerance</mat-checkbox>
-      <mat-checkbox formControlName="gastro_reflux" >Gastroesophageal Reflux Disease</mat-checkbox>
-      <mat-checkbox formControlName="genetic" >Genetic Disorder</mat-checkbox>
-      <mat-checkbox formControlName="glaucoma" >Glaucoma</mat-checkbox>
-      <mat-checkbox formControlName="gout" >Gout</mat-checkbox>
-      <mat-checkbox formControlName="heart_disease" >Heath Disease</mat-checkbox>
-      <mat-checkbox formControlName="chronic_infection" >Infection, Chronic</mat-checkbox>
-      <mat-checkbox formControlName="inflam_bowel" >Inflammatory Bowel Syndrome</mat-checkbox>
-      <mat-checkbox formControlName="irritable_bowel" >Irritable Bowel Syndrome</mat-checkbox>
-      <mat-checkbox formControlName="kidney_bladder" >Kidney or Bladder Disease</mat-checkbox>
-      <mat-checkbox formControlName="learning_disabilities" >Learning Disabilities</mat-checkbox>
-      <mat-checkbox formControlName="liver_gall" >Liver gor Gallbladder Disease (stones)</mat-checkbox>
-      <mat-checkbox formControlName="mental_illness" >Mental Illness</mat-checkbox>
-      <mat-checkbox formControlName="mental_retardation" >Mental Retardation</mat-checkbox>
-      <mat-checkbox formControlName="migraine" >Migraine Headaches</mat-checkbox>
-      <mat-checkbox formControlName="neuro" >Neurological Problems (Parkinson's, Paralysis)</mat-checkbox>
-      <mat-checkbox formControlName="sinus" >Sinus Problems</mat-checkbox>
-      <mat-checkbox formControlName="stroke" >Stroke</mat-checkbox>
-      <mat-checkbox formControlName="thyroid" >Thyroid Trouble</mat-checkbox>
-      <mat-checkbox formControlName="obesity" >Obesity</mat-checkbox>
-      <mat-checkbox formControlName="osteoporosis" >Osteoporosis</mat-checkbox>
-      <mat-checkbox formControlName="pneumonia" >Pneumonia</mat-checkbox>
-      <mat-checkbox formControlName="std" >Sexually Transmitted Disease</mat-checkbox>
-      <mat-checkbox formControlName="sad" >Seasonal Affective Disorder</mat-checkbox>
-      <mat-checkbox formControlName="skin_problems" >Skin Problems</mat-checkbox>
-      <mat-checkbox formControlName="tuberculosis" >Tuberculosis</mat-checkbox>
-      <mat-checkbox formControlName="ulcer" >Ulcer</mat-checkbox>
-      <mat-checkbox formControlName="uti" >Urinary Tract Infection</mat-checkbox>
-      <mat-checkbox formControlName="varicose" >Varicose Veins</mat-checkbox>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other</mat-label>
-        <input matInput type="text" formControlName="other">
-      </mat-form-field>
-
-    </div>
-
-    <h3>Medical (Men)</h3>
-    <div class="checkbox-container flex-row" formGroupName="medicalMen">
-      <mat-checkbox formControlName="bph">BPH</mat-checkbox>
-      <mat-checkbox formControlName="prostate_cancer">Prostate Cancer</mat-checkbox>
-      <mat-checkbox formControlName="sex_drive" >Decreased Sex Drive</mat-checkbox>
+  <div formGroupName="medicalWomen">
+    <h3>Medical (Women)</h3>
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="menstrual_irregularities">Menstrual Irregularities</mat-checkbox>
+      <mat-checkbox formControlName="endometriosis">Endometriosis</mat-checkbox>
       <mat-checkbox formControlName="infertility" >Infertility</mat-checkbox>
+      <mat-checkbox formControlName="fibrocystic_breast" >Fibrocystic Breast</mat-checkbox>
+      <mat-checkbox formControlName="fibroid_ovarion_cysts" >Fibroid/Ovarion Cysts</mat-checkbox>
+      <mat-checkbox formControlName="pms" >PMS</mat-checkbox>
+      <mat-checkbox formControlName="breast_cancer" >Breast Cancer</mat-checkbox>
+      <mat-checkbox formControlName="pelvic_inflammatory_disease" >Pelvic Inflammatory Disease</mat-checkbox>
+      <mat-checkbox formControlName="vaginal_infections" >Vaginal Infections</mat-checkbox>
+      <mat-checkbox formControlName="sex_drive" >Decreased Sex Drive</mat-checkbox>
       <mat-checkbox formControlName="std" >STD</mat-checkbox>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other</mat-label>
-        <input matInput type="text" formControlName="other">
-      </mat-form-field>
     </div>
 
-    <div formGroupName="medicalWomen">
-      <h3>Medical (Women)</h3>
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="menstrual_irregularities">Menstrual Irregularities</mat-checkbox>
-        <mat-checkbox formControlName="endometriosis">Endometriosis</mat-checkbox>
-        <mat-checkbox formControlName="infertility" >Infertility</mat-checkbox>
-        <mat-checkbox formControlName="fibrocystic_breast" >Fibrocystic Breast</mat-checkbox>
-        <mat-checkbox formControlName="fibroid_ovarion_cysts" >Fibroid/Ovarion Cysts</mat-checkbox>
-        <mat-checkbox formControlName="pms" >PMS</mat-checkbox>
-        <mat-checkbox formControlName="breast_cancer" >Breast Cancer</mat-checkbox>
-        <mat-checkbox formControlName="pelvic_inflammatory_disease" >Pelvic Inflammatory Disease</mat-checkbox>
-        <mat-checkbox formControlName="vaginal_infections" >Vaginal Infections</mat-checkbox>
-        <mat-checkbox formControlName="sex_drive" >Decreased Sex Drive</mat-checkbox>
-        <mat-checkbox formControlName="std" >STD</mat-checkbox>
-      </div>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="other">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other</mat-label>
-        <input matInput type="text" formControlName="other">
-      </mat-form-field>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Age of First Period</mat-label>
+      <input matInput type="number" formControlName="age_first_period">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Age of First Period</mat-label>
-        <input matInput type="number" formControlName="age_first_period">
-      </mat-form-field>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Date of Last Gynecological Exam</mat-label>
+      <input matInput type="date" formControlName="date_last_gyno">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Date of Last Gynecological Exam</mat-label>
-        <input matInput type="date" formControlName="date_last_gyno">
-      </mat-form-field>
-
-      <div class="radio-form-field">
-        <p class="outside-label">Mammogram</p>
-        <mat-radio-group required aria-label="Select an option" formControlName="mammogram">
-          <mat-radio-button value="neg">-</mat-radio-button>
-          <mat-radio-button value="pos">+</mat-radio-button>
-        </mat-radio-group>
-      </div>
-
-      <div class="radio-form-field">
-        <p class="outside-label">PAP</p>
-        <mat-radio-group required aria-label="Select an option" formControlName="pap">
-          <mat-radio-button value="neg">-</mat-radio-button>
-          <mat-radio-button value="pos">+</mat-radio-button>
-        </mat-radio-group>
-      </div>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Form of Birth Control</mat-label>
-        <input matInput type="text" formControlName="birth_control">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Number of Childern</mat-label>
-        <input matInput type="number" formControlName="num_children">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Number of Pregnancies</mat-label>
-        <input matInput type="number" formControlName="num_pregnancies">
-      </mat-form-field>
-
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="c_section">C Section</mat-checkbox>
-        <mat-checkbox formControlName="surgical_menopause">Surgical Menopause</mat-checkbox>
-        <mat-checkbox formControlName="menopause" >Menopause</mat-checkbox>
-      </div>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Date of Last Menstrual Cycle</mat-label>
-        <input matInput type="date" formControlName="date_last_menstrual">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Length of Cycle</mat-label>
-        <input matInput type="number" formControlName="cycle_length">
-        <span matSuffix>days</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Interval of Time Between Cycles</mat-label>
-        <input matInput type="number" formControlName="time_between_cycles">
-        <span matSuffix>days</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Any Recent Changes in Normal Menstrual Flow</mat-label>
-        <input
-          matInput type="number"
-          formControlName="time_between_cycles"
-          placeholder="(e.g., heavier, large clots, scanty)">
-        <span matSuffix>days</span>
-      </mat-form-field>
+    <div class="radio-form-field">
+      <p class="outside-label">Mammogram</p>
+      <mat-radio-group required aria-label="Select an option" formControlName="mammogram">
+        <mat-radio-button value="neg">-</mat-radio-button>
+        <mat-radio-button value="pos">+</mat-radio-button>
+      </mat-radio-group>
     </div>
 
-    <div formGroupName="familyHistroy">
-      <h3>Family Health History (parents and siblings)</h3>
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="arthritis_rheumatoid">Arthritis, rheumatoid</mat-checkbox>
-        <mat-checkbox formControlName="asthma">Asthma</mat-checkbox>
-        <mat-checkbox formControlName="alcoholism">Alcoholism</mat-checkbox>
-        <mat-checkbox formControlName="alzheimers">Alzheimer's Disease</mat-checkbox>
-        <mat-checkbox formControlName="cancer">Cancer</mat-checkbox>
-        <mat-checkbox formControlName="depression">Depression</mat-checkbox>
-        <mat-checkbox formControlName="diabetes">Diabetes</mat-checkbox>
-        <mat-checkbox formControlName="drug_addiction">Drug Addiction</mat-checkbox>
-        <mat-checkbox formControlName="eating_disorder">Eating Disorder</mat-checkbox>
-        <mat-checkbox formControlName="genetic_disorder">Genetic Disorder</mat-checkbox>
-        <mat-checkbox formControlName="glaucoma">Glaucoma</mat-checkbox>
-        <mat-checkbox formControlName="heart_disease">Heart Disease</mat-checkbox>
-        <mat-checkbox formControlName="infertility">Infertility</mat-checkbox>
-        <mat-checkbox formControlName="learning_disabilities">Learning Disabilities</mat-checkbox>
-        <mat-checkbox formControlName="mental_illness">Mental Illness</mat-checkbox>
-        <mat-checkbox formControlName="mental_retardation">Mental Retardation</mat-checkbox>
-        <mat-checkbox formControlName="migraine_headaches">Migraine Headaches</mat-checkbox>
-        <mat-checkbox formControlName="neurological_disorders">Neurological Disorders (Parkinson's, paralysis)</mat-checkbox>
-        <mat-checkbox formControlName="obesity">Obesity</mat-checkbox>
-        <mat-checkbox formControlName="osteoporosis">Osteoporosis</mat-checkbox>
-        <mat-checkbox formControlName="stroke">Stroke</mat-checkbox>
-        <mat-checkbox formControlName="suicide">Suicide</mat-checkbox>
-      </div>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other</mat-label>
-        <input matInput type="text" formControlName="other">
-      </mat-form-field>
+    <div class="radio-form-field">
+      <p class="outside-label">PAP</p>
+      <mat-radio-group required aria-label="Select an option" formControlName="pap">
+        <mat-radio-button value="neg">-</mat-radio-button>
+        <mat-radio-button value="pos">+</mat-radio-button>
+      </mat-radio-group>
     </div>
 
-    <div formGroupName="healthHabits">
-      <h3>Health Habits</h3>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Form of Birth Control</mat-label>
+      <input matInput type="text" formControlName="birth_control">
+    </mat-form-field>
 
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="tobacco">Tobacco</mat-checkbox>
-      </div>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Number of Childern</mat-label>
+      <input matInput type="number" formControlName="num_children">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Number of Cigarettes</mat-label>
-        <input matInput type="number" formControlName="num_cigarettes">
-        <span matSuffix>per day</span>
-      </mat-form-field>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Number of Pregnancies</mat-label>
+      <input matInput type="number" formControlName="num_pregnancies">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Number of Cigars</mat-label>
-        <input matInput type="number" formControlName="num_cigars">
-      </mat-form-field>
-
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="alcohol">Alcohol</mat-checkbox>
-      </div>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Glasses of Wine</mat-label>
-        <input matInput type="number" formControlName="num_wine">
-        <span matSuffix>per day or week</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Ounces of Liquor</mat-label>
-        <input matInput type="number" formControlName="num_liquor">
-        <span matSuffix>per day or week</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Glasses of Beer</mat-label>
-        <input matInput type="number" formControlName="num_beer">
-        <span matSuffix>per day or week</span>
-      </mat-form-field>
-
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="caffeine">Caffeine</mat-checkbox>
-      </div>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>6 oz Cups of Coffee</mat-label>
-        <input matInput type="number" formControlName="num_coffee">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>6 oz Cups of Tea</mat-label>
-        <input matInput type="number" formControlName="num_tea">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Cans of Soda with Caffeine</mat-label>
-        <input matInput type="number" formControlName="num_soda">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other Caffeine Sources</mat-label>
-        <input matInput type="text" formControlName="other_sources">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Glasses of Water</mat-label>
-        <input matInput type="number" formControlName="num_water">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="c_section">C Section</mat-checkbox>
+      <mat-checkbox formControlName="surgical_menopause">Surgical Menopause</mat-checkbox>
+      <mat-checkbox formControlName="menopause" >Menopause</mat-checkbox>
     </div>
 
-    <div formGroupName="exercise">
-      <h3>Exercise</h3>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Date of Last Menstrual Cycle</mat-label>
+      <input matInput type="date" formControlName="date_last_menstrual">
+    </mat-form-field>
 
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="5-7dpw">5 - 7 Days per week</mat-checkbox>
-        <mat-checkbox formControlName="3-4dpw">3 - 4 Days per week</mat-checkbox>
-        <mat-checkbox formControlName="1-2dpw">1 - 2 Days per week</mat-checkbox>
-        <mat-checkbox formControlName="45mins">45 Minutes or More Duration per Workout</mat-checkbox>
-        <mat-checkbox formControlName="30-45mins">30 - 45 Minutes Duration per Workout</mat-checkbox>
-        <mat-checkbox formControlName="less than 30mins">Less than 30 Minutes</mat-checkbox>
-        <mat-checkbox formControlName="walk">Walk</mat-checkbox>
-        <mat-checkbox formControlName="run">Run, Jog, Jump Rope</mat-checkbox>
-        <mat-checkbox formControlName="lift">Weight Lift</mat-checkbox>
-        <mat-checkbox formControlName="swim">Swim</mat-checkbox>
-        <mat-checkbox formControlName="box">Box</mat-checkbox>
-        <mat-checkbox formControlName="yoga">Yoga</mat-checkbox>
-      </div>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Length of Cycle</mat-label>
+      <input matInput type="number" formControlName="cycle_length">
+      <span matSuffix>days</span>
+    </mat-form-field>
 
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Interval of Time Between Cycles</mat-label>
+      <input matInput type="number" formControlName="time_between_cycles">
+      <span matSuffix>days</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Any Recent Changes in Normal Menstrual Flow</mat-label>
+      <input
+        matInput type="number"
+        formControlName="time_between_cycles"
+        placeholder="(e.g., heavier, large clots, scanty)">
+      <span matSuffix>days</span>
+    </mat-form-field>
+  </div>
+
+  <div formGroupName="familyHistroy">
+    <h3>Family Health History (parents and siblings)</h3>
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="arthritis_rheumatoid">Arthritis, rheumatoid</mat-checkbox>
+      <mat-checkbox formControlName="asthma">Asthma</mat-checkbox>
+      <mat-checkbox formControlName="alcoholism">Alcoholism</mat-checkbox>
+      <mat-checkbox formControlName="alzheimers">Alzheimer's Disease</mat-checkbox>
+      <mat-checkbox formControlName="cancer">Cancer</mat-checkbox>
+      <mat-checkbox formControlName="depression">Depression</mat-checkbox>
+      <mat-checkbox formControlName="diabetes">Diabetes</mat-checkbox>
+      <mat-checkbox formControlName="drug_addiction">Drug Addiction</mat-checkbox>
+      <mat-checkbox formControlName="eating_disorder">Eating Disorder</mat-checkbox>
+      <mat-checkbox formControlName="genetic_disorder">Genetic Disorder</mat-checkbox>
+      <mat-checkbox formControlName="glaucoma">Glaucoma</mat-checkbox>
+      <mat-checkbox formControlName="heart_disease">Heart Disease</mat-checkbox>
+      <mat-checkbox formControlName="infertility">Infertility</mat-checkbox>
+      <mat-checkbox formControlName="learning_disabilities">Learning Disabilities</mat-checkbox>
+      <mat-checkbox formControlName="mental_illness">Mental Illness</mat-checkbox>
+      <mat-checkbox formControlName="mental_retardation">Mental Retardation</mat-checkbox>
+      <mat-checkbox formControlName="migraine_headaches">Migraine Headaches</mat-checkbox>
+      <mat-checkbox formControlName="neurological_disorders">Neurological Disorders (Parkinson's, paralysis)</mat-checkbox>
+      <mat-checkbox formControlName="obesity">Obesity</mat-checkbox>
+      <mat-checkbox formControlName="osteoporosis">Osteoporosis</mat-checkbox>
+      <mat-checkbox formControlName="stroke">Stroke</mat-checkbox>
+      <mat-checkbox formControlName="suicide">Suicide</mat-checkbox>
     </div>
 
-    <div formGroupName="nutrition">
-      <h3>Nutrition & Diet</h3>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="other">
+    </mat-form-field>
+  </div>
 
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="mixed_food">Mixed Food Diet (animal and vegetable sources)</mat-checkbox>
-        <mat-checkbox formControlName="vegetarian">Vegetarian</mat-checkbox>
-        <mat-checkbox formControlName="vegan">Vegan</mat-checkbox>
-        <mat-checkbox formControlName="salt_restriction">Salt Restriction</mat-checkbox>
-        <mat-checkbox formControlName="fat_restriction">Fat Restriction</mat-checkbox>
-        <mat-checkbox formControlName="carb_restriction">Starch/Carb Restriction</mat-checkbox>
-        <mat-checkbox formControlName="zone_diet">The Zone Diet</mat-checkbox>
-        <mat-checkbox formControlName="calorie_restriction">Total Calorie Restriction</mat-checkbox>
-      </div>
+  <div formGroupName="healthHabits">
+    <h3>Health Habits</h3>
 
-      <div formGroupName="specific_restrictions">
-        <mat-label>Specific Food Restrictions</mat-label>
-        <div class="checkbox-container flex-row">
-          <mat-checkbox formControlName="dairy">Dairy</mat-checkbox>
-          <mat-checkbox formControlName="wheat">Wheat</mat-checkbox>
-          <mat-checkbox formControlName="eggs">Eggs</mat-checkbox>
-          <mat-checkbox formControlName="soy">Soy</mat-checkbox>
-          <mat-checkbox formControlName="corn">Corn</mat-checkbox>
-          <mat-checkbox formControlName="gluten">All Gluten</mat-checkbox>
-
-          <mat-form-field appearance="fill" color="accent">
-            <mat-label>Other</mat-label>
-            <input matInput type="text" formControlName="other">
-          </mat-form-field>
-        </div>
-      </div>
-
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="tobacco">Tobacco</mat-checkbox>
     </div>
 
-    <div formGroupName="foodFrequency">
-      <h3>Food Frequency</h3>
-      <mat-label>Servings per day:</mat-label>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Number of Cigarettes</mat-label>
+      <input matInput type="number" formControlName="num_cigarettes">
+      <span matSuffix>per day</span>
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Fruits (citrus, melons, etc.)</mat-label>
-        <input matInput type="number" formControlName="fruit">
-        <span matSuffix>per day</span>
-      </mat-form-field>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Number of Cigars</mat-label>
+      <input matInput type="number" formControlName="num_cigars">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Dark green or deep yellow/orange vegetables</mat-label>
-        <input matInput type="number" formControlName="vegetables">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Grains (unprocessed)</mat-label>
-        <input matInput type="number" formControlName="grains">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Beans, peas, legumes</mat-label>
-        <input matInput type="number" formControlName="beans">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Dairy, eggs</mat-label>
-        <input matInput type="number" formControlName="dairy">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Meat, poultry, fish</mat-label>
-        <input matInput type="number" formControlName="meat">
-        <span matSuffix>per day</span>
-      </mat-form-field>
-
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="alcohol">Alcohol</mat-checkbox>
     </div>
 
-    <div formGroupName="eatingHabits">
-      <h3>Eating Habits</h3>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Glasses of Wine</mat-label>
+      <input matInput type="number" formControlName="num_wine">
+      <span matSuffix>per day or week</span>
+    </mat-form-field>
 
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="skip_breakfast">Skip Breakfast</mat-checkbox>
-        <mat-checkbox formControlName="two_meals">Two Meals/day</mat-checkbox>
-        <mat-checkbox formControlName="one_meal">One Meal/day</mat-checkbox>
-        <mat-checkbox formControlName="graze">Graze (small frequent meals)</mat-checkbox>
-        <mat-checkbox formControlName="food_rotation">Food Rotation</mat-checkbox>
-        <mat-checkbox formControlName="eat_constantly">Eat Constantly Whether Hungry or Not</mat-checkbox>
-        <mat-checkbox formControlName="on_the_run">Generally Eat on the Run</mat-checkbox>
-        <mat-checkbox formControlName="add_salt">Add Salt to Food</mat-checkbox>
-      </div>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Ounces of Liquor</mat-label>
+      <input matInput type="number" formControlName="num_liquor">
+      <span matSuffix>per day or week</span>
+    </mat-form-field>
 
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Glasses of Beer</mat-label>
+      <input matInput type="number" formControlName="num_beer">
+      <span matSuffix>per day or week</span>
+    </mat-form-field>
+
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="caffeine">Caffeine</mat-checkbox>
     </div>
 
-    <div formGroupName="supplements">
-      <h3>Current Supplements</h3>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>6 oz Cups of Coffee</mat-label>
+      <input matInput type="number" formControlName="num_coffee">
+      <span matSuffix>per day</span>
+    </mat-form-field>
 
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="multivitamin_mineral">Multivitamin/Mineral</mat-checkbox>
-        <mat-checkbox formControlName="vitamine_c">Vitamine C</mat-checkbox>
-        <mat-checkbox formControlName="vitamine_e">Vitamine E</mat-checkbox>
-        <mat-checkbox formControlName="epa_dha">EPA/DHA</mat-checkbox>
-        <mat-checkbox formControlName="evening_primrose_gla">Evening Primrose/GLA</mat-checkbox>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>6 oz Cups of Tea</mat-label>
+      <input matInput type="number" formControlName="num_tea">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Cans of Soda with Caffeine</mat-label>
+      <input matInput type="number" formControlName="num_soda">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Other Caffeine Sources</mat-label>
+      <input matInput type="text" formControlName="other_sources">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Glasses of Water</mat-label>
+      <input matInput type="number" formControlName="num_water">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+  </div>
+
+  <div formGroupName="exercise">
+    <h3>Exercise</h3>
+
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="5-7dpw">5 - 7 Days per week</mat-checkbox>
+      <mat-checkbox formControlName="3-4dpw">3 - 4 Days per week</mat-checkbox>
+      <mat-checkbox formControlName="1-2dpw">1 - 2 Days per week</mat-checkbox>
+      <mat-checkbox formControlName="45mins">45 Minutes or More Duration per Workout</mat-checkbox>
+      <mat-checkbox formControlName="30-45mins">30 - 45 Minutes Duration per Workout</mat-checkbox>
+      <mat-checkbox formControlName="less than 30mins">Less than 30 Minutes</mat-checkbox>
+      <mat-checkbox formControlName="walk">Walk</mat-checkbox>
+      <mat-checkbox formControlName="run">Run, Jog, Jump Rope</mat-checkbox>
+      <mat-checkbox formControlName="lift">Weight Lift</mat-checkbox>
+      <mat-checkbox formControlName="swim">Swim</mat-checkbox>
+      <mat-checkbox formControlName="box">Box</mat-checkbox>
+      <mat-checkbox formControlName="yoga">Yoga</mat-checkbox>
+    </div>
+
+  </div>
+
+  <div formGroupName="nutrition">
+    <h3>Nutrition & Diet</h3>
+
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="mixed_food">Mixed Food Diet (animal and vegetable sources)</mat-checkbox>
+      <mat-checkbox formControlName="vegetarian">Vegetarian</mat-checkbox>
+      <mat-checkbox formControlName="vegan">Vegan</mat-checkbox>
+      <mat-checkbox formControlName="salt_restriction">Salt Restriction</mat-checkbox>
+      <mat-checkbox formControlName="fat_restriction">Fat Restriction</mat-checkbox>
+      <mat-checkbox formControlName="carb_restriction">Starch/Carb Restriction</mat-checkbox>
+      <mat-checkbox formControlName="zone_diet">The Zone Diet</mat-checkbox>
+      <mat-checkbox formControlName="calorie_restriction">Total Calorie Restriction</mat-checkbox>
+    </div>
+
+    <div formGroupName="specific_restrictions">
+      <mat-label>Specific Food Restrictions</mat-label>
+      <div class="checkbox-container flex-row">
+        <mat-checkbox formControlName="dairy">Dairy</mat-checkbox>
+        <mat-checkbox formControlName="wheat">Wheat</mat-checkbox>
+        <mat-checkbox formControlName="eggs">Eggs</mat-checkbox>
+        <mat-checkbox formControlName="soy">Soy</mat-checkbox>
+        <mat-checkbox formControlName="corn">Corn</mat-checkbox>
+        <mat-checkbox formControlName="gluten">All Gluten</mat-checkbox>
 
         <mat-form-field appearance="fill" color="accent">
-          <mat-label>Calcium, Source</mat-label>
-          <input matInput type="text" formControlName="calcium_source">
+          <mat-label>Other</mat-label>
+          <input matInput type="text" formControlName="other">
         </mat-form-field>
-
-        <mat-checkbox formControlName="magnesium">magnesium</mat-checkbox>
-        <mat-checkbox formControlName="zinc">zinc</mat-checkbox>
-
-        <mat-form-field appearance="fill" color="accent">
-          <mat-label>Describe additional Minerals</mat-label>
-          <input matInput type="text" formControlName="minerals_describe" placeholder="iron, potassium, etc.">
-        </mat-form-field>
-
-        <mat-checkbox formControlName="friendly_flora">Friendly Flora (acidophilus)</mat-checkbox>
-        <mat-checkbox formControlName="digestive_enzymes">Digestive Enzymes</mat-checkbox>
-        <mat-checkbox formControlName="amino_acids">Amino Acids</mat-checkbox>
-        <mat-checkbox formControlName="CoQ10">CoQ10</mat-checkbox>
-        <mat-checkbox formControlName="antioxidants">Antioxidants (e.g., lutein, resveratrol, etc.)</mat-checkbox>
-        <mat-checkbox formControlName="herbs_teas">Herbs - Teas</mat-checkbox>
-        <mat-checkbox formControlName="herbs_extracts">Herbs - Extracts</mat-checkbox>
-        <mat-checkbox formControlName="chinese_herbs">Chinese Herbs</mat-checkbox>
-        <mat-checkbox formControlName="ayurvedic_herbs">Ayurvedic Herbs</mat-checkbox>
-        <mat-checkbox formControlName="homeopathy">Homeopathy</mat-checkbox>
-        <mat-checkbox formControlName="bach_flowers">Bach Flowers</mat-checkbox>
-        <mat-checkbox formControlName="protein_shakes">Protein Shakes</mat-checkbox>
-        <mat-checkbox formControlName="superfoods">Superfoods (e.g., bee pollen, phytonutrient blends)</mat-checkbox>
-        <mat-checkbox formControlName="liquid_meals">Liquid Meals (e.g., Ensure)</mat-checkbox>
       </div>
-      <mat-checkbox formControlName="minerals_describe">Minerals Describe</mat-checkbox>
+    </div>
+
+  </div>
+
+  <div formGroupName="foodFrequency">
+    <h3>Food Frequency</h3>
+    <mat-label>Servings per day:</mat-label>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Fruits (citrus, melons, etc.)</mat-label>
+      <input matInput type="number" formControlName="fruit">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Dark green or deep yellow/orange vegetables</mat-label>
+      <input matInput type="number" formControlName="vegetables">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Grains (unprocessed)</mat-label>
+      <input matInput type="number" formControlName="grains">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Beans, peas, legumes</mat-label>
+      <input matInput type="number" formControlName="beans">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Dairy, eggs</mat-label>
+      <input matInput type="number" formControlName="dairy">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Meat, poultry, fish</mat-label>
+      <input matInput type="number" formControlName="meat">
+      <span matSuffix>per day</span>
+    </mat-form-field>
+
+  </div>
+
+  <div formGroupName="eatingHabits">
+    <h3>Eating Habits</h3>
+
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="skip_breakfast">Skip Breakfast</mat-checkbox>
+      <mat-checkbox formControlName="two_meals">Two Meals/day</mat-checkbox>
+      <mat-checkbox formControlName="one_meal">One Meal/day</mat-checkbox>
+      <mat-checkbox formControlName="graze">Graze (small frequent meals)</mat-checkbox>
+      <mat-checkbox formControlName="food_rotation">Food Rotation</mat-checkbox>
+      <mat-checkbox formControlName="eat_constantly">Eat Constantly Whether Hungry or Not</mat-checkbox>
+      <mat-checkbox formControlName="on_the_run">Generally Eat on the Run</mat-checkbox>
+      <mat-checkbox formControlName="add_salt">Add Salt to Food</mat-checkbox>
+    </div>
+
+  </div>
+
+  <div formGroupName="supplements">
+    <h3>Current Supplements</h3>
+
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="multivitamin_mineral">Multivitamin/Mineral</mat-checkbox>
+      <mat-checkbox formControlName="vitamine_c">Vitamine C</mat-checkbox>
+      <mat-checkbox formControlName="vitamine_e">Vitamine E</mat-checkbox>
+      <mat-checkbox formControlName="epa_dha">EPA/DHA</mat-checkbox>
+      <mat-checkbox formControlName="evening_primrose_gla">Evening Primrose/GLA</mat-checkbox>
 
       <mat-form-field appearance="fill" color="accent">
-        <mat-label>Other</mat-label>
-        <input matInput type="text" formControlName="other">
+        <mat-label>Calcium, Source</mat-label>
+        <input matInput type="text" formControlName="calcium_source">
       </mat-form-field>
 
+      <mat-checkbox formControlName="magnesium">magnesium</mat-checkbox>
+      <mat-checkbox formControlName="zinc">zinc</mat-checkbox>
+
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Describe additional Minerals</mat-label>
+        <input matInput type="text" formControlName="minerals_describe" placeholder="iron, potassium, etc.">
+      </mat-form-field>
+
+      <mat-checkbox formControlName="friendly_flora">Friendly Flora (acidophilus)</mat-checkbox>
+      <mat-checkbox formControlName="digestive_enzymes">Digestive Enzymes</mat-checkbox>
+      <mat-checkbox formControlName="amino_acids">Amino Acids</mat-checkbox>
+      <mat-checkbox formControlName="CoQ10">CoQ10</mat-checkbox>
+      <mat-checkbox formControlName="antioxidants">Antioxidants (e.g., lutein, resveratrol, etc.)</mat-checkbox>
+      <mat-checkbox formControlName="herbs_teas">Herbs - Teas</mat-checkbox>
+      <mat-checkbox formControlName="herbs_extracts">Herbs - Extracts</mat-checkbox>
+      <mat-checkbox formControlName="chinese_herbs">Chinese Herbs</mat-checkbox>
+      <mat-checkbox formControlName="ayurvedic_herbs">Ayurvedic Herbs</mat-checkbox>
+      <mat-checkbox formControlName="homeopathy">Homeopathy</mat-checkbox>
+      <mat-checkbox formControlName="bach_flowers">Bach Flowers</mat-checkbox>
+      <mat-checkbox formControlName="protein_shakes">Protein Shakes</mat-checkbox>
+      <mat-checkbox formControlName="superfoods">Superfoods (e.g., bee pollen, phytonutrient blends)</mat-checkbox>
+      <mat-checkbox formControlName="liquid_meals">Liquid Meals (e.g., Ensure)</mat-checkbox>
     </div>
+    <mat-checkbox formControlName="minerals_describe">Minerals Describe</mat-checkbox>
 
-    <div formGroupName="goals">
-      <h3>Would you like to</h3>
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Other</mat-label>
+      <input matInput type="text" formControlName="other">
+    </mat-form-field>
 
-      <div class="checkbox-container flex-row" >
-        <mat-checkbox formControlName="energy">Have more energy</mat-checkbox>
-        <mat-checkbox formControlName="stronger">Be stronger</mat-checkbox>
-        <mat-checkbox formControlName="endurance">Have more endurance</mat-checkbox>
-        <mat-checkbox formControlName="sex_drive">Increase your sex drive</mat-checkbox>
-        <mat-checkbox formControlName="thinner">Be thinner</mat-checkbox>
-        <mat-checkbox formControlName="muscular">Be more muscular</mat-checkbox>
-        <mat-checkbox formControlName="complexion">Improve youe complexion</mat-checkbox>
-        <mat-checkbox formControlName="strong_nails">Have stronger nails</mat-checkbox>
-        <mat-checkbox formControlName="healthier_hair">Have healthier hair</mat-checkbox>
-        <mat-checkbox formControlName="less_moody">Be less moody</mat-checkbox>
-        <mat-checkbox formControlName="less_depressed">Be less depressed</mat-checkbox>
-        <mat-checkbox formControlName="less_indecisive">Be less indecisive</mat-checkbox>
-        <mat-checkbox formControlName="motivated">Feel more motivated</mat-checkbox>
-        <mat-checkbox formControlName="organized">Be more organized</mat-checkbox>
-        <mat-checkbox formControlName="think_clearly">Think more clearly and be more focused</mat-checkbox>
-        <mat-checkbox formControlName="memory">Improve memory</mat-checkbox>
-        <mat-checkbox formControlName="school">Do better on test in school</mat-checkbox>
-        <mat-checkbox formControlName="over_the_counter">Not be dependent on over-the-counter medications like aspirin, Tylenol, Benadryl, sleeping aids, etc.</mat-checkbox>
-        <mat-checkbox formControlName="laxatives">Stop using laxatives or stool softeners</mat-checkbox>
-        <mat-checkbox formControlName="pain_free">Be free of pain</mat-checkbox>
-        <mat-checkbox formControlName="sleep_better">Sleep  better</mat-checkbox>
-        <mat-checkbox formControlName="agreeable_breath">Have agreeable breath</mat-checkbox>
-        <mat-checkbox formControlName="agreeable_oder">Have agreeable body odor</mat-checkbox>
-        <mat-checkbox formControlName="strong_teeth">Have stronger teeth</mat-checkbox>
-        <mat-checkbox formControlName="less_colds">Get less colds and flus</mat-checkbox>
-        <mat-checkbox formControlName="allergies">Get rid of your allergies</mat-checkbox>
-        <mat-checkbox formControlName="inherited_disease">Reduce your risk of inherited disease tendencies (e.g., cancer, heart disease, etc.)</mat-checkbox>
-      </div>
+  </div>
+
+  <div formGroupName="goals">
+    <h3>Would you like to</h3>
+
+    <div class="checkbox-container flex-row" >
+      <mat-checkbox formControlName="energy">Have more energy</mat-checkbox>
+      <mat-checkbox formControlName="stronger">Be stronger</mat-checkbox>
+      <mat-checkbox formControlName="endurance">Have more endurance</mat-checkbox>
+      <mat-checkbox formControlName="sex_drive">Increase your sex drive</mat-checkbox>
+      <mat-checkbox formControlName="thinner">Be thinner</mat-checkbox>
+      <mat-checkbox formControlName="muscular">Be more muscular</mat-checkbox>
+      <mat-checkbox formControlName="complexion">Improve youe complexion</mat-checkbox>
+      <mat-checkbox formControlName="strong_nails">Have stronger nails</mat-checkbox>
+      <mat-checkbox formControlName="healthier_hair">Have healthier hair</mat-checkbox>
+      <mat-checkbox formControlName="less_moody">Be less moody</mat-checkbox>
+      <mat-checkbox formControlName="less_depressed">Be less depressed</mat-checkbox>
+      <mat-checkbox formControlName="less_indecisive">Be less indecisive</mat-checkbox>
+      <mat-checkbox formControlName="motivated">Feel more motivated</mat-checkbox>
+      <mat-checkbox formControlName="organized">Be more organized</mat-checkbox>
+      <mat-checkbox formControlName="think_clearly">Think more clearly and be more focused</mat-checkbox>
+      <mat-checkbox formControlName="memory">Improve memory</mat-checkbox>
+      <mat-checkbox formControlName="school">Do better on test in school</mat-checkbox>
+      <mat-checkbox formControlName="over_the_counter">Not be dependent on over-the-counter medications like aspirin, Tylenol, Benadryl, sleeping aids, etc.</mat-checkbox>
+      <mat-checkbox formControlName="laxatives">Stop using laxatives or stool softeners</mat-checkbox>
+      <mat-checkbox formControlName="pain_free">Be free of pain</mat-checkbox>
+      <mat-checkbox formControlName="sleep_better">Sleep  better</mat-checkbox>
+      <mat-checkbox formControlName="agreeable_breath">Have agreeable breath</mat-checkbox>
+      <mat-checkbox formControlName="agreeable_oder">Have agreeable body odor</mat-checkbox>
+      <mat-checkbox formControlName="strong_teeth">Have stronger teeth</mat-checkbox>
+      <mat-checkbox formControlName="less_colds">Get less colds and flus</mat-checkbox>
+      <mat-checkbox formControlName="allergies">Get rid of your allergies</mat-checkbox>
+      <mat-checkbox formControlName="inherited_disease">Reduce your risk of inherited disease tendencies (e.g., cancer, heart disease, etc.)</mat-checkbox>
     </div>
+  </div>
 
-    <button type='submit' mat-raised-button>Submit</button>
+  <button type='submit' mat-raised-button>Submit</button>
 
-  </form>
+</form>
 
-</mat-card>

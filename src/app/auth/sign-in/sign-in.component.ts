@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
 
   onSubmit() {
     if(this.signInForm.valid) {
-      this.auth.registerNewUser(this.signInForm.value);
+      this.auth.loginReturningUser(this.signInForm.value);
     } else {
       alert("Invalid credentials");
     }

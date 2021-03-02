@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +10,18 @@ import { Router } from '@angular/router';
 export class AuthService {
   private isAuthenticated = false;
 
-  constructor(private auth: AngularFireAuth, private router: Router) { }
+  constructor(
+    private auth: AngularFireAuth,
+    private router: Router,
+    private userService: UserService
+    ) { }
 
   registerNewUser(userData: {email: string, password: string}) {
     this.auth.createUserWithEmailAndPassword(userData.email, userData.password)
     .then(result => {
-      console.log(result);
+      this.userService.createNewUser({email: result.user.email});
       this.isAuthenticated = true;
-      this.router.navigate(['/forms']);
+      this.router.navigate(['/forms/health-history']);
     })
     .catch(error => {
       console.log(error);
@@ -25,9 +31,8 @@ export class AuthService {
   loginReturningUser(userData: {email: string, password: string}){
     this.auth.signInWithEmailAndPassword(userData.email, userData.password)
     .then(result => {
-      console.log(result);
       this.isAuthenticated = true;
-      this.router.navigate(['/forms']);
+      this.router.navigate(['/forms/health-history']);
     })
     .catch(error => {
       console.log(error);

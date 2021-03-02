@@ -17,6 +17,9 @@ a {
 	text-decoration: none;
   cursor: pointer;
 }
+form{
+  padding: 24px;
+}
 mat-radio-button {
   margin: 0px 10px 24px 10px;
 }

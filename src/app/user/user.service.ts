@@ -28,7 +28,10 @@ export class UserService {
   }
 
   createNewUser(user: User): void {
-    this.usersCollection.add(user);
+    this.usersCollection.add(user).then(result => {
+      console.log(result);
+      this.getUserDetails(result.id);
+    });
   }
   updateUser(user: User): void {
     this.userDoc.update(user);

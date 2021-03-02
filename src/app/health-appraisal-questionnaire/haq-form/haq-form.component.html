@@ -1,87 +1,82 @@
-<mat-card>
-  <h1>Health Appraisal Questionnaire</h1>
-  <hr>
+<h1>Health Appraisal Questionnaire</h1>
+<hr>
 
-  <h3>Directions:</h3>
-  <p>This questionnaire asks you to assess how you have been feeling during the last four months. This information will help you keep track of
-    how your physical, mental and emotional states respond to changes you make in your eating habits, priorities, supplement program, social and
-    family life, level of physical activity and time spent on personal growth. All information is held in strict confidence. Take all the time you need to
-  </p>
+<h3>Directions:</h3>
+<p>This questionnaire asks you to assess how you have been feeling during the last four months. This information will help you keep track of
+  how your physical, mental and emotional states respond to changes you make in your eating habits, priorities, supplement program, social and
+  family life, level of physical activity and time spent on personal growth. All information is held in strict confidence. Take all the time you need to
+</p>
 
-  <h3>For each question, choose the option that best describes your symptoms:</h3>
-  <ul>
-    <li><p><strong>0 = No or Rarely</strong>—You have never experienced the symptom or the symptom is familiar to you but you perceive it as insignificant (monthly or less)</p></li>
-    <li><p><strong>1 = Occasionally</strong>—Symptom comes and goes and is linked in your mind to stress, diet, fatigue or some identifiable trigger</p></li>
-    <li><p><strong>4 = Often</strong>—Symptom occurs 2-3 times per week and/or with a frequency that bothers you enough that you would like to do something about it</p></li>
-    <li><p><strong>8 = Frequently</strong>—Symptom occurs 4 or more times per week and/or you are aware of the symptom every day, or it occurs with regularity on a monthly or cyclical basis</p></li>
-  </ul>
+<h3>For each question, choose the option that best describes your symptoms:</h3>
+<ul>
+  <li><p><strong>0 = No or Rarely</strong>—You have never experienced the symptom or the symptom is familiar to you but you perceive it as insignificant (monthly or less)</p></li>
+  <li><p><strong>1 = Occasionally</strong>—Symptom comes and goes and is linked in your mind to stress, diet, fatigue or some identifiable trigger</p></li>
+  <li><p><strong>4 = Often</strong>—Symptom occurs 2-3 times per week and/or with a frequency that bothers you enough that you would like to do something about it</p></li>
+  <li><p><strong>8 = Frequently</strong>—Symptom occurs 4 or more times per week and/or you are aware of the symptom every day, or it occurs with regularity on a monthly or cyclical basis</p></li>
+</ul>
 
-  <p><strong>Some questions require a YES or NO response: 0 = NO 8 = YES</strong></p>
+<p><strong>Some questions require a YES or NO response: 0 = NO 8 = YES</strong></p>
 
-</mat-card>
+<form [formGroup]="haqForm" (ngSubmit)="onSubmit()">
 
-<mat-card>
-  <form [formGroup]="haqForm" (ngSubmit)="onSubmit()">
+<mat-tab-group [selectedIndex]="selectedIndex" >
+  <mat-tab *ngFor="let part of formQuestions; let i = index" [label]="'Part ' + (i + 1)" [formGroupName]="'part'+ (i + 1)">
 
-  <mat-tab-group [selectedIndex]="selectedIndex" >
-    <mat-tab *ngFor="let part of formQuestions; let i = index" [label]="'Part ' + (i + 1)" [formGroupName]="'part'+ (i + 1)">
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step *ngFor="let section of part.sections; let j = index" [formGroupName]="'section' + (j + 1)" [stepControl]="haqForm">
+          <ng-template matStepLabel>Section {{ section.section }}</ng-template>
+          <ng-template *ngIf="section.message"><strong>{{ section.message }}</strong></ng-template>
 
-      <mat-vertical-stepper [linear]="isLinear" #stepper>
-        <mat-step *ngFor="let section of part.sections; let j = index" [formGroupName]="'section' + (j + 1)" [stepControl]="haqForm">
-            <ng-template matStepLabel>Section {{ section.section }}</ng-template>
-            <ng-template *ngIf="section.message"><strong>{{ section.message }}</strong></ng-template>
+            <div *ngFor="let question of section.questions; let dex = index">
 
-              <div *ngFor="let question of section.questions; let dex = index">
+              <p>{{ question.prompt }}</p>
 
-                <p>{{ question.prompt }}</p>
+              <mat-radio-group
+                *ngIf="question.type == 'freq'; else yn"
+                [formControlName]="question.key"
+                aria-label="Select an option"
+                required
+                >
 
-                <mat-radio-group
-                  *ngIf="question.type == 'freq'; else yn"
-                  [formControlName]="question.key"
-                  aria-label="Select an option"
-                  required
-                  >
+                <mat-radio-button value="0">No or Rarely</mat-radio-button>
+                <mat-radio-button value="1">Occasionally</mat-radio-button>
+                <mat-radio-button value="4">Often</mat-radio-button>
+                <mat-radio-button value="8">Frequently</mat-radio-button>
+              </mat-radio-group>
 
-                  <mat-radio-button value="0">No or Rarely</mat-radio-button>
-                  <mat-radio-button value="1">Occasionally</mat-radio-button>
-                  <mat-radio-button value="4">Often</mat-radio-button>
-                  <mat-radio-button value="8">Frequently</mat-radio-button>
+
+              <ng-template #yn>
+                <mat-radio-group aria-label="Select an option" [formControlName]="question.key">
+                  <mat-radio-button value="8">Yes</mat-radio-button>
+                  <mat-radio-button value="0">No</mat-radio-button>
                 </mat-radio-group>
+              </ng-template>
 
-
-                <ng-template #yn>
-                  <mat-radio-group aria-label="Select an option" [formControlName]="question.key">
-                    <mat-radio-button value="8">Yes</mat-radio-button>
-                    <mat-radio-button value="0">No</mat-radio-button>
-                  </mat-radio-group>
-                </ng-template>
-
-              </div>
-            <div>
-              <button color="primary" mat-button matStepperNext>Next</button>
             </div>
+          <div>
+            <button color="primary" mat-button matStepperNext>Next</button>
+          </div>
 
 
 
-          </mat-step>
+        </mat-step>
 
-          <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button (click)="stepper.reset()">Reset</button>
-              <button type="submit" [disabled]="!haqForm.valid" mat-button (click)="selectTab(1)">Next</button>
-            </div>
-          </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button type="submit" [disabled]="!haqForm.valid" mat-button (click)="selectTab(1)">Next</button>
+          </div>
+        </mat-step>
 
-        </mat-vertical-stepper>
+      </mat-vertical-stepper>
 
-      </mat-tab>
+    </mat-tab>
 
 
-    </mat-tab-group>
-  </form>
-</mat-card>
+  </mat-tab-group>
+</form>
 
 <!-- <button mat-button (click)="selectTab(0)">Back</button> -->

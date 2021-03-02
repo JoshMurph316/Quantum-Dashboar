@@ -29,6 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -81,6 +83,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSidenavModule,
+    MatIconModule,
+    MatListModule,
     FontAwesomeModule
   ],
   providers: [],

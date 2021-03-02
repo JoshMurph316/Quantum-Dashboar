@@ -394,8 +394,8 @@ export class HealthHistoryFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.healthHistoryForm.value);
-    // this.userService.updateUser(this.healthHistoryForm.value);
-    this.userService.createNewUser(this.healthHistoryForm.value);
+    this.userService.updateUser(this.healthHistoryForm.value);
+    // this.userService.createNewUser(this.healthHistoryForm.value);
   }
 
 }
