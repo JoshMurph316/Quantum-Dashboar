@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/user/user.service';
+import { HealthHistory } from './health-history.model';
 
 
 @Component({
@@ -393,9 +394,8 @@ export class HealthHistoryFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.healthHistoryForm.value);
-    this.userService.updateUser(this.healthHistoryForm.value);
-    // this.userService.createNewUser(this.healthHistoryForm.value);
+    let healthHistory: HealthHistory = this.healthHistoryForm.value;
+    this.userService.updateUser({ healthHistory: healthHistory});
   }
 
 }

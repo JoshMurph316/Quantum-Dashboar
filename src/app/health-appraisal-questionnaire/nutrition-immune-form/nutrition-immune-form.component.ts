@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/user/user.service';
+import { NutritionImmune } from './nutrition-immune.model';
 
 @Component({
   selector: 'app-nutrition-immune-form',
@@ -106,7 +108,7 @@ export class NutritionImmuneFormComponent implements OnInit {
     ]
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.niForm = this.fb.group({
@@ -231,7 +233,7 @@ export class NutritionImmuneFormComponent implements OnInit {
     });
   }
 
-  populateFormValues() {
+  populateFormValues(): NutritionImmune {
     let formData = this.niForm.value;
     this.niFormOptions.sections.forEach((section, i) => {
       section.options.forEach((option, j) => {
@@ -240,10 +242,12 @@ export class NutritionImmuneFormComponent implements OnInit {
       });
     });
     console.log(formData);
+    return formData;
   }
 
   onSubmit() {
-    this.populateFormValues();
+    let payload = this.populateFormValues();
+    this.userService.updateUser({nutritionImmune: payload })
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatStepper } from '@angular/material/stepper';
+import { HAQForm } from '../haq-form/haq-form.model';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-haq-form',
@@ -15,7 +17,7 @@ export class HaqFormComponent implements OnInit {
 
   haqForm: FormGroup;
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   formQuestions = [ // each array object reps a form part formQuestions[0] = Form Part 1
   { //Part 1
@@ -2405,7 +2407,7 @@ export class HaqFormComponent implements OnInit {
           14: [0, Validators.required]
         })
       }),
-    })
+    });
   }
 
   get controls() {
@@ -2423,7 +2425,8 @@ export class HaqFormComponent implements OnInit {
       this.myStepper.next();
   }
   onSubmit() {
-    console.log(this.haqForm.value)
+    let haq: HAQForm = this.haqForm.value;
+    this.userService.updateUser({ haqForm: haq });
   }
 
 }
