@@ -15,22 +15,25 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatCardModule } from '@angular/material/card';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -77,14 +80,17 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     MatCardModule,
     MatStepperModule,
     MatTabsModule,
+    MatTableModule,
     MatRadioModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     FontAwesomeModule
   ],
   providers: [],

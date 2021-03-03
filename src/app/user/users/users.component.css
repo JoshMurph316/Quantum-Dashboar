@@ -1,4 +1,4 @@
-.list-object {
+/* .list-object {
     display:flex;
     flex-direction: column;
     padding-left: 6px 2px 0px 16px;
@@ -24,4 +24,12 @@
     font-size: .8em;
     padding-left: 12px;
     color: grey;
+} */
+table {
+  width: 95%;
+  margin-top: 6px;
+  margin: auto;
+}
+.btn-col {
+  text-align: center;
 }

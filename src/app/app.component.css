@@ -19,6 +19,10 @@ mat-nav-list {
 mat-drawer {
   position: fixed;
 }
+mat-drawer-container {
+  height: 81vh;
+  padding-top: 12px;
+}
 .active {
   background: rgba(63,81,181,.15);
   color: #3f51b5;

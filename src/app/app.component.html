@@ -3,20 +3,33 @@
     <button mat-icon-button color="accent" aria-label="Menu button icon">
       <mat-icon (click)="drawer.toggle()">menu</mat-icon>
     </button>
+
     <!-- <a routerLink="/home">Home</a>
     <a routerLink="/dashboard">Users</a>
     <a routerLink="/forms">Forms</a> -->
       <!-- <a routerLink="/dashboard">Dashboard</a>
       <a routerLink="/user-form">User Form</a> -->
+
       <div class="links-container">
-        <a (click)="logout()">Logout</a>
+        <a matTooltip="Admin" [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/users">Users List</button>
+          <button mat-menu-item>Dashboard</button>
+        </mat-menu>
+
+        <a
+          (click)="logout()"
+          (click)="drawer.close()"
+          matTooltip="Logout">
+          <mat-icon>logout</mat-icon>
+        </a>
       </div>
   </mat-toolbar>
 </div>
   <mat-toolbar></mat-toolbar>
 
 
-<mat-drawer-container autosize>
+<mat-drawer-container>
   <mat-drawer #drawer mode="side">
     <mat-toolbar></mat-toolbar>
     <mat-toolbar color="accent">

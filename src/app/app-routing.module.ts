@@ -39,7 +39,16 @@ const routes: Routes = [
   },
   { path: 'dashboard', component: UsersComponent, canActivate: [AuthGuard]},
   { path: 'user-form', component: UserFormComponent, canActivate: [AuthGuard]},
-  { path: 'user-detail/:id', component: UserDetailComponent, canActivate: [AuthGuard]}
+  {
+    path: 'users',
+    component: UsersComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-detail/:id',
+    component: UserDetailComponent,
+    // canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
