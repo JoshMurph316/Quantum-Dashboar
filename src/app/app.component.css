@@ -20,7 +20,7 @@ mat-drawer {
   position: fixed;
 }
 mat-drawer-container {
-  height: 81vh;
+  /* height: 100vh; */
   padding-top: 12px;
 }
 .active {
@@ -36,6 +36,10 @@ mat-drawer-container {
 .footer {
   align-items: flex-end;
   justify-content: center;
+  /* position : absolute;
+  bottom : 0;
+  height : 40px;
+  margin-top : 40px; */
 }
 .icon-ul {
   display: flex;

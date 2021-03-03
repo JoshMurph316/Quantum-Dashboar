@@ -14,7 +14,6 @@ export const firebaseConfig = environment.firebaseConfig;
 
 import { AppComponent } from './app.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -40,29 +39,26 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UsersComponent } from './user/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LandingComponent } from './landing/landing.component';
 import { HealthAppraisalQuestionnaireComponent } from './health-appraisal-questionnaire/health-appraisal-questionnaire.component';
-import { QuestionComponent } from './health-appraisal-questionnaire/question/question.component';
 import { HealthHistoryFormComponent } from './health-appraisal-questionnaire/health-history-form/health-history-form.component';
 import { NutritionImmuneFormComponent } from './health-appraisal-questionnaire/nutrition-immune-form/nutrition-immune-form.component';
 import { HaqFormComponent } from './health-appraisal-questionnaire/haq-form/haq-form.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     UserFormComponent,
     SignInComponent,
     UserDetailComponent,
     UsersComponent,
-    LandingComponent,
     HealthAppraisalQuestionnaireComponent,
-    QuestionComponent,
     HealthHistoryFormComponent,
     NutritionImmuneFormComponent,
     HaqFormComponent,
-    SignUpComponent
+    SignUpComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

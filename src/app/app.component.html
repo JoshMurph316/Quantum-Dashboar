@@ -1,14 +1,10 @@
 <div class="toolbar-container">
   <mat-toolbar color="primary" class="header">
-    <button mat-icon-button color="accent" aria-label="Menu button icon">
-      <mat-icon (click)="drawer.toggle()">menu</mat-icon>
-    </button>
-
-    <!-- <a routerLink="/home">Home</a>
-    <a routerLink="/dashboard">Users</a>
-    <a routerLink="/forms">Forms</a> -->
-      <!-- <a routerLink="/dashboard">Dashboard</a>
-      <a routerLink="/user-form">User Form</a> -->
+    <div class="left-links-container">
+      <button *ngIf="isAuth" mat-icon-button color="accent" aria-label="Menu button icon">
+        <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+      </button>
+    </div>
 
       <div class="links-container">
         <a matTooltip="Admin" [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></a>
@@ -18,6 +14,7 @@
         </mat-menu>
 
         <a
+          *ngIf="isAuth"
           (click)="logout()"
           (click)="drawer.close()"
           matTooltip="Logout">
@@ -34,6 +31,7 @@
     <mat-toolbar></mat-toolbar>
     <mat-toolbar color="accent">
       <h3>Form Menu</h3>
+      <mat-chip>User: </mat-chip>
     </mat-toolbar>
 
     <mat-nav-list>
@@ -46,14 +44,14 @@
 
   <mat-drawer-content>
     <router-outlet></router-outlet>
+    <!-- <mat-toolbar class="footer" color="primary">
+      <ul class="icon-ul">
+        <li><fa-icon [icon]="faInstagram"></fa-icon></li>
+        <li><fa-icon [icon]="faTwitter"></fa-icon></li>
+        <li><fa-icon [icon]="faFacebookSquare"></fa-icon></li>
+      </ul>
+    </mat-toolbar> -->
   </mat-drawer-content>
 
 </mat-drawer-container>
 
-<mat-toolbar class="footer" color="primary">
-  <ul class="icon-ul">
-    <li><fa-icon [icon]="faInstagram"></fa-icon></li>
-    <li><fa-icon [icon]="faTwitter"></fa-icon></li>
-    <li><fa-icon [icon]="faFacebookSquare"></fa-icon></li>
-  </ul>
-</mat-toolbar>

@@ -9,6 +9,8 @@ html, body {
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fafafa;
+  color: rgba(0,0,0,.87);
 }
 li {
 	list-style-type: none;
