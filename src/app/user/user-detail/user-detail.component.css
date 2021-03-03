@@ -1,60 +1,6 @@
-mat-card {
-    margin-bottom: 10px;
-}
+
 mat-spinner {
   position: relative;
   top: 15em;
   margin: auto;
-}
-.mat-raised-button {
-    background-color: slategray;
-}
-hr {
-    border-color: grey;
-}
-.card-header {
-    display: flex;
-    justify-content: space-between;
-}
-.inactive-chip {
-    background-color: lightsalmon;
-}
-.active-chip {
-    background-color: #95dea0;
-}
-.name-display {
-    padding: 10px;
-}
-.subtext-container {
-    color: grey;
-    font-size: 0.9em;
-    display: flex;
-    flex-wrap: wrap;
-}
-.subtext-container p {
-    margin-right: 20px;
-}
-.list-table {
-    border-radius: 5px;
-    border: 1px solid grey;
-    padding: 0px;
-    width: 90%;
-}
-.list-table li {
-    display: flex;
-    border-bottom: 1px solid grey;
-}
-.list-table mat-chip-list {
-    padding: 5px;
-}
-.list-head {
-    padding: 10px 5px;
-    background-color: slategray;
-    width: 100px;
-    border-right: 1px solid grey;
-    display: flex;
-    align-items: center;
-}
-.list-content {
-    padding: 8px;
 }

@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ChartsModule } from 'ng2-charts';
 
 export const firebaseConfig = environment.firebaseConfig;
 
@@ -91,7 +92,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

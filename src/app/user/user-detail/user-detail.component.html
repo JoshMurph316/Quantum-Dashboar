@@ -1,174 +1,41 @@
-<!-- <div *ngIf="user; else loading" class="user-details">
+<div *ngIf="user; else loading" class="user-details">
 
-  <mat-card>
-    <div class="name-display">
-      <div class="card-header">
-        <h2>{{ user.name }}</h2>
-      </div>
-      <hr>
+  <h3>{{ user.email }}</h3>
 
-      <div class="card-body">
-        <ul>
-          <li>Email: {{ user.email }}</li>
-          <li>DOB: {{ user.dateOfBirth }}</li>
-          <li>Occupation: {{ user.occupation }}</li>
-          <li>Age: {{ user.age }}</li>
-          <li>Height: {{ user.height }}</li>
-          <li>Sex: {{ user.sex }}</li>
-          <li>Number Of Children: {{ user.numberOfChildren }}</li>
-          <li>Marital Status: {{ user.maritalStatus }}</li>
-        </ul>
-      </div>
-    </div>
-  </mat-card>
+  <div *ngIf="user.healthHistory; else no_health_history">
+    <p>Name: {{user.healthHistory.name}}</p>
+    <p>Age: {{user.healthHistory.age}}</p>
 
+  </div>
+
+  <div style="display: block;">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+
+  <div *ngIf="user.nutritionImmune; else no_nutrition_immune"></div>
+
+  <ng-template #no_health_history>
     <mat-card>
-      <h2>Health History</h2>
-      <hr>
-      <ul>
-        <li>Flu Status: {{ user.fluStatus }}</li>
-        <li>Pregnant: {{ user.pregnant }}</li>
-        <li>Reason For Visit: {{ user.reasonForVisit }}</li>
-        <li>Practitioner: {{ user.practitioner.name }}</li>
-        <li>Practitioner Phone: {{ user.practitioner.number }}</li>
-        <li>Date Of Last Exam: {{ user.dateLastExam }}</li>
-        <li>Lab Results: {{ user.labs }}</li>
-        <li>Outcome: {{ user.outcome }}</li>
-      </ul>
-      <hr>
-      <ul>
-        <li></li>
-      </ul>
+      <h3>This user has no Health History Data</h3>
     </mat-card>
+  </ng-template>
 
-    },
+  <ng-template #no_nutrition_immune>
+    <mat-card>
+      <h3>This user has no Nutrition & Immune Data</h3>
+    </mat-card>
+  </ng-template>
+
 </div>
+
 <ng-template #loading>
   <mat-spinner></mat-spinner>
 </ng-template>
 
-<!--
-    therapy?: {
-      diet_modification?: string;
-      fasting?: string;
-      vitamins_minerals?: string;
-      herbs?: string;
-      homeopathy?: string;
-      chiropractic?: string;
-      acupuncture?: string;
-      conventional_drugs?: string;
-      other?: string;
-  healthProblems?:string;
-  medications?:string;
-  major?: {
-    year?: string;
-    operation?: string;
-    outcome?: string;
-  };
-  stressLevel?: string;
-  stressCause?:string;
-  weightClass?:string;
-  weight?: string;
-  weightLoss?: string;
-  chemicalHandling?:string;
-  medicalDevices?: {
-    corrective_lenses?: string;
-    dentures?: string;
-    heaing_aid?: string;
-    other?: string;
-  }
-  abilityChanges?: {
-    see?: string;
-    hear?: string;
-    taste?: string;
-    smell?: string;
-    feel?: string;
-    move?: string;
-  }
-  flavorLikes?: {
-    sour?: string;
-    bitter?: string;
-    sweet?: string;
-    rich_fatty?: string;
-    spicy_pungent?: string;
-    salty?: string;
-  }
-  flavorDislikes?: {
-    sour?: string;
-    bitter?: string;
-    sweet?: string;
-    rich_fatty?: string;
-    spicy_pungent?: string;
-    salty?: string;
-  }
-  tempPreference?: string;
-  disturbedSleep?: string;
-  leastSymptomTime?: {
-    start?: string;
-    end?: string;
-  }
-  mostSymptomTime?: {
-    start?: string;
-    end?: string;
-  }
-}
- -->
-
-       <!-- <mat-chip-list>
-      <mat-chip *ngIf="user.active; else inactive" class="active-chip">Active</mat-chip>
-      <ng-template #inactive >
-          <mat-chip class="inactive-chip">Inactive</mat-chip>
-      </ng-template>
-      </mat-chip-list> -->
-      <!-- <div class="subtext-container">
-          <p>Session # {{ user.sessions }}</p>
-          <p>Age: {{ user.timeStamp }}</p>
-          <p>Email: {{ user.email }}</p>
-          <p>Phone: {{ user.phone }}</p>
-          <p>Date created: {{ user.timeStamp }}</p>
-      </div> -->
-
-    <!-- <mat-card>
-        <h3>History</h3>
-        <mat-chip-list>
-            <mat-chip *ngFor="let item of user.history">{{ item }}</mat-chip>
-        </mat-chip-list>
-        <hr>
-        <mat-chip-list>
-            <mat-chip *ngFor="let question of question_list">{{ question }}</mat-chip>
-        </mat-chip-list>
-    </mat-card>
-
-    <mat-card>
-        <h3>Lifestyle</h3>
-        <ul class="list-table">
-            <li *ngFor="let item of lifestyle_list">
-                <div class="list-head">{{ item }}</div>
-                <span class="list-content">test</span>
-                <mat-chip-list>
-                    <mat-chip *ngFor="let item of user[item]" class="list-content">{{ item }}</mat-chip>
-                </mat-chip-list>
-            </li>
-        </ul>
-    </mat-card>
-
-    <mat-card>
-        <h3>Symptoms</h3>
-        <mat-chip-list>
-            <mat-chip *ngFor="let symptom of user.symptoms">{{ symptom }}</mat-chip>
-        </mat-chip-list>
-    </mat-card>
-
-    <mat-card>
-        <h3>Medications</h3>
-        <mat-chip-list>
-            <mat-chip *ngFor="let med of user.medications">{{ med }}</mat-chip>
-        </mat-chip-list>
-    </mat-card>
-
-    <mat-card>
-        <h3>Supplements</h3>
-        <mat-chip-list>
-            <mat-chip *ngFor="let supp of user.supplements">{{ supp }}</mat-chip>
-        </mat-chip-list>
-    </mat-card> --> -->
