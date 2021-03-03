@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from "rxjs/operators";
 import 'firebase/firestore';
 import { User } from './user';
@@ -12,19 +12,52 @@ export class UserService {
 
   private usersCollection: AngularFirestoreCollection<User>;
   private userDoc: AngularFirestoreDocument<User>;
+  private userSubscriptions: Subscription[] = [];
+  private USERS_PATH = 'users';
+
+  private usersList: User[] = [];
+  usersListChanged = new Subject<User[]>()
+  userChanged = new Subject<User>();
   users: Observable<User[]>;
   user: Observable<User>;
 
+
   constructor(private afs: AngularFirestore) {
-    this.usersCollection = afs.collection<User>('users');
-    // this.users = this.usersCollection.valueChanges();
-    this.users = this.afs.collection('users').snapshotChanges().pipe(map(changes => {
+    this.usersCollection = afs.collection<User>(this.USERS_PATH);
+    this.users = this.afs.collection(this.USERS_PATH).snapshotChanges().pipe(map(changes => {
       return changes.map(a=>{
         const data = a.payload.doc.data() as User
         data.$id = a.payload.doc.id;
         return data;
       });
     }));
+  }
+
+  fetchUsers() {
+    this.userSubscriptions.push(this.afs
+      .collection(this.USERS_PATH)
+      .snapshotChanges()
+      .pipe(map(docArray => {
+        return docArray.map(doc => {
+          console.log(doc.payload.doc.data());
+          const data = doc.payload.doc.data() as User;
+          data.$id = doc.payload.doc.id;
+          if(doc.payload.doc.data()['healthHistory']){
+            data.healthHistory = doc.payload.doc.data()['healthHistory'];
+          }
+          if(doc.payload.doc.data()['nutritionImmune']){
+            data.nutritionImmune = doc.payload.doc.data()['nutritionImmune'];
+          }
+          if(doc.payload.doc.data()['haqForm']){
+            data.haqForm = doc.payload.doc.data()['haqForm'];
+          }
+          return data;
+        })
+      }))
+      .subscribe((users: User[]) => {
+        this.usersList = users;
+        this.usersListChanged.next([...this.usersList]);
+      }));
   }
 
   createNewUser(user: User): void {
@@ -43,9 +76,13 @@ export class UserService {
   }
 
   getUserDetails(id):Observable<User>{
-    this.userDoc = this.afs.doc(`users/${id}`);
+    this.userDoc = this.afs.doc(`${this.USERS_PATH}/${id}`);
     this.user = this.userDoc.valueChanges();
     return this.user;
+  }
+
+  cancelSubscriptions() {
+    this.userSubscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

@@ -25,7 +25,7 @@ export class AuthService {
           this.authChange.next(true);
           this.router.navigate(['/forms/health-history']);
         } else {
-          // this.usersSubscription.unsubscribe();
+          this.userService.cancelSubscriptions();
           this.isAuthenticated = false;
           this.authChange.next(false);
           this.router.navigate(['/home']);
