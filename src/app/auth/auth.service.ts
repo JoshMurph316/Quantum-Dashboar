@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
@@ -7,10 +7,10 @@ import { UserService } from '../user/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   private isAuthenticated = false;
-  authChange = new Subject<boolean>();
   private usersSubscription: Subscription;
+  authChange = new Subject<boolean>();
 
   constructor(
     private auth: AngularFireAuth,
@@ -20,9 +20,11 @@ export class AuthService {
 
     initAuthListener() {
       this.auth.authState.subscribe(user => {
+        // console.log(user.email)
         if(user) {
           this.isAuthenticated = true;
           this.authChange.next(true);
+          this.userService.currentUserData(user.email);
           this.router.navigate(['/forms/health-history']);
         } else {
           this.userService.cancelSubscriptions();
@@ -66,6 +68,10 @@ export class AuthService {
 
   getAuthStatus() {
     return this.isAuthenticated;
+  }
+
+  ngOnDestroy() {
+    this.usersSubscription.unsubscribe();
   }
 
 }

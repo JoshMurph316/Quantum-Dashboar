@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
 
 
 @Component({
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./health-appraisal-questionnaire.component.css']
 })
 export class HealthAppraisalQuestionnaireComponent implements OnInit {
+  userSubscription: Subscription;
+  userData: User;
 
-  constructor( ) { }
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.userSubscription = this.userService.userChanged.subscribe((user: User) => {
+      console.log(user)
+      this.userData = user;
+    });
   }
 }
