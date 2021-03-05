@@ -1,7 +1,9 @@
 <mat-toolbar color="basic">
   <h3>{{ niFormOptions.title }}</h3>
 </mat-toolbar>
-<p>{{ niFormOptions.instructions }}</p>
+<div class="instructions-container">
+  <p>{{ niFormOptions.instructions }}</p>
+</div>
 
 <form id="niForm" [formGroup]="niForm" (ngSubmit)="onSubmit()">
 

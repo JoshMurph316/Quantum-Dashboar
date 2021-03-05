@@ -1,7 +1,11 @@
+button {
+  margin-right: 6px;
+}
 mat-spinner {
   width: 100%;
   margin: auto;
 }
+
 .spinner-container {
   padding: 10% 0px;
 }

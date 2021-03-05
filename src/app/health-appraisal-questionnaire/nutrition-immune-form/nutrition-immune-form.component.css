@@ -9,3 +9,6 @@
   max-height: fit-content;
   min-width: 45%;
 }
+.instructions-container {
+  padding: 12px;
+}

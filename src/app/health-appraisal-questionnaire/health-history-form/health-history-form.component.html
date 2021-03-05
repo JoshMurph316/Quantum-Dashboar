@@ -6,7 +6,7 @@
   <mat-progress-bar mode="determinate" [value]="formProgress"></mat-progress-bar>
   <form [formGroup]="healthHistoryForm" (ngSubmit)="onSubmit()">
 
-    <div [ngSwitch]="userData.healthHistory.formSection">
+    <div [ngSwitch]="currentSection">
 
       <div *ngSwitchCase="1" [@slideInOut]>
         <mat-form-field appearance="fill" color="accent">
@@ -857,14 +857,14 @@
     </div>
 
     <button
-      *ngIf="(userData.healthHistory.formSection > 1) && !(userData.healthHistory.formSection > 25)"
+      *ngIf="(currentSection > 1) && !(currentSection > 25)"
       (click)="previousSection()"
       type='button'
       mat-raised-button>
       Back
     </button>
     <button
-      *ngIf="(userData.healthHistory.formSection > 25)"
+      *ngIf="(currentSection > 25)"
       (click)="editForm()"
       type='button'
       mat-raised-button>
@@ -872,7 +872,8 @@
     </button>
     <button
       type='submit'
-      *ngIf="!(userData.healthHistory.formSection > 25)"
+      color="accent"
+      *ngIf="!(currentSection > 25)"
       mat-raised-button>
       Submit
     </button>

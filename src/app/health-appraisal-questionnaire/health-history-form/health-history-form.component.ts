@@ -6,6 +6,7 @@ import { trigger, transition, animate, style } from '@angular/animations'
 import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 import { HealthHistory } from './health-history.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,17 +31,21 @@ export class HealthHistoryFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userData: User;
   visible = true;
+  currentSection = 1;
 
   maritalStatusOptions = ['Single', 'Partner', 'Married', 'Separated', 'Divorced', 'Widow(er)'];
   therapyOptions = ['Diet Modification', 'Fasting', 'Vitamins/Minerals', 'Herbs', 'Homeopathy', 'Chiropractic', 'Acupuncture', 'Conventional Drugs'];
 
   constructor(
     private _formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
     ) {
   }
 
   ngOnInit() {
+    console.log('test')
+    console.log(this.userData)
 
     this.healthHistoryForm = this._formBuilder.group({
       name: [''],
@@ -393,16 +398,17 @@ export class HealthHistoryFormComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.userChanged.subscribe((user: User) => {
       this.userData = user;
 
-      if(user.healthHistory.formSection == undefined){
-        this.userData.healthHistory.formSection = 1;
-      }
-
-      if(this.userData.healthHistory){
+      if(!user.hasOwnProperty('healthHistory')){
+        // new user has no history data
+        // make form essential objects
+        console.log('New Health History Form User');
+        this.userData['healthHistory'] = {formSection: this.currentSection} as HealthHistory;
+      } else {
+        // returning user
+        //
+        console.log('Returning Health History Form User');
         this.healthHistoryForm.patchValue(this.userData.healthHistory);
         this.userService.getUserDetails(user.$id);
-      } else {
-        // new user
-        this.userData.healthHistory.formSection = 1;
       }
       this.formProgress = (this.userData.healthHistory.formSection * 4);
     });
@@ -415,17 +421,24 @@ export class HealthHistoryFormComponent implements OnInit, OnDestroy {
 
   previousSection() {
     this.userData.healthHistory.formSection -= 1;
+    this.currentSection = this.userData.healthHistory.formSection;
     this.formProgress = (this.userData.healthHistory.formSection * 4);
   }
   editForm() {
     this.userData.healthHistory.formSection = 1;
+    this.currentSection = this.userData.healthHistory.formSection;
+    this.healthHistoryForm.patchValue(this.userData.healthHistory);
   }
 
   onSubmit() {
     this.userData.healthHistory.formSection += 1;
+    this.currentSection = this.userData.healthHistory.formSection;
     this.formProgress = (this.userData.healthHistory.formSection * 4);
 
     // route to next form on last section
+    if(this.userData.healthHistory.formSection > 25) {
+      this.router.navigate(['/forms/health-appraisal'])
+    }
     // reset section count
 
     let healthHistory: HealthHistory = this.healthHistoryForm.value;

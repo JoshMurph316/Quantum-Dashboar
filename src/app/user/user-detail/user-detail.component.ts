@@ -1,32 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { HAQForm } from 'src/app/health-appraisal-questionnaire/haq-form/haq-form.model';
+import { HealthHistory } from 'src/app/health-appraisal-questionnaire/health-history-form/health-history.model';
+import { NutritionImmune } from 'src/app/health-appraisal-questionnaire/nutrition-immune-form/nutrition-immune.model';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
+  userSubscription: Subscription;
   $id: string;
   user: User;
-  question_list: string[];
-  lifestyle_list: string[];
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
+  haq: HAQForm;
+  healthHistory: HealthHistory;
+  nutritionImmune: NutritionImmune;
 
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  ];
+  haqTabLabels = [
+    'Gastrointestinal',
+    'Liver/GB',
+    'Endocrine',
+    'Glucose Regulation',
+    'Cardiovascular',
+    'Mood',
+    'Immune',
+    'Urological',
+    'Musculoskeletal',
+    'CNS & Brain',
+    'Male',
+    'Female'
+  ]
+  haqDataSums = [
+    { key: 'Gastrointestinal', value: 0 },
+    { key: 'Liver/GB', value: 0 },
+    { key: 'Endocrine', value: 0 },
+    { key: 'Glucose Regulation', value: 0 },
+    { key: 'Cardiovascular', value: 0 },
+    { key: 'Mood', value: 0 },
+    { key: 'Immune', value: 0 },
+    { key: 'Urological', value: 0 },
+    { key: 'Musculoskeletal', value: 0 },
+    { key: 'CNS & Brain', value: 0 },
+    { key: 'Male', value: 0 },
+    { key: 'Female', value: 0 }
+  ]
 
   constructor(
     private usrSvc: UserService,
@@ -36,21 +57,28 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
     this.$id = this.route.snapshot.params['id'];
 
-
-    this.usrSvc.getUserDetails(this.$id).subscribe(user => {
+    this.userSubscription = this.usrSvc.getUserDetails(this.$id).subscribe(user => {
       this.user = user;
-      console.log(user)
-
-      // this.question_list = [];
-      // for (const question in user.questions) {
-      //   if(user.questions[question]) {
-      //     this.question_list.push(question);
-      //   }
-      // }
-
-      // this.lifestyle_list = Object.keys(user.lifestyle);
+      this.haq = user.haqForm;
+      this.healthHistory = user.healthHistory;
+      this.nutritionImmune = user.nutritionImmune;
+      this.calculateDataSums();
     });
 
+  }
+
+  calculateDataSums() {
+    console.log(this.haq)
+    Object.values(this.haq).forEach(part => {
+      console.log(part)
+      Object.values(part).forEach(section => {
+        console.log(section);
+      })
+    })
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
 }

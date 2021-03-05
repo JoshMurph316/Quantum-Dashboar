@@ -22,9 +22,9 @@ export class AuthService implements OnDestroy {
       this.auth.authState.subscribe(user => {
         // console.log(user.email)
         if(user) {
+          this.userService.currentUserData(user.email);
           this.isAuthenticated = true;
           this.authChange.next(true);
-          this.userService.currentUserData(user.email);
           this.router.navigate(['/forms/health-history']);
         } else {
           this.userService.cancelSubscriptions();
@@ -39,6 +39,7 @@ export class AuthService implements OnDestroy {
     this.auth.createUserWithEmailAndPassword(userData.email, userData.password)
     .then(result => {
       this.userService.createNewUser({email: result.user.email});
+      // this.router.navigate(['/forms/health-history']);
     })
     .catch(error => {
       console.log(error);
@@ -52,6 +53,7 @@ export class AuthService implements OnDestroy {
         users.forEach(user => {
           if(user.email === result.user.email) {
             this.userService.getUserDetails(user.$id);
+            // this.router.navigate(['/forms/health-history']);
             return;
           }
         });
@@ -64,6 +66,7 @@ export class AuthService implements OnDestroy {
 
   logout() {
     this.auth.signOut();
+    // this.router.navigate(['/home']);
   }
 
   getAuthStatus() {

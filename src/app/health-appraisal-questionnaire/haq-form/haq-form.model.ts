@@ -1,5 +1,6 @@
 export interface HAQForm {
     part1: {
+      label: 'Gastrointestinal',
       section1: {
         '0': number;
         '1': number;
@@ -45,6 +46,7 @@ export interface HAQForm {
       };
     };
     part2: {
+      label: 'Liver/GB',
       section1: {
         '0': number;
         '1': number;
@@ -65,6 +67,7 @@ export interface HAQForm {
       };
     };
     part3: {
+      label: 'Endocrine',
       section1: {
         '0': number;
         '1': number;
@@ -98,6 +101,7 @@ export interface HAQForm {
       };
     };
     part4: {
+      label: 'Glucose Regulation',
       section1: {
         '0': number;
         '1': number;
@@ -130,6 +134,7 @@ export interface HAQForm {
       };
     };
     part5: {
+      label: 'Cardiovascular',
       section1: {
         '0': number;
         '1': number;
@@ -155,6 +160,7 @@ export interface HAQForm {
       };
     };
     part6: {
+      label: 'Mood',
       section1: {
         '0': number;
         '1': number;
@@ -194,6 +200,7 @@ export interface HAQForm {
       };
     };
     part7: {
+      label: 'Immune',
       section1: {
         '0': number;
         '1': number;
@@ -229,6 +236,7 @@ export interface HAQForm {
       };
     };
     part8: {
+      label: 'Urological',
       section1: {
         '0': number;
         '1': number;
@@ -245,6 +253,7 @@ export interface HAQForm {
       };
     };
     part9: {
+      label: 'Musculoskeletal',
       section1: {
         '0': number;
         '1': number;
@@ -291,6 +300,7 @@ export interface HAQForm {
       };
     };
     part10: {
+      label: 'CNS & Brain',
       section1: {
         '0': number;
         '1': number;
@@ -322,6 +332,7 @@ export interface HAQForm {
       };
     };
     part11: {
+      label: 'Male',
       section1: {
         '0': number;
         '1': number;
@@ -334,6 +345,7 @@ export interface HAQForm {
       };
     };
     part12: {
+      label: 'Female',
       section1: {
         '0': number;
         '1': number;

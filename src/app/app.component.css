@@ -16,7 +16,7 @@ mat-toolbar a {
 mat-nav-list {
   padding-top: 0px;
 }
-mat-drawer {
+mat-sidenav {
   position: fixed;
 }
 mat-drawer-container {

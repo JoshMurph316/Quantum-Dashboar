@@ -33,8 +33,8 @@
   <mat-toolbar></mat-toolbar>
 
 
-<mat-drawer-container>
-  <mat-drawer #drawer mode="side">
+<mat-sidenav-container>
+  <mat-sidenav #drawer mode="side">
     <mat-toolbar></mat-toolbar>
     <mat-toolbar color="accent">
       <h3>Form Menu</h3>
@@ -44,29 +44,29 @@
       <a
         mat-list-item
         (click)="drawer.close()"
-        routerLink="/forms/health-history"
+        (click)="formRouting('/forms/health-history')"
         routerLinkActive="active">
         Health History Form
       </a>
       <a
         mat-list-item
         (click)="drawer.close()"
-        routerLink="/forms/health-appraisal"
+        (click)="formRouting('/forms/health-appraisal')"
         routerLinkActive="active">
         Health Appraisal Questionnaire
       </a>
       <a
         mat-list-item
         (click)="drawer.close()"
-        routerLink="/forms/nutrition-immune"
+        (click)="formRouting('/forms/nutrition-immune')"
         routerLinkActive="active">
         Nutrition and Immune Form
       </a>
     </mat-nav-list>
 
-  </mat-drawer>
+  </mat-sidenav>
 
-  <mat-drawer-content>
+  <mat-sidenav-content>
     <router-outlet></router-outlet>
     <!-- <mat-toolbar class="footer" color="primary">
       <ul class="icon-ul">
@@ -75,7 +75,7 @@
         <li><fa-icon [icon]="faFacebookSquare"></fa-icon></li>
       </ul>
     </mat-toolbar> -->
-  </mat-drawer-content>
+  </mat-sidenav-content>
 
-</mat-drawer-container>
+</mat-sidenav-container>
 

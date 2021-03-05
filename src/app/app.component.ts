@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { User } from './user/user';
@@ -21,7 +22,11 @@ export class AppComponent implements OnInit, OnDestroy{
   // faFacebookSquare = faFacebookSquare;
   // faInstagram = faInstagram;
 
-  constructor(private auth: AuthService, private userService: UserService) {}
+  constructor(
+    private auth: AuthService,
+    private userService: UserService,
+    private router: Router
+    ) {}
 
   ngOnInit() {
     this.auth.initAuthListener();
@@ -31,6 +36,11 @@ export class AppComponent implements OnInit, OnDestroy{
     this.userSubscription = this.userService.userChanged.subscribe((user) => {
       this.user = user;
     })
+  }
+
+  formRouting(route: string) {
+    this.userService.currentUserData(this.user.email);
+    this.router.navigate([route]);
   }
 
   logout() {
