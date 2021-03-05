@@ -66,6 +66,7 @@ export class UserService implements OnInit{
   }
 
   currentUserData(email: string) {
+    console.log(email);
     this.userSubscriptions.push(this.afs
       .collection(this.USERS_PATH, ref => ref.where('email', '==', email))
       .snapshotChanges()

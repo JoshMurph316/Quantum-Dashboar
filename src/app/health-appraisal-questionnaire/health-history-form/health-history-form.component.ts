@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { trigger, transition, animate, style } from '@angular/animations'
+
+import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 import { HealthHistory } from './health-history.model';
 
@@ -7,34 +11,28 @@ import { HealthHistory } from './health-history.model';
 @Component({
   selector: 'app-health-history-form',
   templateUrl: './health-history-form.component.html',
-  styleUrls: ['./health-history-form.component.css']
+  styleUrls: ['./health-history-form.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateX(100%)'}),
+        animate('400ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('100ms ease', style({transform: 'translateX(-100%)'}))
+      ])
+    ])
+  ]
 })
-export class HealthHistoryFormComponent implements OnInit {
+export class HealthHistoryFormComponent implements OnInit, OnDestroy {
+  formProgress = 0;
   healthHistoryForm: FormGroup;
+  userSubscription: Subscription;
+  userData: User;
+  visible = true;
 
   maritalStatusOptions = ['Single', 'Partner', 'Married', 'Separated', 'Divorced', 'Widow(er)'];
   therapyOptions = ['Diet Modification', 'Fasting', 'Vitamins/Minerals', 'Herbs', 'Homeopathy', 'Chiropractic', 'Acupuncture', 'Conventional Drugs'];
-  dailySymptomOptions = ['fatigue', 'depression', 'sex_disinterest', 'eating_disinterest', 'short_breath',
-    'panic_attack', 'headache', 'dizziness', 'insomnia', 'nausea', 'vomiting', 'diarrhea', 'constipation',
-    'fecal_incontinence', 'urinary_incontinence', 'low_fever', 'pain_inflammation', 'bleeding', 'discharge', 'itching_rash'];
-  medicalHistoryOptions = ['arthritis', 'allergies_hayfever', 'asthma', 'alcoholism', 'alzheimers', 'autoimmune',
-    'blood_pressure', 'bronchitis', 'cancer', 'cfs', 'cts', 'cholesterol', 'circulatory', 'colitis', 'dental',
-    'depression', 'diabetes', 'diverticular', 'drug_additiction', 'eating_disorder', 'epilepsy', 'emphysema',
-    'eent_problems', 'enviro_sens', 'fibromyalgia', 'food_intolerance', 'gastro_reflux', 'genetic', 'glaucoma',
-    'gout', 'heath_disease', 'chronic_infection', 'inflam_bowel', 'irritable_bowel', 'kidney_bladder', 'liver_gall',
-    'mental_illness', 'mental_retardation', 'migraine', 'neuro', 'sinus', 'stroke', 'thyroid', 'obesity', 'osteoporosis',
-    'pneumonia', 'std', 'sad', 'skin_problems', 'tuberculosis', 'ulcer', 'uti', 'varicose'];
-  medicalMenOptions = [];
-  medicalWomenOptions = [];
-  familyHistoryOptions = [];
-  healthHabitsOptions = [];
-  exerciseOptions = [];
-  nutritionDietOptions = [];
-  foodFreqOptions = [];
-  eatingHabitOptions = [];
-  currentSuppOptions = [];
-  likeOptions = [];
-
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -73,7 +71,7 @@ export class HealthHistoryFormComponent implements OnInit {
         chiropractic: [false],
         acupuncture: [false],
         conventional_drugs: [false],
-        other: [false]
+        other: ['']
       }),
       healthProblems: [[]],
       medications: [[]],
@@ -92,7 +90,7 @@ export class HealthHistoryFormComponent implements OnInit {
         corrective_lenses: [false],
         dentures: [false],
         heaing_aid: [false],
-        other: [null]
+        other: ['']
       }),
       abilityChanges: this._formBuilder.group({
         see: [false],
@@ -214,7 +212,7 @@ export class HealthHistoryFormComponent implements OnInit {
         sex_drive: [false],
         infertility: [false],
         std: [false],
-        other: ''
+        other: ['']
       }),
       medicalWomen: this._formBuilder.group({
         menstrual_irregularities: [false],
@@ -288,9 +286,9 @@ export class HealthHistoryFormComponent implements OnInit {
         '5-7dpw': [false],
         '3-4dpw': [false],
         '1-2dpw': [false],
-        '45mins': [null],
-        '30-45mins': [null],
-        'less than 30mins': [null],
+        '45mins': [false],
+        '30-45mins': [false],
+        'less than 30mins': [false],
         walk: [false],
         run: [false],
         lift: [false],
@@ -391,11 +389,51 @@ export class HealthHistoryFormComponent implements OnInit {
         inherited_disease: [false]
       })
     });
+
+    this.userSubscription = this.userService.userChanged.subscribe((user: User) => {
+      this.userData = user;
+
+      if(user.healthHistory.formSection == undefined){
+        this.userData.healthHistory.formSection = 1;
+      }
+
+      if(this.userData.healthHistory){
+        this.healthHistoryForm.patchValue(this.userData.healthHistory);
+        this.userService.getUserDetails(user.$id);
+      } else {
+        // new user
+        this.userData.healthHistory.formSection = 1;
+      }
+      this.formProgress = (this.userData.healthHistory.formSection * 4);
+    });
+
+  }
+
+  toggleSlide() {
+    this.visible = !this.visible;
+  }
+
+  previousSection() {
+    this.userData.healthHistory.formSection -= 1;
+    this.formProgress = (this.userData.healthHistory.formSection * 4);
+  }
+  editForm() {
+    this.userData.healthHistory.formSection = 1;
   }
 
   onSubmit() {
+    this.userData.healthHistory.formSection += 1;
+    this.formProgress = (this.userData.healthHistory.formSection * 4);
+
+    // route to next form on last section
+    // reset section count
+
     let healthHistory: HealthHistory = this.healthHistoryForm.value;
-    this.userService.updateUser({ healthHistory: healthHistory});
+    healthHistory.formSection = this.userData.healthHistory.formSection;
+    this.userService.updateUser({ healthHistory: healthHistory });
   }
 
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
 }

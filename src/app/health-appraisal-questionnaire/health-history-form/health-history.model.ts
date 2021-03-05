@@ -1,6 +1,7 @@
 export interface HealthHistory {
 
   name: string;
+  formSection: number;
   dateOfBirth: string;
   dateOfForm: string;
   occupation: string;
