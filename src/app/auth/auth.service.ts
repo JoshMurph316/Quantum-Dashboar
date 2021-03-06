@@ -25,7 +25,7 @@ export class AuthService implements OnDestroy {
           this.userService.currentUserData(user.email);
           this.isAuthenticated = true;
           this.authChange.next(true);
-          this.router.navigate(['/forms/health-history']);
+          this.router.navigate(['/forms']);
         } else {
           this.userService.cancelSubscriptions();
           this.isAuthenticated = false;

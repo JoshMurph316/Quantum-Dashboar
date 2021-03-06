@@ -2,449 +2,478 @@ export interface HAQForm {
     part1: {
       label: 'Gastrointestinal',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
       };
       section3: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
       };
       section4: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
       };
     };
     part2: {
-      label: 'Liver/GB',
+      label: 'Liver_GB',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
       };
     };
     part3: {
       label: 'Endocrine',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
       };
     };
     part4: {
       label: 'Glucose Regulation',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
       };
     };
     part5: {
       label: 'Cardiovascular',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
       };
     };
     part6: {
       label: 'Mood',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
       };
       section3: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
       };
     };
     part7: {
       label: 'Immune',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
-        '16': number;
-        '17': number;
-        '18': number;
-        '19': number;
-        '20': number;
-        '21': number;
-        '22': number;
-        '23': number;
-        '24': number;
-        '25': number;
-        '26': number;
-        '27': number;
-        '28': number;
-        '29': number;
-        '30': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
+        '16': string;
+        '17': string;
+        '18': string;
+        '19': string;
+        '20': string;
+        '21': string;
+        '22': string;
+        '23': string;
+        '24': string;
+        '25': string;
+        '26': string;
+        '27': string;
+        '28': string;
+        '29': string;
+        '30': string;
       };
     };
     part8: {
       label: 'Urological',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
       };
     };
     part9: {
       label: 'Musculoskeletal',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
       };
       section3: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
       };
     };
     part10: {
       label: 'CNS & Brain',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
       };
     };
     part11: {
       label: 'Male',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
       };
     };
     part12: {
       label: 'Female',
       section1: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
-        '16': number;
-        '17': number;
-        '18': number;
-        '19': number;
-        '20': number;
-        '21': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
+        '16': string;
+        '17': string;
+        '18': string;
+        '19': string;
+        '20': string;
+        '21': string;
       };
       section2: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
       };
       section3: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
       };
       section4: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
-        '15': number;
-        '16': number;
-        '17': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
+        '15': string;
+        '16': string;
+        '17': string;
       };
       section5: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
       };
       section6: {
-        '0': number;
-        '1': number;
-        '2': number;
-        '3': number;
-        '4': number;
-        '5': number;
-        '6': number;
-        '7': number;
-        '8': number;
-        '9': number;
-        '10': number;
-        '11': number;
-        '12': number;
-        '13': number;
-        '14': number;
+        label: string,
+        '0': string;
+        '1': string;
+        '2': string;
+        '3': string;
+        '4': string;
+        '5': string;
+        '6': string;
+        '7': string;
+        '8': string;
+        '9': string;
+        '10': string;
+        '11': string;
+        '12': string;
+        '13': string;
+        '14': string;
       };
     };
+
 };

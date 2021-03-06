@@ -1,28 +1,32 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatStepper } from '@angular/material/stepper';
 import { HAQForm } from '../haq-form/haq-form.model';
 import { UserService } from 'src/app/user/user.service';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/user/user';
 
 @Component({
   selector: 'app-haq-form',
   templateUrl: './haq-form.component.html',
   styleUrls: ['./haq-form.component.css']
 })
-export class HaqFormComponent implements OnInit {
-  @ViewChild('stepper') private myStepper: MatStepper;
+export class HaqFormComponent implements OnInit, OnDestroy {
   isLinear = true;
-  selectedIndex = 0;
-
+  selectedIndex: number;
+  panelOpenState = false;
   haqForm: FormGroup;
+  userFormData: HAQForm;
+  userSubscription: Subscription;
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   formQuestions = [ // each array object reps a form part formQuestions[0] = Form Part 1
-  { //Part 1
+  { // Gastrointestinal
+    label: 'Gastrointestinal',
     sections: [
-      { section: 'A',
+      { section: 'Gastric Function',
         questions: [
           {
             prompt: 'Indigestion, food repeats on you after you eat',
@@ -61,7 +65,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'B',
+      { section: 'GI Inflammation',
       questions: [
         {
           prompt: 'Strong emotions, or the thought or smell of food aggravates your stomach or makes it hurt',
@@ -110,7 +114,7 @@ export class HaqFormComponent implements OnInit {
         }
       ]
       },
-      { section: 'C',
+      { section: 'Small Intestine & Pancreas',
         questions: [
           {
             prompt: 'When massaging under your rib cage on your left side, there is pain, tenderness or soreness',
@@ -164,7 +168,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'D',
+      { section: 'Colon',
         questions: [
           {
             prompt: 'Discomfort, pain or cramps in your colon (lower abdominal area)',
@@ -215,9 +219,10 @@ export class HaqFormComponent implements OnInit {
       }
     ] // end of sections
   },
-  { //Part 2
+  { // Liver_GB
+    label: 'Liver Gallbladder',
     sections: [
-      { section: 'A',
+      { section: 'Hepatobiliary Function',
         questions: [
           {
             prompt: 'When massaging under your rib cage on your right side, there is pain, tenderness or soreness ',
@@ -303,9 +308,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 3
+  { // Endocrine
+    label: 'Endocrine',
     sections: [
-      { section: 'A',
+      { section: 'Thyroid',
         questions: [
           {
             prompt: 'Feel cold or chilled—hands, feet or all over—for no apparent reason',
@@ -384,7 +390,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'B',
+      { section: 'Adrenal',
         questions: [
           {
             prompt: 'Lingering mild fatigue after exertion or stress',
@@ -450,9 +456,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 4
+  { // Glucose Regulation
+    label: 'Glucose Regulation',
     sections: [
-      { section: 'A',
+      { section: 'Dysglycemia–L',
         message: 'When you miss meals or go without food for extended periods of time, do you experience any of the following symptoms?',
         questions: [
           {
@@ -537,7 +544,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'B',
+      { section: ' Dysglycemia–E',
         questions: [
           {
             prompt: 'Frequent urination during the day and night',
@@ -594,9 +601,10 @@ export class HaqFormComponent implements OnInit {
 
     ],
   },
-  { //Part 5
+  { // Cardiovascular
+    label: 'Cardiovascular',
     sections: [
-      { section: 'A',
+      { section: 'Heart',
         questions: [
           {
             prompt: 'Feel jittery',
@@ -635,7 +643,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'B',
+      { section: 'Circulation',
         questions: [
           {
             prompt: ' Muscle pain at rest',
@@ -701,9 +709,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 6
+  { // Mood
+    label: 'Mood',
     sections: [
-      { section: 'A',
+      { section: 'Depression',
         questions: [
           {
             prompt: 'Family, friends, work, hobbies or activities you hold dear are no longer of interest ',
@@ -752,7 +761,7 @@ export class HaqFormComponent implements OnInit {
           },
         ]
       },
-      { section: 'B',
+      { section: 'Anxiety',
         questions: [
           {
             prompt: 'Does worrying get you down?',
@@ -826,7 +835,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'C',
+      { section: 'Anger',
         questions: [
           {
             prompt: 'Do you feel pent up and ready to explode?',
@@ -872,9 +881,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 7
+  { // Immune
+    label: 'Immune',
     sections: [
-      { section: 'A',
+      { section: 'Eyes, Ears, Nose, Throat & Lungs',
         questions: [
           {
             prompt: 'Eyes water or tear',
@@ -1035,9 +1045,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 8
+  { //  Urological
+    label: 'Urological',
     sections: [
-      { section: 'A',
+      { section: 'Kidney & Bladder',
         questions: [
           {
             prompt: 'Involuntary loss of urine when you cough, lift something or strain during an activity',
@@ -1103,9 +1114,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 9
+  { // Musculoskeletal
+    label: 'Musculoskeletal',
     sections: [
-      { section: 'A',
+      { section: 'Bone Integrity',
         questions: [
           {
             prompt: 'Bones throughout your entire body ache, feel tender or sore',
@@ -1154,7 +1166,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'B',
+      { section: ' Connective Tissue',
         questions: [
           {
             prompt: 'Are you stiff in the morning when you wake up?',
@@ -1223,7 +1235,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'C',
+      { section: 'Muscle & Nerves',
         questions: [
           {
             prompt: 'Muscles stiff, sore, tense and/or achy',
@@ -1309,9 +1321,10 @@ export class HaqFormComponent implements OnInit {
       }
     ]
   },
-  { //Part 10
+  { // CNS & Brain
+    label: 'CNS & Brain',
     sections: [
-      { section: 'A',
+      { section: ' Central Nervous System',
         questions: [
           {
             prompt: 'Head feels heavy',
@@ -1395,7 +1408,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'B',
+      { section: 'Cognition',
         questions: [
           {
             prompt: 'Difficulty absorbing new information',
@@ -1447,9 +1460,10 @@ export class HaqFormComponent implements OnInit {
     ]
   },
   { //Part 11 Men Only
+    label: 'Male',
     title: 'Men Only',
     sections: [
-      { section: 'A',
+      { section: 'Prostate Health',
         questions: [
           {
             prompt: 'Sensation of not emptying your bladder completely',
@@ -1497,9 +1511,10 @@ export class HaqFormComponent implements OnInit {
   },
   { //Part 12 Women Only
     title: 'Women Only',
+    label: 'Female',
     subtitle: '(Menopausal women should skip to Sections E and F)',
     sections: [
-      { section: 'A',
+      { section: 'Premenstrual Balance',
         message: 'Do you persistently experience any of these symptoms within three days to two weeks prior to menstruation?',
         questions: [
           {
@@ -1614,7 +1629,7 @@ export class HaqFormComponent implements OnInit {
           },
         ]
       },
-      { section: 'B',
+      { section: 'Menstruation',
         message: 'Do you experience any of these symptoms during your period?',
         questions: [
           {
@@ -1669,7 +1684,7 @@ export class HaqFormComponent implements OnInit {
           }
         ]
       },
-      { section: 'C',
+      { section: 'Reproductive Tissue Inflammation',
         questions: [
           {
             prompt: 'Painful or difficult sexual intercourse',
@@ -1733,7 +1748,7 @@ export class HaqFormComponent implements OnInit {
           },
         ]
       },
-      { section: 'D',
+      { section: 'Hormone Balance',
         questions: [
           {
             prompt: 'Absence of periods for six months or longer',
@@ -1827,7 +1842,7 @@ export class HaqFormComponent implements OnInit {
           },
         ]
       },
-      { section: 'E',
+      { section: 'Ovarian Function',
         questions: [
           {
             prompt: 'Vaginal discharge',
@@ -1886,7 +1901,7 @@ export class HaqFormComponent implements OnInit {
           },
         ]
       },
-      { section: 'F',
+      { section: 'Estrogen/Progesterone Decline',
         questions: [
           {
             prompt: 'Sense of well-being fluctuates throughout the day for no apparent reason',
@@ -1970,444 +1985,465 @@ export class HaqFormComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+
+    this.userSubscription = this.userService.userChanged.subscribe((user: User) => {
+
+      if(!user.hasOwnProperty('haqForm')){
+        console.log('New user')
+        // new user has no history data
+        this.userFormData = {} as HAQForm;
+        this.formQuestions.forEach((part, i) => {
+          this.userFormData['part' + (i + 1)] = { 'label': part.label };
+          part.sections.forEach((section, j) => {
+            this.userFormData['part' + (i + 1)]['section' + (j + 1)] = { 'label': section.section };
+          });
+        });
+      } else {
+        this.userFormData = user.haqForm;
+        this.userService.getUserDetails(user.$id);
+        this.haqForm.patchValue(user.haqForm);
+      }
+    });
+
     this.haqForm = this.fb.group({
       part1: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0]
         }),
         section3: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0]
         }),
         section4: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0]
         }),
       }),
       part2: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required],
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0],
         })
       }),
       part3: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0]
         })
       }),
       part4: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0]
         })
       }),
       part5: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0]
         })
       }),
       part6: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0]
         }),
         section3: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0]
         }),
       }),
       part7: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required],
-          16: [0, Validators.required],
-          17: [0, Validators.required],
-          18: [0, Validators.required],
-          19: [0, Validators.required],
-          20: [0, Validators.required],
-          21: [0, Validators.required],
-          22: [0, Validators.required],
-          23: [0, Validators.required],
-          24: [0, Validators.required],
-          25: [0, Validators.required],
-          26: [0, Validators.required],
-          27: [0, Validators.required],
-          28: [0, Validators.required],
-          29: [0, Validators.required],
-          30: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0],
+          16: [0],
+          17: [0],
+          18: [0],
+          19: [0],
+          20: [0],
+          21: [0],
+          22: [0],
+          23: [0],
+          24: [0],
+          25: [0],
+          26: [0],
+          27: [0],
+          28: [0],
+          29: [0],
+          30: [0]
         })
       }),
       part8: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0]
         })
       }),
       part9: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0]
         }),
         section3: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0]
         })
       }),
       part10: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required],
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0],
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0]
         })
       }),
       part11: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0]
         })
       }),
       part12: this.fb.group({
         section1: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required],
-          16: [0, Validators.required],
-          17: [0, Validators.required],
-          18: [0, Validators.required],
-          19: [0, Validators.required],
-          20: [0, Validators.required],
-          21: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0],
+          16: [0],
+          17: [0],
+          18: [0],
+          19: [0],
+          20: [0],
+          21: [0]
         }),
         section2: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0]
         }),
         section3: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0]
         }),
         section4: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required],
-          15: [0, Validators.required],
-          16: [0, Validators.required],
-          17: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0],
+          15: [0],
+          16: [0],
+          17: [0]
         }),
         section5: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0]
         }),
         section6: this.fb.group({
-          0: [0, Validators.required],
-          1: [0, Validators.required],
-          2: [0, Validators.required],
-          3: [0, Validators.required],
-          4: [0, Validators.required],
-          5: [0, Validators.required],
-          6: [0, Validators.required],
-          7: [0, Validators.required],
-          8: [0, Validators.required],
-          9: [0, Validators.required],
-          10: [0, Validators.required],
-          11: [0, Validators.required],
-          12: [0, Validators.required],
-          13: [0, Validators.required],
-          14: [0, Validators.required]
+          0: [0],
+          1: [0],
+          2: [0],
+          3: [0],
+          4: [0],
+          5: [0],
+          6: [0],
+          7: [0],
+          8: [0],
+          9: [0],
+          10: [0],
+          11: [0],
+          12: [0],
+          13: [0],
+          14: [0]
         })
       }),
     });
+
   }
 
   get controls() {
@@ -2417,16 +2453,19 @@ export class HaqFormComponent implements OnInit {
   selectTab(index: number): void {
     this.selectedIndex = index;
   }
-  // programatic stepper progression examples
-  goBack(){
-    this.myStepper.previous();
-  }
-  goForward(){
-      this.myStepper.next();
-  }
   onSubmit() {
-    let haq: HAQForm = this.haqForm.value;
-    this.userService.updateUser({ haqForm: haq });
+    Object.keys(this.haqForm.value).forEach(section => {
+      Object.keys(this.haqForm.value[section]).forEach(val => {
+        this.userFormData[section][val] = {
+          ...this.userFormData[section][val],
+          ...this.haqForm.value[section][val]
+        };
+      });
+    });
+    this.userService.updateUser({ 'haqForm': this.userFormData } as User);
+  }
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
 }

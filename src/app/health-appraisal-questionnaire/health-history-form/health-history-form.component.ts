@@ -44,8 +44,6 @@ export class HealthHistoryFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('test')
-    console.log(this.userData)
 
     this.healthHistoryForm = this._formBuilder.group({
       name: [''],
@@ -407,16 +405,13 @@ export class HealthHistoryFormComponent implements OnInit, OnDestroy {
         // returning user
         //
         console.log('Returning Health History Form User');
+        // this.userData['healthHistory']['formSection'] = this.currentSection;
         this.healthHistoryForm.patchValue(this.userData.healthHistory);
         this.userService.getUserDetails(user.$id);
       }
       this.formProgress = (this.userData.healthHistory.formSection * 4);
     });
 
-  }
-
-  toggleSlide() {
-    this.visible = !this.visible;
   }
 
   previousSection() {
