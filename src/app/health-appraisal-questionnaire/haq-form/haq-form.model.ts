@@ -2,7 +2,8 @@ export interface HAQForm {
     part1: {
       label: 'Gastrointestinal',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -12,7 +13,8 @@ export interface HAQForm {
         '6': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -24,7 +26,8 @@ export interface HAQForm {
         '8': string;
       };
       section3: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -37,7 +40,8 @@ export interface HAQForm {
         '9': string;
       };
       section4: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -52,7 +56,8 @@ export interface HAQForm {
     part2: {
       label: 'Liver_GB',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -74,7 +79,8 @@ export interface HAQForm {
     part3: {
       label: 'Endocrine',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -92,7 +98,8 @@ export interface HAQForm {
         '14': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -110,7 +117,8 @@ export interface HAQForm {
     part4: {
       label: 'Glucose Regulation',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -129,7 +137,8 @@ export interface HAQForm {
         '15': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -145,7 +154,8 @@ export interface HAQForm {
     part5: {
       label: 'Cardiovascular',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -155,7 +165,8 @@ export interface HAQForm {
         '6': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -173,7 +184,8 @@ export interface HAQForm {
     part6: {
       label: 'Mood',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -185,7 +197,8 @@ export interface HAQForm {
         '8': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -202,7 +215,8 @@ export interface HAQForm {
         '13': string;
       };
       section3: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -216,7 +230,8 @@ export interface HAQForm {
     part7: {
       label: 'Immune',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -253,7 +268,8 @@ export interface HAQForm {
     part8: {
       label: 'Urological',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -271,7 +287,8 @@ export interface HAQForm {
     part9: {
       label: 'Musculoskeletal',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -283,7 +300,8 @@ export interface HAQForm {
         '8': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -299,7 +317,8 @@ export interface HAQForm {
         '12': string;
       };
       section3: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -321,7 +340,8 @@ export interface HAQForm {
     part10: {
       label: 'CNS & Brain',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -340,7 +360,8 @@ export interface HAQForm {
         '15': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -355,7 +376,8 @@ export interface HAQForm {
     part11: {
       label: 'Male',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -369,7 +391,8 @@ export interface HAQForm {
     part12: {
       label: 'Female',
       section1: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -394,7 +417,8 @@ export interface HAQForm {
         '21': string;
       };
       section2: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -407,7 +431,8 @@ export interface HAQForm {
         '9': string;
       };
       section3: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -422,7 +447,8 @@ export interface HAQForm {
         '11': string;
       };
       section4: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -443,7 +469,8 @@ export interface HAQForm {
         '17': string;
       };
       section5: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;
@@ -457,7 +484,8 @@ export interface HAQForm {
         '10': string;
       };
       section6: {
-        label: string,
+        value?: number;
+        label: string;
         '0': string;
         '1': string;
         '2': string;

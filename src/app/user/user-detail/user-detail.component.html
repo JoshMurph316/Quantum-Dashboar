@@ -39,8 +39,13 @@
 
     <mat-card-content>
       <mat-tab-group>
-        <mat-tab *ngFor="let label of haqTabLabels" [label]="label">
-          {{ label }}
+        <mat-tab *ngFor="let part of Object.values(haq)" [label]="part.label">
+          {{ part.label }}
+
+          <!-- <div *ngFor="let section of Object.values(part)">
+            {{ section.section }}
+          </div> -->
+
         </mat-tab>
       </mat-tab-group>
     </mat-card-content>

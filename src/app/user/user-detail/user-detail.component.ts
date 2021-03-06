@@ -13,41 +13,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
-  userSubscription: Subscription;
-  $id: string;
+  Object = Object;
+  private userSubscription: Subscription;
+  private $id: string;
   user: User;
   haq: HAQForm;
   healthHistory: HealthHistory;
   nutritionImmune: NutritionImmune;
-
-  haqTabLabels = [
-    'Gastrointestinal',
-    'Liver/GB',
-    'Endocrine',
-    'Glucose Regulation',
-    'Cardiovascular',
-    'Mood',
-    'Immune',
-    'Urological',
-    'Musculoskeletal',
-    'CNS & Brain',
-    'Male',
-    'Female'
-  ]
-  haqDataSums = [
-    { key: 'Gastrointestinal', value: 0 },
-    { key: 'Liver/GB', value: 0 },
-    { key: 'Endocrine', value: 0 },
-    { key: 'Glucose Regulation', value: 0 },
-    { key: 'Cardiovascular', value: 0 },
-    { key: 'Mood', value: 0 },
-    { key: 'Immune', value: 0 },
-    { key: 'Urological', value: 0 },
-    { key: 'Musculoskeletal', value: 0 },
-    { key: 'CNS & Brain', value: 0 },
-    { key: 'Male', value: 0 },
-    { key: 'Female', value: 0 }
-  ]
 
   constructor(
     private usrSvc: UserService,
@@ -66,15 +38,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     });
 
   }
-
   calculateDataSums() {
-    console.log(this.haq)
     Object.values(this.haq).forEach(part => {
-      console.log(part)
-      Object.values(part).forEach(section => {
-        console.log(section);
-      })
-    })
+      console.log(Object.values(part))
+    });
   }
 
   ngOnDestroy() {

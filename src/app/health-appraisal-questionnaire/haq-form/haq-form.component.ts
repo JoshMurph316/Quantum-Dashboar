@@ -2453,18 +2453,28 @@ export class HaqFormComponent implements OnInit, OnDestroy {
   selectTab(index: number): void {
     this.selectedIndex = index;
   }
-  onSubmit() {
-    Object.keys(this.haqForm.value).forEach(section => {
-      Object.keys(this.haqForm.value[section]).forEach(val => {
-        this.userFormData[section][val] = {
-          ...this.userFormData[section][val],
-          ...this.haqForm.value[section][val]
-        };
-      });
-    });
+  onSubmit(): void {
+    this.calculateValues();
     this.userService.updateUser({ 'haqForm': this.userFormData } as User);
   }
-  ngOnDestroy() {
+  calculateValues(): void {
+    Object.keys(this.haqForm.value).forEach(part => {
+      Object.keys(this.haqForm.value[part]).forEach(section => {
+        let sectionValue = 0;
+        this.userFormData[part][section] = {
+          ...this.userFormData[part][section],
+          ...this.haqForm.value[part][section]
+        };
+        Object.keys(this.userFormData[part][section]).forEach(value => {
+          if((value != 'label') && (value != 'value')){
+            sectionValue += Number(this.userFormData[part][section][value]);
+          }
+        });
+        this.userFormData[part][section].value = sectionValue;
+      });
+    });
+  }
+  ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }
 
