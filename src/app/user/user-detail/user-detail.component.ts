@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { HAQForm } from 'src/app/health-appraisal-questionnaire/haq-form/haq-form.model';
+import { HAQ } from 'src/app/health-appraisal-questionnaire/haq-form/haq-form.model';
 import { HealthHistory } from 'src/app/health-appraisal-questionnaire/health-history-form/health-history.model';
 import { NutritionImmune } from 'src/app/health-appraisal-questionnaire/nutrition-immune-form/nutrition-immune.model';
 import { User } from '../user';
@@ -17,7 +17,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
   private $id: string;
   user: User;
-  haq: HAQForm;
+  haq: HAQ;
   healthHistory: HealthHistory;
   nutritionImmune: NutritionImmune;
 

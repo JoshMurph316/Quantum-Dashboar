@@ -33,14 +33,14 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<form [formGroup]="haqForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="haqFormGroup" (ngSubmit)="onSubmit()">
 
   <mat-tab-group [selectedIndex]="selectedIndex" >
-    <mat-tab *ngFor="let part of formQuestions; let i = index" [label]="part.label" [formGroupName]="'part'+ (i + 1)">
+    <mat-tab *ngFor="let part of formData; let i = index" [label]="part.label" [formGroupName]="'part'+ (i + 1)">
 
       <mat-vertical-stepper [linear]="isLinear" #stepper>
-        <mat-step *ngFor="let section of part.sections; let j = index" [formGroupName]="'section' + (j + 1)" [stepControl]="haqForm['section'+(j+1)]">
-          <ng-template matStepLabel>{{ section.section }}</ng-template>
+        <mat-step *ngFor="let section of part.sections; let j = index" [formGroupName]="'section' + (j + 1)" [stepControl]="haqFormGroup['section'+(j+1)]">
+          <ng-template matStepLabel>{{ section.label }}</ng-template>
           <ng-template *ngIf="section.message"><strong>{{ section.message }}</strong></ng-template>
 
             <div *ngFor="let question of section.questions; let dex = index">
