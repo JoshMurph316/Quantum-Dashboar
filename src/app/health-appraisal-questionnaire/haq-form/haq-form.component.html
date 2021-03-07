@@ -38,7 +38,7 @@
   <mat-tab-group [selectedIndex]="selectedIndex" >
     <mat-tab *ngFor="let part of formData; let i = index" [label]="part.label" [formGroupName]="'part'+ (i + 1)">
 
-      <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <mat-step *ngFor="let section of part.sections; let j = index" [formGroupName]="'section' + (j + 1)" [stepControl]="haqFormGroup['section'+(j+1)]">
           <ng-template matStepLabel>{{ section.label }}</ng-template>
           <ng-template *ngIf="section.message"><strong>{{ section.message }}</strong></ng-template>
@@ -89,7 +89,7 @@
           </div>
         </mat-step>
 
-      </mat-vertical-stepper>
+      </mat-horizontal-stepper>
 
     </mat-tab>
 

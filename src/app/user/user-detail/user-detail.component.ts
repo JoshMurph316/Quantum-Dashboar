@@ -34,14 +34,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       this.haq = user.haqForm;
       this.healthHistory = user.healthHistory;
       this.nutritionImmune = user.nutritionImmune;
-      this.calculateDataSums();
+
+      console.log(this.haq);
     });
 
-  }
-  calculateDataSums() {
-    Object.values(this.haq).forEach(part => {
-      console.log(Object.values(part))
-    });
   }
 
   ngOnDestroy() {

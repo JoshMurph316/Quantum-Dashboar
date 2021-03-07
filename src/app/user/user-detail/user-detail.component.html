@@ -3,7 +3,9 @@
   <mat-card>
 
     <div *ngIf="user.healthHistory; else no_health_history">
-      <mat-card-title>Health History Data</mat-card-title>
+      <mat-toolbar>
+        <mat-card-title>Health History Data</mat-card-title>
+      </mat-toolbar>
       <hr>
       <mat-card-subtitle>Name: {{user.healthHistory.name}}</mat-card-subtitle>
       <mat-card-subtitle>Age: {{user.healthHistory.age}}</mat-card-subtitle>
@@ -19,7 +21,9 @@
   <mat-card>
 
     <div *ngIf="user.nutritionImmune; else no_nutrition_immune">
-      <mat-card-title>Nutrition & Immune Data</mat-card-title>
+      <mat-toolbar>
+        <mat-card-title>Nutrition & Immune Data</mat-card-title>
+      </mat-toolbar>
       <hr>
       <mat-card-subtitle>Some</mat-card-subtitle>
       <mat-card-subtitle>Data</mat-card-subtitle>
@@ -29,35 +33,45 @@
       <mat-card-subtitle>This user has no Nutrition & Immune Data</mat-card-subtitle>
     </ng-template>
 
-</mat-card>
+  </mat-card>
 
-<mat-card>
+  <mat-card>
 
-  <div *ngIf="user.haqForm; else no_haqForm">
-    <mat-card-title>Health Appraisal Questionnaire Data</mat-card-title>
-    <hr>
+    <div *ngIf="user.haqForm; else no_haqForm">
+      <mat-toolbar>
+        <mat-card-title>Health Appraisal Questionnaire Data</mat-card-title>
+      </mat-toolbar>
+      <hr>
 
-    <mat-card-content>
-      <mat-tab-group>
-        <mat-tab *ngFor="let part of Object.values(haq)" [label]="part.label">
-          {{ part.label }}
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab *ngFor="let part of haq.parts" [label]="part.label">
 
-          <!-- <div *ngFor="let section of Object.values(part)">
-            {{ section.section }}
-          </div> -->
+            <div class="section-container">
+              <div *ngFor="let section of part.sections">
 
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card-content>
-  </div>
+                <h3>{{ section.label }}</h3>
+                <p>{{ section.sectionTotal }}</p>
 
-  <ng-template #no_haqForm>
-    <mat-card-subtitle>This user has no Health Appraisal Questionnaire</mat-card-subtitle>
-  </ng-template>
+                <mat-progress-spinner
+                  class="example-margin"
+                  color="accent"
+                  mode="determinate"
+                  [value]="section.sectionTotal">
+                </mat-progress-spinner>
+              </div>
+            </div>
 
-</mat-card>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </div>
 
+    <ng-template #no_haqForm>
+      <mat-card-subtitle>This user has no Health Appraisal Questionnaire</mat-card-subtitle>
+    </ng-template>
 
+  </mat-card>
 
 </div>
 

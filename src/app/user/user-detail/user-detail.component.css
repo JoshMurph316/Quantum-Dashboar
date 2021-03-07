@@ -8,3 +8,7 @@ mat-spinner {
 .spinner-container {
   padding: 10% 0px;
 }
+.section-container {
+  display: flex;
+  justify-content: space-around;
+}

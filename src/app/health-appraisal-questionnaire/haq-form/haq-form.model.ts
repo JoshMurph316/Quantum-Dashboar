@@ -5,10 +5,16 @@ interface Question {
 };
 
 interface Value { value: any };
+interface Ranges {
+  high: number;
+  med: number;
+  low: number;
+}
 
 interface Section {
     label: string;
     message?: string;
+    ranges?: Ranges;
     sectionTotal?: number;
     values?: Value[];
     questions: Question[];
