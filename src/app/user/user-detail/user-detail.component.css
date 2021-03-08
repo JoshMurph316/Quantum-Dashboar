@@ -4,11 +4,48 @@
 mat-spinner {
   width: 100%;
   margin: auto;
+  padding: 6px;
 }
 .spinner-container {
   padding: 10% 0px;
 }
+.spinner {
+  margin: auto;
+}
 .section-container {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.sections {
+  padding: 6px;
+  margin-top: 12px;
+}
+table, mat-paginator {
+  width: 95%;
+  margin: auto;
+}
+table {
+  margin-top: 6px;
+}
+.sub-text {
+  color: rgb(190, 190, 190);
+  font-size: .8em;
+}
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
 }

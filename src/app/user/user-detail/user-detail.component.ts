@@ -1,4 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HAQ } from 'src/app/health-appraisal-questionnaire/haq-form/haq-form.model';
@@ -12,7 +16,9 @@ import { UserService } from '../user.service';
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit, OnDestroy {
+export class UserDetailComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   Object = Object;
   private userSubscription: Subscription;
   private $id: string;
@@ -20,6 +26,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   haq: HAQ;
   healthHistory: HealthHistory;
   nutritionImmune: NutritionImmune;
+  haqPanelOpenState = false;
+  displayedColumns: string[] = ['part', 'section', 'total', 'graph'];
+
+  sectionData = new MatTableDataSource<any>();
+
 
   constructor(
     private usrSvc: UserService,
@@ -32,6 +43,15 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.userSubscription = this.usrSvc.getUserDetails(this.$id).subscribe(user => {
       this.user = user;
       this.haq = user.haqForm;
+      this.haq.parts.forEach(part => {
+        part.sections.forEach(section => {
+          let partLabel = part.label;
+          let newSec = section;
+          newSec['partLabel'] = partLabel;
+          this.sectionData.data.push(newSec);
+        });
+      });
+      console.log(this.sectionData);
       this.healthHistory = user.healthHistory;
       this.nutritionImmune = user.nutritionImmune;
 
@@ -39,7 +59,21 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     });
 
   }
-
+  ngAfterViewInit() {
+    this.sectionData.paginator = this.paginator;
+  }
+  getColor(value: number, ranges):string {
+    if(value < ranges.low) {
+      return 'primary';
+    } else if(value < ranges.med) {
+      return 'accent'
+    } else {
+      return 'warn'
+    }
+  }
+  doFilter(filterValue: string) {
+    this.sectionData.filter = filterValue.trim().toLowerCase();
+  }
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }
