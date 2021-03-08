@@ -32,33 +32,6 @@ export class HaqFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.formData = this.haqService.getFormData();
-
-    this.userSubscription = this.userService.userChanged.subscribe((user: User) => {
-
-      this.userService.getUserDetails(user.$id);
-      if(user.hasOwnProperty('haqForm')){
-
-        this.userFormData = user.haqForm;
-        // patch form data
-        this.userFormData.parts.forEach((part, i) => {
-          part.sections.forEach((section, j) => {
-            section.values.forEach((value, x) => {
-              (<FormGroup>(<FormGroup>this.haqFormGroup
-                .controls['part'+(i+1)])
-                .controls['section'+(j+1)])
-                .controls[x]
-                .patchValue(value.value);
-            })
-          });
-        });
-      } else {
-        // new user
-        this.formData.forEach(part => {
-          this.userFormData.parts.push(part);
-        });
-      }
-    });
-
     this.haqFormGroup = this.fb.group({
       part1: this.fb.group({
         section1: this.fb.group({
@@ -498,6 +471,20 @@ export class HaqFormComponent implements OnInit, OnDestroy {
       }),
     });
 
+    this.userSubscription = this.userService.userChanged.subscribe((user: User) => {
+
+      this.userService.getUserDetails(user.$id);
+      if(user.hasOwnProperty('haqForm')){
+        this.userFormData = user.haqForm;
+        this.patchFormValues();
+      } else {
+        console.log('new user');
+        this.formData.forEach(part => {
+          this.userFormData.parts.push(part);
+        });
+      }
+    });
+
   }
 
   get controls() {
@@ -509,7 +496,7 @@ export class HaqFormComponent implements OnInit, OnDestroy {
   }
   onSubmit(): void {
     this.calculateValues();
-    // console.log(this.userFormData);
+    console.log(this.userFormData);
     this.userService.updateUser({ haqForm: this.userFormData } as User);
   }
   calculateValues(): void {
@@ -519,14 +506,29 @@ export class HaqFormComponent implements OnInit, OnDestroy {
         this.userFormData.parts[i].sections[j].values = [];
 
         Object.keys(this.haqFormGroup.value[part][section]).forEach(value => {
-          // console.log(this.haqFormGroup.value[part][section][value]);
           this.userFormData.parts[i].sections[j].values.push(
             { value: this.haqFormGroup.value[part][section][value] }
           );
+          // console.log(this.haqFormGroup.value[part][section][value]);
+          // console.log(this.userFormData.parts[i].sections[j].values);
           sectionValue += Number(this.haqFormGroup.value[part][section][value]);
         });
 
         this.userFormData.parts[i].sections[j].sectionTotal = sectionValue;
+      });
+    });
+  }
+  patchFormValues(): void {
+    this.userFormData.parts.forEach((part, i) => {
+      part.sections.forEach((section, j) => {
+        section.values.forEach((value, x) => {
+          // console.log((<FormGroup>(<FormGroup>this.haqFormGroup.controls['part'+(i+1)]).controls['section'+(j+1)]).controls[x]);
+          (<FormGroup>(<FormGroup>this.haqFormGroup
+            .controls['part'+(i+1)])
+            .controls['section'+(j+1)])
+            .controls[x]
+            .patchValue(value.value);
+        });
       });
     });
   }

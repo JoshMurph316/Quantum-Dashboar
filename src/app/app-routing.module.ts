@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'forms',
     component: HealthAppraisalQuestionnaireComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: HaqFormComponent },
       { path: 'health-history', component: HealthHistoryFormComponent },
@@ -39,17 +39,17 @@ const routes: Routes = [
   {
     path: 'user-form',
     component: UserFormComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'users',
     component: UsersComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'user-detail/:id',
     component: UserDetailComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];
 
